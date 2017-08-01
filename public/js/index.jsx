@@ -1,9 +1,11 @@
 import React from 'react';
 import ReactDom from 'react-dom';
 import injectTapEventPlugin from 'react-tap-event-plugin';
-import DashBoard from './DashBoard/Dash';
-import Login from './Login_Signup/Login';
+import App from './App'
 
 injectTapEventPlugin();
 
-ReactDom.render(<Login />, document.getElementById('root'));
+// ReactDom.render(<DashBoard />, document.getElementById('root'));
+ReactDom.render(<App />, document.getElementById('root'));
+// ReactDom.render(<LogForm type="Login" handler={loginHandler} />, document.getElementById('root'));
+
