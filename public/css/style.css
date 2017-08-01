@@ -11,3 +11,11 @@ ul {
   padding: 1%;
   list-style-type: none;
 }
+
+.material-icons {
+  color: white !important;
+}
+
+#signoutDash {
+  cursor: pointer;
+}
