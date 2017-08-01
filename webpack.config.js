@@ -17,6 +17,7 @@ module.exports = {
     extensions: ['.js', '.jsx'],
     alias: {
       DashBoard: path.resolve(__dirname, 'public/js/DashBoard'),
+      Login_Signup: path.resolve(__dirname, 'public/js/Login_Signup'),
     },
   },
   plugins: [],
