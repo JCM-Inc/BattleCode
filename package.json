@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "description": "> BattleCode is a website where you compete against your friends in an epic code battle! ## This app brings the excitement of live competition to coding. > Have you been lacking in your code skills lately. Fear no more, for BattleCode is here to alleviate your pain. ## \"My life has been changed by BattleCode...it's all I do!\" ## Head on down to https://www.battlecode.com to get started! ## \"Battlecode is the most fun I've had in my 70 years of teaching.\" ## If you want to be the best coder come join today!",
   "main": "index.js",
-  "scripts": {},
+  "scripts": {
+    "prod": "NODE_ENV=prod && webpack"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Javacrypts/BattleCode"
@@ -25,7 +27,8 @@
     "eslint-plugin-import": "^2.7.0",
     "eslint-plugin-jsx-a11y": "^5.1.1",
     "eslint-plugin-react": "^7.1.0",
-    "webpack": "^3.4.1"
+    "webpack": "^3.4.1",
+    "webpack-dev-server": "^2.6.1"
   },
   "dependencies": {
     "body-parser": "^1.17.2",
@@ -35,6 +38,7 @@
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
     "react-tap-event-plugin": "^2.0.1",
-    "mongoose": "^4.11.5"
+    "mongoose": "^4.11.5",
+    "react-router-dom": "^4.1.2",
   }
 }
