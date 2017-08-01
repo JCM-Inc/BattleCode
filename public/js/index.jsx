@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDom from 'react-dom';
 import injectTapEventPlugin from 'react-tap-event-plugin';
-import Dash from './DashBoard/DashBoard.jsx';
+import DashBoard from './DashBoard/Dash';
 
 injectTapEventPlugin();
 
-ReactDom.render(<Dash />, document.getElementById('root'));
+ReactDom.render(<DashBoard />, document.getElementById('root'));

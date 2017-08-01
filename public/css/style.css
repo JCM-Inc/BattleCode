@@ -1,0 +1,13 @@
+.flex {
+  display: flex !important;
+}
+
+.fifty {
+  width: 50% !important;
+  text-align: center;
+}
+
+ul {
+  padding: 1%;
+  list-style-type: none;
+}
