@@ -11,12 +11,12 @@ class Badges extends React.Component {
     const BadgesList = this.state.BadgesList.map(e => (
       <li key={e[1]}>
         <b> {e[0]} </b>
-        <hr />
       </li>
     ));
     return (
       <div className="fifty">
         <h4> Badges </h4>
+        <hr />
         <ul>
           {BadgesList}
         </ul>

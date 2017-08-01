@@ -17,6 +17,7 @@ class Rankings extends React.Component {
     return (
       <div className="fifty">
         <h4> Rankings </h4>
+        <hr />
         <ul>
           {RankingsList}
         </ul>
