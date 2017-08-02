@@ -3,6 +3,7 @@ import { Switch, Route, HashRouter } from 'react-router-dom';
 import DashBoard from './DashBoard/Dash';
 import LogForm from './Login_Signup/LogForm';
 import handlers from './Login_Signup/handlers';
+import Competition from './Competition/Competition';
 
 const NotFound = () => (<h1>404</h1>);
 
@@ -28,6 +29,11 @@ const App = () => (
         exact
         path="/signup"
         render={() => <LogForm type="Sign Up" handler={handlers.signupHandler} />}
+      />
+      <Route
+        exact
+        path="/competition"
+        component={Competition}
       />
       <Route exact path="*" component={NotFound} />
     </Switch>

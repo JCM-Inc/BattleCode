@@ -26,7 +26,5 @@ module.exports = {
 };
 
 if (process.env.NODE_ENV === 'prod') {
-  module.exports.plugins.push(
-    new webpack.optimize.UglifyJsPlugin(),
-  );
+  module.exports.plugins.push(new webpack.optimize.UglifyJsPlugin());
 }

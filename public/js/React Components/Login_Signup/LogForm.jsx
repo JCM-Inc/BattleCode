@@ -23,6 +23,7 @@ class InnerLogForm extends React.Component {
     this.state = {
       submitted: false,
     };
+    this.Login = this.Login.bind(this);
   }
 
   Login() {
