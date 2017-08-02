@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card, CardText, MuiThemeProvider, TextField, RaisedButton, LinearProgress } from 'material-ui';
+import { Card, CardText, MuiThemeProvider, gTextField, RaisedButton, LinearProgress } from 'material-ui';
 import PropTypes from 'prop-types';
 
 const LogForm = props => (
@@ -23,11 +23,7 @@ class InnerLogForm extends React.Component {
     this.state = {
       submitted: false,
     };
-<<<<<<< HEAD
     this.Login = this.Login.bind(this);
-=======
-    this.Signout = this.Signout.bind(this);
->>>>>>> [update] Oauth
   }
 
   Login() {
