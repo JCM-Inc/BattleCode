@@ -10,9 +10,7 @@ require('dotenv').config();
 const promise = mongoose.connect(mongoDB, {
   useMongoClient: true,
 });
-promise.then(function(db) {
-  db.on('error', console.error.bind(console, 'MongoDB connection error:'));
-});
+promise.then(db => db.on('error', console.error.bind(console, 'MongoDB connection error:')));
 
 
 const Schema = mongoose.Schema;
@@ -48,9 +46,11 @@ Challenge.create({
   },
 });
 const Game = mongoose.model('Game', gameSchema);
-User.create({
-  username: 'cainsux',
-  email: 'supersecrete@secret.com',
-}, (err, instance) => err ? console.error(err) : console.log(instance, 'new cain'));
-User.find((err, user) => err ? console.error(err) : console.log(user, 'founded'));
-Challenge.find((err, challenge) => err ? console.error(err) : console.log(challenge, 'clg found'));
+
+// User.create({
+//   username: 'cainsux',
+//   email: 'supersecrete@secret.com',
+// }, (err, instance) => err ? console.error(err) : console.log(instance, 'new cain'));
+// User.find((err, user) => err ? console.error(err) : console.log(user, 'founded'));
+// Challenge.find(
+//   (err, challenge) => err ? console.error(err) : console.log(challenge, 'clg found'));
