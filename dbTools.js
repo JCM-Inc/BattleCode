@@ -1,11 +1,7 @@
-// const mongoDB = `mongodb://cain:catsoup@ds127983.mlab.com:27983/codebattle`; //works
-const mongoDB = `mongodb://cain:${process.env.DBPW}@ds127983.mlab.com:27983/codebattle`; //works
+const mongoDB = `mongodb://cain:${process.env.DBPW}@ds127983.mlab.com:27983/codebattle`; 
 const mongoose = require('mongoose');
 
 require('dotenv').config();
-// mongoose.connect(mongoDB);
-// const db = mongoose.connection;
-// db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
 const promise = mongoose.connect(mongoDB, {
   useMongoClient: true,
