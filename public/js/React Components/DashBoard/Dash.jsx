@@ -25,9 +25,9 @@ class InnerDash extends React.Component {
   render() {
     return (
       <div>
-        <AppBar title="Dashboard" style={{ backgroundColor: '#FF6F00' }} iconElementLeft={<FontIcon id="signoutDash" className="material-icons">navigate_before</FontIcon>} iconStyleLeft={{ marginTop: '20px' }} />
+        <AppBar title="Dashboard" style={{ backgroundColor: '#FF6F00' }} iconElementLeft={<FontIcon className={['material-icons', 'signoutDashBoard'].join(' ')}>navigate_before</FontIcon>} />
         <Card>
-          <div className="dashboard">
+          <div>
             <RaisedButton
               label="Go To Challenge"
               fullWidth
@@ -40,7 +40,7 @@ class InnerDash extends React.Component {
               onClick={this.createChallenge}
             />
 
-            <div className="flex">
+            <div className="DashBoardFlex">
               <Badges />
               <Rankings />
             </div>

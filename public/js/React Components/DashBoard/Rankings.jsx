@@ -9,16 +9,18 @@ class Rankings extends React.Component {
   }
   render() {
     const RankingsList = this.state.RankingsList.map(e => (
-      <li key={e[1]}>
-        <b> {e[0].split(':')[0]} </b>
-        <h5> {e[0].split(':')[1]} </h5>
+      <li key={e[1]} className="RankList">
+        <p>
+          <b> {e[0].split(':')[0]}. </b>
+          <span> {e[0].split(':')[1]} </span>
+        </p>
       </li>
     ));
     return (
-      <div className="fifty">
+      <div className="DashBoardHalf">
         <h4> Rankings </h4>
         <hr />
-        <ul>
+        <ul className="DashBoardList">
           {RankingsList}
         </ul>
       </div>
