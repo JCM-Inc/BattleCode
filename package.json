@@ -28,7 +28,6 @@
     "eslint-plugin-import": "^2.7.0",
     "eslint-plugin-jsx-a11y": "^5.1.1",
     "eslint-plugin-react": "^7.1.0",
-    "node-sass": "^4.5.3",
     "style-loader": "^0.18.2",
     "stylus": "^0.54.5",
     "stylus-loader": "^3.0.1",
@@ -37,6 +36,7 @@
   },
   "dependencies": {
     "body-parser": "^1.17.2",
+    "brace": "^0.10.0",
     "dotenv": "^4.0.0",
     "express": "^4.15.3",
     "google-auth-library": "^0.10.0",
@@ -45,6 +45,8 @@
     "mongoose": "^4.11.5",
     "prop-types": "^15.5.10",
     "react": "^15.6.1",
+    "react-ace": "^5.1.1",
+    "react-brace": "^3.6.6",
     "react-dom": "^15.6.1",
     "react-router-dom": "^4.1.2",
     "react-tap-event-plugin": "^2.0.1"
