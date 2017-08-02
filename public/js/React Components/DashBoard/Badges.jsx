@@ -14,10 +14,10 @@ class Badges extends React.Component {
       </li>
     ));
     return (
-      <div className="fifty">
+      <div className="DashBoardHalf">
         <h4> Badges </h4>
         <hr />
-        <ul>
+        <ul className="DashBoardList">
           {BadgesList}
         </ul>
       </div>
