@@ -16,16 +16,16 @@
     <script>
       function onSignIn(googleUser) {
         // Useful data for your client-side scripts:
-        var profile = googleUser.getBasicProfile();
-        var userName = profile.getName();
-        var userImage = profile.getImageUrl();
-        var userEmail = profile.getEmail();
-        var id_token = googleUser.getAuthResponse().id_token;
+        const profile = googleUser.getBasicProfile();
+        const userName = profile.getName();
+        const userImage = profile.getImageUrl();
+        const userEmail = profile.getEmail();
+        const id_token = googleUser.getAuthResponse().id_token;
         console.log(userName, userImage, userEmail, id_token);
 
 
-        //pass id_token, full name, and email to backend
-          //and maybe image
+        //send to database:
+
          //var xhr = new XMLHttpRequest();
           // xhr.open('POST', 'https://yourbackend.example.com/tokensignin');
           // xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
@@ -36,7 +36,7 @@
       };
 
         function signOut() {
-          var auth2 = gapi.auth2.getAuthInstance();
+          const auth2 = gapi.auth2.getAuthInstance();
           auth2.signOut().then(function () {
             console.log('User signed out.');
           });
