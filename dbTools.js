@@ -1,41 +1,56 @@
-// const mongoDB = `mongodb://codebattle:${process.env.DBPW}@ds127783.mlab.com:27783/codebattle`;
-const mongoDB = `mongodb://codebattle:catsoup@ds127983.mlab.com:27983/codebattle`
-require('dotenv').config();
+// const mongoDB = `mongodb://cain:catsoup@ds127983.mlab.com:27983/codebattle`; //works
+const mongoDB = `mongodb://cain:${process.env.DBPW}@ds127983.mlab.com:27983/codebattle`; //works
 const mongoose = require('mongoose');
 
-mongoose.connect(mongoDB);
-const db = mongoose.connection;
-db.on('error', console.error.bind(console, 'MongoDB connection error:'));
+require('dotenv').config();
+// mongoose.connect(mongoDB);
+// const db = mongoose.connection;
+// db.on('error', console.error.bind(console, 'MongoDB connection error:'));
+
+const promise = mongoose.connect(mongoDB, {
+  useMongoClient: true,
+});
+promise.then(function(db) {
+  db.on('error', console.error.bind(console, 'MongoDB connection error:'));
+});
 
 
-// const Schema = mongoose.Schema;
-// const UserSchema = new Schema({
-//   username: String,
-//   password: String,
-// });
-// const UserModel = mongoose.model('UserModel', UserSchema);
-// const UserOrCollection = new UserModel({
-//   username:'Cain',
-//   password: 'Cain'
-// })
-// UserOrCollection.save((err, created)=> {
-//   if (err) {
-//     console.log(err);
-//   }
-//   // console.log(created);
-// })
-// UserModel.create({
-//   username: 'jacques',
-//   password: 'woah'
-// }, (err, instance) => {
-//   if (err) return handleError(err) 
-//   console.log(instance);
-// })
-
-// UserModel.find((err, user) => {
-//   console.log('inside find');
-//   if (err){
-//     console.error(err)
-//   } 
-//   console.log(user, 'this is finidng');
-// })
+const Schema = mongoose.Schema;
+const userSchema = Schema({
+  username: String,
+  email: String,
+  /* access token hashed
+  refresh token, hashed
+  email
+  */
+});
+const challengeSchema = new Schema({
+  name: String,
+  description: String,
+  objectOfTests: Object,
+});
+const gameSchema = new Schema({
+  winner: {
+    type: Number, ref: 'User',
+  },
+  challenge: {
+    type: Number, ref: 'Challenge',
+  },
+});
+const User = mongoose.model('User', userSchema);
+const Challenge = mongoose.model('Challenge', challengeSchema);
+Challenge.create({
+  name: 'parseJSON',
+  description: 'dont leave before midnight',
+  objectOfTests: {
+    test1: 'ttttesstt',
+    test2: 'testtest',
+  },
+});
+const Game = mongoose.model('Game', gameSchema);
+User.create({
+  username: 'cainsux',
+  email: 'supersecrete@secret.com',
+}, (err, instance) => err ? console.error(err) : console.log(instance, 'new cain'));
+User.find((err, user) => err ? console.error(err) : console.log(user, 'founded'));
+Challenge.find((err, challenge) => err ? console.error(err) : console.log(challenge, 'clg found'));
