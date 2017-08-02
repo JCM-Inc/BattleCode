@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card, CardText, MuiThemeProvider, TextField, RaisedButton, LinearProgress } from 'material-ui';
+import { Card, CardText, MuiThemeProvider, gTextField, RaisedButton, LinearProgress } from 'material-ui';
 import PropTypes from 'prop-types';
 
 const LogForm = props => (
@@ -35,16 +35,20 @@ class InnerLogForm extends React.Component {
     }
   }
 
+  Signout() {
+    this.auth2 = gapi.auth2.getAuthInstance();
+    this.auth2.signOut().then(() => {
+      console.log('User signed out.');
+    });
+  }
+
   render() {
     return (
       <Card>
         <CardText>
           <h1 style={{ textAlign: 'center' }}>{this.props.type}</h1>
-          <TextField hintText="Username" type="text" fullWidth />
-          <br />
-          <TextField hintText="Password" type="password" fullWidth />
-          <br />
-          <RaisedButton label={this.props.type} fullWidth onClick={this.Login} />
+          <div className="g-signin2" data-onsuccess="onSignIn" data-theme="dark" />
+          <button href="#" onClick={this.Signout}>Sign out</button>
           <LinearProgress mode="indeterminate" style={(this.state.submitted === true) ? { display: 'block' } : { display: 'none' }} />
         </CardText>
       </Card>
