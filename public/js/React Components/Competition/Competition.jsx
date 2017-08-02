@@ -46,7 +46,6 @@ class InnerCompetition extends React.Component {
         <div className="MainCompetition">
           <CompetitionDescriptor />
           <TextEditor
-            className=""
             fontSize={fontSize}
             mode={mode}
             theme={theme}
