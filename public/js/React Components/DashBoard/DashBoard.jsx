@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import { AppBar, Card, FontIcon, MuiThemeProvider, RaisedButton } from 'material-ui';
+import { AppBar, Card, MuiThemeProvider, RaisedButton } from 'material-ui';
 import Badges from './Badges';
 import Rankings from './Rankings';
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
 
 class DashBoard extends Component {
   constructor() {

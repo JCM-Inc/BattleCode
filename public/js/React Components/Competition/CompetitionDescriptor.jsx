@@ -1,26 +1,47 @@
 import React, { Component } from 'react';
-import { Card, CardText, RaisedButton } from 'material-ui';
+import PropTypes from 'prop-types';
+import { Card, CardText } from 'material-ui';
 import Test from './Test';
 
-class CompetitionDescriptor extends Component {
+export default class CompetitionDescriptor extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      mocha: `
+        mocha.suite.suites.splice(0, 1);
+        mocha.setup('bdd');
+        const expect = chai.expect;
+        describe('test', () => {
+          it('a(2) -> 4', () => {
+            expect(a(2)).to.equal(4);
+          })
+        })
+
+        mocha.run();
+      `,
+    };
   }
 
   render() {
     return (
       <div className="CompetitionDescriptor">
         <div className="TopDescription">
-          <RaisedButton label="Run Tests" fullWidth />
           <Card className="Description">
-            <h1>Title</h1>
-            <p>Description</p>
+            <CardText>
+              <h1>Title</h1>
+              <p>Description</p>
+            </CardText>
           </Card>
         </div>
-        <Test />
+        <Test
+          mocha={this.state.mocha}
+          userInput={this.props.userInput}
+        />
       </div>
     );
   }
 }
 
-export default CompetitionDescriptor;
+CompetitionDescriptor.propTypes = {
+  userInput: PropTypes.string.isRequired,
+};
