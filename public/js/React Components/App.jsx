@@ -1,7 +1,7 @@
 import React from 'react';
-import { Switch, Route, HashRouter, BrowserRouter } from 'react-router-dom';
+import { HashRouter, Route, Switch } from 'react-router-dom';
 import DashBoard from './DashBoard/DashBoard';
-import Signin from './Login_Signup/Signin';
+import Signin from './Signin/Signin';
 import Competition from './Competition/Competition';
 
 const NotFound = () => (<h1>404</h1>);

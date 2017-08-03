@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { MuiThemeProvider, AppBar, Card, RaisedButton, FontIcon } from 'material-ui';
+import { AppBar, Card, FontIcon, MuiThemeProvider, RaisedButton } from 'material-ui';
 import Badges from './Badges';
 import Rankings from './Rankings';
 
