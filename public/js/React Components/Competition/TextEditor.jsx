@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import CodeMirror from 'react-codemirror';
 import 'codemirror/mode/javascript/javascript';
-import 'codemirror/mode/python/python';
 import 'codemirror/theme/dracula.css';
 
 class TextEditor extends Component {
