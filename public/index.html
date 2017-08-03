@@ -20,7 +20,13 @@
         const userImage = profile.getImageUrl();
         const userEmail = profile.getEmail();
         const id_token = googleUser.getAuthResponse().id_token;
-        console.log(`${userName} signed in`);
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', '/signin');
+        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        xhr.onload = function() {
+          console.log('Signed in as: ' + xhr.responseText);
+        };
+        xhr.send('idtoken=' + id_token);
       };
     </script>
   </body>
