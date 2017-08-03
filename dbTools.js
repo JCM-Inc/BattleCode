@@ -13,10 +13,6 @@ const Schema = mongoose.Schema;
 const userSchema = Schema({
   username: String,
   email: String,
-  /* access token hashed
-  refresh token, hashed
-  email
-  */
 });
 const challengeSchema = new Schema({
   name: String,
@@ -43,6 +39,26 @@ Challenge.create({
 });
 const Game = mongoose.model('Game', gameSchema);
 
+exports.findUser = (dataObject, cb) => {
+  console.log('finduser called with', dataObject)
+  User.find(dataObject).exec(
+    (err, success) => {
+      if (err) {
+        console.error(err);
+      } else {
+        console.log(success)
+        if (success.length === 0) {
+          User.create({
+            username: dataObject.email,
+            email: dataObject.email,
+          }, (err, instance) => cb(instance));
+        } else if (success.length === 1) {
+          cb(success[0]);
+        }
+      }
+    },
+  );
+};
 // User.create({
 //   username: 'cainsux',
 //   email: 'supersecrete@secret.com',
