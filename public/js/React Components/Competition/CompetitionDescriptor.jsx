@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Card, CardText, RaisedButton } from 'material-ui';
 import Test from './Test';
 
-class CompetitionDescriptor extends React.Component {
+class CompetitionDescriptor extends Component {
   constructor(props) {
     super(props);
   }
@@ -10,8 +10,13 @@ class CompetitionDescriptor extends React.Component {
   render() {
     return (
       <div className="CompetitionDescriptor">
-        <h1>Title</h1>
-        <p>Description</p>
+        <div className="TopDescription">
+          <RaisedButton label="Run Tests" fullWidth />
+          <Card className="Description">
+            <h1>Title</h1>
+            <p>Description</p>
+          </Card>
+        </div>
         <Test />
       </div>
     );

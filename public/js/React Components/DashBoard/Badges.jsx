@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { Component } from 'react';
 
-class Badges extends React.Component {
+export default class Badges extends Component {
   constructor() {
     super();
     this.state = {
@@ -24,5 +24,3 @@ class Badges extends React.Component {
     );
   }
 }
-
-export default Badges;

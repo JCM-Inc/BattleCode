@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { Component } from 'react';
 
-class Rankings extends React.Component {
+export default class Rankings extends Component {
   constructor() {
     super();
     this.state = {
@@ -27,5 +27,3 @@ class Rankings extends React.Component {
     );
   }
 }
-
-export default Rankings;

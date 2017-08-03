@@ -6,16 +6,18 @@ export default class Test extends Component {
   }
 
   componentDidMount() {
-    mocha.setup('bdd');
     eval(`
+      mocha.setup('bdd');
+
       const expect = chai.expect;
       describe('test', () => {
         it('testtest', () => {
-          expect(2).to.equal(2);
+          expect(2).to.equal(1);
         })
       })
+
+      mocha.run();
     `);
-    mocha.run();
   }
 
   render() {
