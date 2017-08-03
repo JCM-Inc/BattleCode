@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { MuiThemeProvider, AppBar, FontIcon } from 'material-ui';
 import CompetitionDescriptor from './CompetitionDescriptor';
 import TextEditor from './TextEditor';
 import TextEditorSettings from './TextEditorSettings';
 
-export default class Competition extends React.Component {
+export default class Competition extends Component {
   constructor(props) {
     super(props);
     this.state = {

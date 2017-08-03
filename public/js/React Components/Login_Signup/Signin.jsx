@@ -1,7 +1,7 @@
-import React, { PropTypes } from 'react';
+import React, { PropTypes, Component } from 'react';
 import { Card, CardText, MuiThemeProvider, LinearProgress, RaisedButton } from 'material-ui';
 
-class Signin extends React.Component {
+class Signin extends Component {
   constructor(props) {
     super(props);
 

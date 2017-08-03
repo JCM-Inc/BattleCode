@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { MuiThemeProvider, AppBar, Card, RaisedButton, FontIcon } from 'material-ui';
 import Badges from './Badges';
 import Rankings from './Rankings';
 
-class DashBoard extends React.Component {
+class DashBoard extends Component {
   constructor() {
     super();
   }

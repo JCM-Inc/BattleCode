@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Card, CardText, RaisedButton } from 'material-ui';
 import Test from './Test';
 
-class CompetitionDescriptor extends React.Component {
+class CompetitionDescriptor extends Component {
   constructor(props) {
     super(props);
   }
