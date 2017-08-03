@@ -3,6 +3,7 @@ import { MuiThemeProvider, AppBar, FontIcon } from 'material-ui';
 import CompetitionDescriptor from './CompetitionDescriptor';
 import TextEditor from './TextEditor';
 import TextEditorSettings from './TextEditorSettings';
+import { Link } from 'react-router-dom';
 
 export default class Competition extends Component {
   constructor(props) {
@@ -28,10 +29,12 @@ export default class Competition extends Component {
             title="Challenge"
             style={{ backgroundColor: '#FF6F00' }}
             iconElementLeft={
-              <FontIcon
-                className={'material-icons icons iconsLeft'}>
-                  navigate_before
-              </FontIcon>}
+              <Link to="/dash">
+                <FontIcon className={'material-icons icons iconsLeft'}>
+                    navigate_before
+                </FontIcon>
+              </Link>
+            }
             iconElementRight={
               <TextEditorSettings
                 fontSize={fontSize}

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { AppBar, Card, FontIcon, MuiThemeProvider, RaisedButton } from 'material-ui';
 import Badges from './Badges';
 import Rankings from './Rankings';
+import { Link } from 'react-router-dom'
 
 class DashBoard extends Component {
   constructor() {
@@ -20,20 +21,15 @@ class DashBoard extends Component {
     return (
       <MuiThemeProvider >
         <div>
-          <AppBar title="Dashboard" style={{ backgroundColor: '#FF6F00' }} iconElementLeft={<FontIcon className={['material-icons', 'signoutDashBoard'].join(' ')}>navigate_before</FontIcon>} />
+          <AppBar showMenuIconButton={false} title="Dashboard" style={{ backgroundColor: '#FF6F00' }} />
           <Card>
             <div>
-              <RaisedButton
-                label="Go To Challenge"
-                fullWidth
-                onClick={this.goToChallenge}
-              />
-
-              <RaisedButton
-                label="Create A Challenge"
-                fullWidth
-                onClick={this.createChallenge}
-              />
+              <Link to="/competition">
+                <RaisedButton fullWidth label="Go To Challenge" />
+              </Link>
+              <Link to="/create">
+                <RaisedButton fullWidth label="Create A Challenge" />
+              </Link>
 
               <div className="DashBoardFlex">
                 <Badges />
