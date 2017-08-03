@@ -16,10 +16,10 @@ module.exports = {
     ],
   },
   resolve: {
-    extensions: ['.js', '.jsx'],
+    extensions: ['.js', '.jsx' ],
     alias: {
       DashBoard: path.resolve(__dirname, 'public/js/React Components/DashBoard'),
-      Login_Signup: path.resolve(__dirname, 'public/js/React Components/Login_Signup'),
+      Signin: path.resolve(__dirname, 'public/js/React Components/Signin'),
     },
   },
   plugins: [],

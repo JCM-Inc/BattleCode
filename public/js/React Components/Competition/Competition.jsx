@@ -1,17 +1,18 @@
 import React, { Component } from 'react';
 import { MuiThemeProvider, AppBar, FontIcon } from 'material-ui';
+import { Link } from 'react-router-dom';
 import CompetitionDescriptor from './CompetitionDescriptor';
 import TextEditor from './TextEditor';
 import TextEditorSettings from './TextEditorSettings';
-import { Link } from 'react-router-dom';
 
 export default class Competition extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      fontSize: 22,
+      fontSize: 12,
       mode: 'javascript',
       theme: 'twilight',
+      userInput: 'function a(n) {return n * 2',
     };
     this.updateState = this.updateState.bind(this);
   }
@@ -21,7 +22,7 @@ export default class Competition extends Component {
   }
 
   render() {
-    const { fontSize, mode, theme } = this.state;
+    const { fontSize, mode, theme, userInput } = this.state;
     return (
       <MuiThemeProvider>
         <div className="Competition">
@@ -42,11 +43,16 @@ export default class Competition extends Component {
               />}
           />
           <div className="MainCompetition">
-            <CompetitionDescriptor />
+            <CompetitionDescriptor
+              updateState={this.updateState}
+              userInput={userInput}
+            />
             <TextEditor
               fontSize={fontSize}
               mode={mode}
               theme={theme}
+              userInput={userInput}
+              updateState={this.updateState}
             />
           </div>
         </div>

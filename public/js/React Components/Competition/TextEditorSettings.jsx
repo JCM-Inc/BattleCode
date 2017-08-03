@@ -57,6 +57,8 @@ export default class TextEditorSettings extends Component {
                 rowsMax={1}
                 style={{ width: 50 }}
                 onKeyPress={this.changeFontSize}
+                floatingLabelStyle={{ color: '#FF6F00' }}
+                underlineFocusStyle={{ borderColor: '#FF6F00' }}
               />
             </MenuItem>
           </Menu>
