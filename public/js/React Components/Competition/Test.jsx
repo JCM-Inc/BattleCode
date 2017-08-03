@@ -6,7 +6,6 @@ export default class Test extends Component {
   }
 
   componentDidMount() {
-    console.log('done')
     mocha.setup('bdd');
     eval(`
       const expect = chai.expect;
