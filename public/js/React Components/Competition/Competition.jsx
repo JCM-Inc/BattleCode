@@ -4,13 +4,7 @@ import CompetitionDescriptor from './CompetitionDescriptor';
 import TextEditor from './TextEditor';
 import TextEditorSettings from './TextEditorSettings';
 
-// // const Competition = () => (
-//   <MuiThemeProvider>
-//     <Competition />
-//   </MuiThemeProvider>
-// );
-
-class Competition extends React.Component {
+export default class Competition extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -57,5 +51,3 @@ class Competition extends React.Component {
     );
   }
 }
-
-export default Competition;
