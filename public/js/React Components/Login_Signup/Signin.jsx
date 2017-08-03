@@ -1,6 +1,5 @@
 import React, { PropTypes } from 'react';
-import { Card, CardText, MuiThemeProvider, LinearProgress } from 'material-ui';
-import Script from 'react-load-script';
+import { Card, CardText, MuiThemeProvider, LinearProgress, RaisedButton } from 'material-ui';
 
 class Signin extends React.Component {
   constructor(props) {
@@ -10,6 +9,7 @@ class Signin extends React.Component {
       submitted: false,
     };
     this.Login = this.Login.bind(this);
+    this.Signout = this.Signout.bind(this);
   }
 
   Login() {
@@ -17,7 +17,6 @@ class Signin extends React.Component {
       this.setState({
         submitted: true,
       });
-      this.props.handler(this);
     }
   }
 
@@ -30,16 +29,19 @@ class Signin extends React.Component {
 
   render() {
     return (
-      <MuiThemeProvider>
+      <MuiThemeProvider >
         <div>
-          <Script
-            url="https://apis.google.com/js/platform.js"
-          />
           <Card>
             <CardText>
               <h1 style={{ textAlign: 'center' }}>{this.props.type}</h1>
-              <div className="g-signin2" data-onsuccess="onSignIn" data-theme="dark" />
-              <button href="#" onClick={this.Signout}>Sign out</button>
+              <a
+                className="g-signin2"
+                data-onsuccess="onSignIn"
+                data-theme="white"
+                label="Google Signin"
+              />
+              <br />
+              <RaisedButton onClick={this.Signout} label="Sign out" />
               <LinearProgress mode="indeterminate" style={(this.state.submitted === true) ? { display: 'block' } : { display: 'none' }} />
             </CardText>
           </Card>
@@ -50,12 +52,11 @@ class Signin extends React.Component {
 }
 
 Signin.defaultProps = {
-  type: 'Error',
+  type: 'Login',
   handler: (() => { }),
 };
 Signin.propTypes = {
   type: PropTypes.string,
-  handler: PropTypes.func,
 };
 
 export default Signin;

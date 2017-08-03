@@ -4,13 +4,13 @@ import CompetitionDescriptor from './CompetitionDescriptor';
 import TextEditor from './TextEditor';
 import TextEditorSettings from './TextEditorSettings';
 
-const Competition = () => (
-  <MuiThemeProvider>
-    <InnerCompetition />
-  </MuiThemeProvider>
-);
+// // const Competition = () => (
+//   <MuiThemeProvider>
+//     <Competition />
+//   </MuiThemeProvider>
+// );
 
-class InnerCompetition extends React.Component {
+class Competition extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -28,30 +28,32 @@ class InnerCompetition extends React.Component {
   render() {
     const { fontSize, mode, theme } = this.state;
     return (
-      <div className="Competition">
-        <AppBar
-          title="Challenge"
-          style={{ backgroundColor: '#FF6F00' }}
-          iconElementLeft={
-            <FontIcon
-              className={'material-icons icons iconsLeft'}>
-                navigate_before
-            </FontIcon>}
-          iconElementRight={
-            <TextEditorSettings
-              fontSize={fontSize}
-              updateState={this.updateState}
-            />}
-        />
-        <div className="MainCompetition">
-          <CompetitionDescriptor />
-          <TextEditor
-            fontSize={fontSize}
-            mode={mode}
-            theme={theme}
+      <MuiThemeProvider>
+        <div className="Competition">
+          <AppBar
+            title="Challenge"
+            style={{ backgroundColor: '#FF6F00' }}
+            iconElementLeft={
+              <FontIcon
+                className={'material-icons icons iconsLeft'}>
+                  navigate_before
+              </FontIcon>}
+            iconElementRight={
+              <TextEditorSettings
+                fontSize={fontSize}
+                updateState={this.updateState}
+              />}
           />
+          <div className="MainCompetition">
+            <CompetitionDescriptor />
+            <TextEditor
+              fontSize={fontSize}
+              mode={mode}
+              theme={theme}
+            />
+          </div>
         </div>
-      </div>
+      </MuiThemeProvider>
     );
   }
 }
