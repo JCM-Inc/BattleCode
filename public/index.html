@@ -12,7 +12,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/mocha/3.5.0/mocha.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/chai/4.1.0/chai.min.js"></script>
     <div id="root"></div>
-    <script src="https://apis.google.com/js/platform.js" async defer></script>
     <script src="./index.min.js"></script>
     <script>
       function onSignIn(googleUser) {
@@ -21,7 +20,13 @@
         const userImage = profile.getImageUrl();
         const userEmail = profile.getEmail();
         const id_token = googleUser.getAuthResponse().id_token;
-        console.log(`${userName} signed in`);
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', '/signin');
+        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        xhr.onload = function() {
+          console.log('Signed in as: ' + xhr.responseText);
+        };
+        xhr.send('idtoken=' + id_token);
       };
     </script>
   </body>
