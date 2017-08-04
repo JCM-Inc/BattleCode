@@ -16,7 +16,6 @@ export default class TextEditorSettings extends Component {
 
   handleTouchTap(event) {
     event.preventDefault();
-
     this.setState({
       open: true,
       anchorEl: event.currentTarget,
@@ -31,13 +30,12 @@ export default class TextEditorSettings extends Component {
 
   changeFontSize(e) {
     if (e.key === 'Enter') {
-      this.props.updateState({ fontSize: Number(e.target.value) });
+      document.getElementsByClassName('ReactCodeMirror')[0].style.fontSize = `${e.target.value}px`;
     }
   }
 
   render() {
     const { open, anchorEl } = this.state;
-    const { fontSize } = this.props;
     return (
       <div>
         <FontIcon className={'material-icons icons iconsRight'} onTouchTap={this.handleTouchTap}>settings</FontIcon>
@@ -51,7 +49,7 @@ export default class TextEditorSettings extends Component {
           <Menu>
             <MenuItem primaryText="">
               <TextField
-                defaultValue={fontSize}
+                defaultValue={12}
                 floatingLabelText="Font Size"
                 floatingLabelFixed
                 rowsMax={1}
@@ -69,6 +67,5 @@ export default class TextEditorSettings extends Component {
 }
 
 TextEditorSettings.propTypes = {
-  fontSize: PropTypes.number.isRequired,
   updateState: PropTypes.func.isRequired,
 };

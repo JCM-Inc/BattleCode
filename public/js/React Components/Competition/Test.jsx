@@ -1,33 +1,32 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import ReactDOM from 'react-dom';
 
 export default class Test extends Component {
-  componentDidUpdate() {
-    ReactDOM.findDOMNode(this.refs.mocha).innerHTML = '';
-    try {
-      eval(`${this.props.userInput}; ${this.props.mocha};`);
-    } catch (e) {
-      eval(`${this.props.mocha};`);
-    }
-  }
   componentDidMount() {
     try {
-      eval(`${this.props.userInput}; ${this.props.mocha};`);
+      eval(`${this.props.userInput}; ${this.props.test};`);
     } catch (e) {
-      eval(`${this.props.mocha};`);
+      eval(`${this.props.test};`);
     }
   }
 
+  componentDidUpdate() {
+    this.mocha.innerHTML = '';
+    try {
+      eval(`${this.props.userInput}; ${this.props.test};`);
+    } catch (e) {
+      eval(`${this.props.test};`);
+    }
+  }
 
   render() {
     return (
-      <div id="mocha" ref="mocha" />
+      <div id="mocha" ref={(mocha) => { this.mocha = mocha; }} />
     );
   }
 }
 
 Test.propTypes = {
-  mocha: PropTypes.string.isRequired,
+  test: PropTypes.string.isRequired,
   userInput: PropTypes.string.isRequired,
 };
