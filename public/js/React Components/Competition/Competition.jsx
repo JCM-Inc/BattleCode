@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { AppBar, FontIcon, MuiThemeProvider } from 'material-ui';
 import { Link } from 'react-router-dom';
+import Confetti from 'react-confetti';
 import axios from 'axios';
 import CompetitionDescriptor from './CompetitionDescriptor';
 import TextEditor from './TextEditor';
@@ -12,11 +13,14 @@ const parseToMocha = (obj, name) => {
       mocha.setup('bdd');
       const expect = chai.expect;
       describe('${name}', () => {`;
+
   return `${Object.entries(obj).reduce((prev, curr) => `${prev}
               it('${curr[0]} to be ${curr[1]}', () => {
                 expect(${curr[0]}).to.equal(${curr[1]});
               });`, parsed)}
-            } ); mocha.run()`;
+            } );
+            mocha.run();
+            `;
 };
 
 export default class Competition extends Component {
@@ -52,6 +56,7 @@ export default class Competition extends Component {
     return (
       <MuiThemeProvider>
         <div className="Competition">
+          <Confetti className="Confetti" />
           <AppBar
             title="Challenge"
             style={{ backgroundColor: '#FF6F00' }}
