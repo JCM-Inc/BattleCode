@@ -4,6 +4,7 @@ const bodyParser = require('body-parser');
 const path = require('path');
 const db = require('./dbTools');
 const auth = require('./auth');
+
 const app = express();
 
 app.use(express.static(path.join(__dirname, '/public')));
@@ -23,7 +24,4 @@ app.post('/signin', (req, res) => {
 });
 app.get('/competitions', db.getChallenges);
 app.post('/uniquecompetition', db.returnOneChallenge);
-//   console.log(req.body, 'in index');
-// });
-
-
+app.post('/makechallenge', db.makeChallenge);

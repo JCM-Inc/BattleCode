@@ -10,9 +10,6 @@ exports.tokenCheck = (token, cb) => {
     function(e, login) {
       let payload = login.getPayload();
       let userid = payload['sub'];
-      // console.log(cb, 'cb in token check')
-      // console.log(payload, 'payload')
-      // console.log(userid, 'userid')
       cb({
         email: payload.email,
       });

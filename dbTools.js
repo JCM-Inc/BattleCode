@@ -8,7 +8,6 @@ const promise = mongoose.connect(mongoDB, {
 });
 promise.then(db => db.on('error', console.error.bind(console, 'MongoDB connection error:')));
 
-
 const Schema = mongoose.Schema;
 const userSchema = Schema({
   username: String,
@@ -19,6 +18,20 @@ const challengeSchema = new Schema({
   description: String,
   tests: Object,
 });
+const Challenge = mongoose.model('Challenge', challengeSchema);
+exports.makeChallenge = (req, res) => {
+  Challenge.find({
+    name: req.body.name,
+  }).exec((err, found) => {
+    if (found.length > 0) {
+      res.status(200).send('already exists');
+    } else {
+      Challenge.create(req.body, (err, made) => {
+        res.status(201).send(made);
+      });
+    }
+  });
+};
 const gameSchema = new Schema({
   winner: {
     type: Number, ref: 'User',
@@ -28,14 +41,6 @@ const gameSchema = new Schema({
   },
 });
 const User = mongoose.model('User', userSchema);
-const Challenge = mongoose.model('Challenge', challengeSchema);
-Challenge.create({
-  name: 'test02',
-  description: 'hia',
-  tests: {
-    'Number(1)': 1,
-  },
-});
 exports.returnOneChallenge = (req, res) => {
   Challenge.find({
     _id: req.body.id,
@@ -64,14 +69,39 @@ exports.findUser = (dataObject, cb) => {
       if (err) {
       } else {
         if (success.length === 0) {
+          console.log('not found, making new')
           User.create({
             username: dataObject.email,
             email: dataObject.email,
           }, (err2, instance) => cb(instance));
         } else if (success.length === 1) {
+          console.log('user found')
           cb(success[0]);
         }
       }
     },
   );
 };
+// Challenge.create({
+//   name: 'name',
+//   description: 'desc',
+//   tests: {
+//     a: 'atest',
+//   }, 
+// }, (err, suc) => {
+//   console.log(suc);
+// });
+// for (let i = 0; i < 10; i++) {
+//   let chal = {
+//     name: `test${i}`,
+//     description: `desc${i}`,
+//     tests: {
+//       a: `a${i}`,
+//       b: `b${i}`,
+//     },
+//   };
+//   Challenge.create(chal, (err, suc) => {
+//     err ? console.error(err) : console.log(suc);
+//   });
+// }
+
