@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { MuiThemeProvider, AppBar, FontIcon } from 'material-ui';
+import { AppBar, FontIcon, MuiThemeProvider } from 'material-ui';
 import { Link } from 'react-router-dom';
 import CompetitionDescriptor from './CompetitionDescriptor';
 import TextEditor from './TextEditor';
@@ -9,10 +9,23 @@ export default class Competition extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      fontSize: 12,
       mode: 'javascript',
-      theme: 'twilight',
+      theme: 'blackboard',
       userInput: 'function a(n) {return n * 2',
+      test: `
+        mocha.suite.suites.splice(0, 1);
+        mocha.setup('bdd');
+        // mocha.traceIgnores = ['mocha.js', 'chai.js']
+
+        const expect = chai.expect;
+        describe('test', () => {
+          it('a(89123) -> 89123*2', () => {
+            expect(a(89123)).to.equal(89123*2);
+          });
+        });
+
+        mocha.run();
+      `,
     };
     this.updateState = this.updateState.bind(this);
   }
@@ -22,7 +35,7 @@ export default class Competition extends Component {
   }
 
   render() {
-    const { fontSize, mode, theme, userInput } = this.state;
+    const { mode, test, theme, userInput } = this.state;
     return (
       <MuiThemeProvider>
         <div className="Competition">
@@ -37,18 +50,16 @@ export default class Competition extends Component {
               </Link>
             }
             iconElementRight={
-              <TextEditorSettings
-                fontSize={fontSize}
-                updateState={this.updateState}
-              />}
+              <TextEditorSettings updateState={this.updateState} />}
           />
           <div className="MainCompetition">
             <CompetitionDescriptor
               updateState={this.updateState}
               userInput={userInput}
+              test={test}
             />
             <TextEditor
-              fontSize={fontSize}
+              className="TextEditor"
               mode={mode}
               theme={theme}
               userInput={userInput}

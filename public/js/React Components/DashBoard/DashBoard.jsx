@@ -1,20 +1,13 @@
 import React, { Component } from 'react';
 import { AppBar, Card, MuiThemeProvider, RaisedButton } from 'material-ui';
+import { Link } from 'react-router-dom';
 import Badges from './Badges';
 import Rankings from './Rankings';
-import { Link } from 'react-router-dom';
+import CompetitionSelect from '../Competition/CompetitionSelect';
 
 class DashBoard extends Component {
   constructor() {
     super();
-  }
-
-  goToChallenge() {
-    console.log('go to!', this);
-  }
-
-  createChallenge() {
-    console.log('create!', this);
   }
 
   render() {
@@ -24,9 +17,7 @@ class DashBoard extends Component {
           <AppBar showMenuIconButton={false} title="Dashboard" style={{ backgroundColor: '#FF6F00' }} />
           <Card>
             <div>
-              <Link to="/competition">
-                <RaisedButton fullWidth label="Go To Challenge" />
-              </Link>
+              {/* <CompetitionSelect /> */}
               <Link to="/create">
                 <RaisedButton fullWidth label="Create A Challenge" />
               </Link>
