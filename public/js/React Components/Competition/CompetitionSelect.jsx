@@ -7,13 +7,17 @@ export default class CompetitionSelect extends Component {
   constructor(props) {
     super(props);
 
+    this.state = {
+      open: false,
+      anchorEl: null,
+      Competitions: [],
+    };
+
     axios.get('/competitions').then((res) => {
       console.log(res);
-      this.state = {
-        open: false,
-        anchorEl: null,
+      this.setState({
         Competitions: res.data,
-      };
+      });
     });
     this.handleTouchTap = this.handleTouchTap.bind(this);
     this.handleRequestClose = this.handleRequestClose.bind(this);
@@ -34,8 +38,13 @@ export default class CompetitionSelect extends Component {
 
   render() {
     const Competitions = this.state.Competitions.map(comp => (
-      <Link to="/competition" key={comp.id} className="CompetitionItem" onClick={this.handleClick} >
-        <MenuItem primaryText={comp.title} />
+      <Link
+        to={`/competition?id=${comp._id}`}
+        key={comp._id}
+        className="CompetitionItem"
+        onClick={this.handleClick}
+      >
+        <MenuItem primaryText={comp.name} />
       </Link>
     ));
     return (

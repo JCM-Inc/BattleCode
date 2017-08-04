@@ -17,7 +17,7 @@ class DashBoard extends Component {
           <AppBar showMenuIconButton={false} title="Dashboard" style={{ backgroundColor: '#FF6F00' }} />
           <Card>
             <div>
-              {/* <CompetitionSelect /> */}
+              <CompetitionSelect />
               <Link to="/create">
                 <RaisedButton fullWidth label="Create A Challenge" />
               </Link>
