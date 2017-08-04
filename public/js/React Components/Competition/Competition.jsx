@@ -1,9 +1,23 @@
 import React, { Component } from 'react';
 import { AppBar, FontIcon, MuiThemeProvider } from 'material-ui';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 import CompetitionDescriptor from './CompetitionDescriptor';
 import TextEditor from './TextEditor';
 import TextEditorSettings from './TextEditorSettings';
+
+const parseToMocha = (obj, name) => {
+  let parsed = `
+      mocha.suite.suites.splice(0, 1);
+      mocha.setup('bdd');
+      const expect = chai.expect;
+      describe('${name}', () => {`;
+  return `${Object.entries(obj).reduce((prev, curr) => `${prev}
+              it('${curr[0]} to be ${curr[1]}', () => {
+                expect(${curr[0]}).to.equal(${curr[1]});
+              });`, parsed)}
+            } ); mocha.run()`;
+};
 
 export default class Competition extends Component {
   constructor(props) {
@@ -26,6 +40,16 @@ export default class Competition extends Component {
         mocha.run();
       `,
     };
+
+    axios.post('/uniquecompetition', {
+      id: window.location.hash.split('?id=')[1],
+    }).then((res) => {
+      console.log(res);
+      this.setState({
+        test: parseToMocha(res.data.tests, res.data.name),
+      });
+    });
+
     this.updateState = this.updateState.bind(this);
   }
 
