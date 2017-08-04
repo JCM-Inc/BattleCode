@@ -32,11 +32,22 @@ const Challenge = mongoose.model('Challenge', challengeSchema);
 Challenge.create({
   name: 'parseJSON',
   description: 'dont leave before midnight',
-  objectOfTests: {
-    test1: 'ttttesstt',
-    test2: 'testtest',
+  tests: {
+    a: 'string',
+    test2: '75',
   },
 });
+exports.returnOneChallenge = (req, res) => {
+  Challenge.find({
+    _id: req.body.id,
+  }).exec((err, found) => {
+    if (err) {
+      console.error(err);
+    } else {
+      res.status(200).send(found);
+    }
+  });
+};
 exports.getChallenges = (req, res) => {
   Challenge.find({}).exec((err, challenges) => {
     if (err) {

@@ -22,4 +22,8 @@ app.post('/signin', (req, res) => {
   });
 });
 app.get('/competitions', db.getChallenges);
+app.post('/uniquecompetition', db.returnOneChallenge);
+//   console.log(req.body, 'in index');
+// });
+
 
