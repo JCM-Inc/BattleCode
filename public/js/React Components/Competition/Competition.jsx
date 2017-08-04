@@ -15,7 +15,6 @@ export default class Competition extends Component {
       test: `
         mocha.suite.suites.splice(0, 1);
         mocha.setup('bdd');
-        // mocha.traceIgnores = ['mocha.js', 'chai.js']
 
         const expect = chai.expect;
         describe('test', () => {
