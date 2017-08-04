@@ -16,13 +16,10 @@ const App = () => (
         component={Signin}
       />
       <Route
-        path="/dash"
-        component={DashBoard}
-      />
-      <Route
         path="/login"
         component={Signin}
       />
+<<<<<<< HEAD
       <Route
         path="/competition"
         component={Competition}
@@ -31,6 +28,18 @@ const App = () => (
         path="/create"
         component={CreateCompetition}
       />
+=======
+      <Route>
+        <Route
+          path="/dash"
+          component={DashBoard}
+        />
+        <Route
+          path="/competition"
+          component={Competition}
+        />
+      </Route>
+>>>>>>> [add]Containers for auth routes
       <Route path="*" component={NotFound} />
     </Switch>
   </HashRouter>
