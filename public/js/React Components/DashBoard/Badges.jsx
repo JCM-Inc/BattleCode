@@ -4,7 +4,7 @@ export default class Badges extends Component {
   constructor() {
     super();
     this.state = {
-      BadgesList: [['one-liner master', 123], ['did it once', 332]],
+      BadgesList: [['one-liner master', 123], ['is cool', 332]],
     };
   }
   render() {
