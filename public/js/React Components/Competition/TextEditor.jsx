@@ -30,7 +30,7 @@ class TextEditor extends Component {
     const { mode, theme, userInput } = this.props;
     return (
       <CodeMirror
-        options={{ lineNumbers: true, mode, theme }}
+        options={{ lineNumbers: true, mode, theme, tabSize: 2 }}
         onChange={this.newUserInput}
         value={userInput}
       />

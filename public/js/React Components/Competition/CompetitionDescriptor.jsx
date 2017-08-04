@@ -4,14 +4,14 @@ import { Card, CardText } from 'material-ui';
 import Test from './Test';
 
 const CompetitionDescriptor = (props) => {
-  const { test, userInput } = props;
+  const { desc, name, test, userInput } = props;
   return (
     <div className="CompetitionDescriptor">
       <div className="TopDescription">
         <Card className="Description">
           <CardText>
-            <h1>Title</h1>
-            <p>Description</p>
+            <h1>{name}</h1>
+            <p>{desc}</p>
           </CardText>
         </Card>
       </div>
@@ -24,6 +24,8 @@ const CompetitionDescriptor = (props) => {
 };
 
 CompetitionDescriptor.propTypes = {
+  desc: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
   test: PropTypes.string.isRequired,
   userInput: PropTypes.string.isRequired,
 };
