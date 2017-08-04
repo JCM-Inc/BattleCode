@@ -7,7 +7,7 @@ import TextEditor from './TextEditor';
 import TextEditorSettings from './TextEditorSettings';
 
 const parseToMocha = (obj, name) => {
-  let parsed = `
+  const parsed = `
       mocha.suite.suites.splice(0, 1);
       mocha.setup('bdd');
       const expect = chai.expect;
@@ -25,30 +25,20 @@ export default class Competition extends Component {
     this.state = {
       mode: 'javascript',
       theme: 'blackboard',
-      userInput: 'function a(n) {return n * 2',
-      test: `
-        mocha.suite.suites.splice(0, 1);
-        mocha.setup('bdd');
-
-        const expect = chai.expect;
-        describe('test', () => {
-          it('a(89123) -> 89123*2', () => {
-            expect(a(89123)).to.equal(89123*2);
-          });
-        });
-
-        mocha.run();
-      `,
+      userInput: '',
+      test: '',
+      name: '',
+      desc: '',
     };
 
     axios.post('/uniquecompetition', {
       id: window.location.hash.split('?id=')[1],
-    }).then((res) => {
-      console.log(res);
+    }).then(res =>
       this.setState({
-        test: parseToMocha(res.data.tests, res.data.name),
-      });
-    });
+        test: parseToMocha(res.data[0].tests, res.data[0].name),
+        name: res.data[0].name,
+        desc: res.data[0].description,
+      }));
 
     this.updateState = this.updateState.bind(this);
   }
@@ -58,7 +48,7 @@ export default class Competition extends Component {
   }
 
   render() {
-    const { mode, test, theme, userInput } = this.state;
+    const { desc, mode, name, test, theme, userInput } = this.state;
     return (
       <MuiThemeProvider>
         <div className="Competition">
@@ -80,6 +70,8 @@ export default class Competition extends Component {
               updateState={this.updateState}
               userInput={userInput}
               test={test}
+              name={name}
+              desc={desc}
             />
             <TextEditor
               className="TextEditor"

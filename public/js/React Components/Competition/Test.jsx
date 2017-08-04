@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { Card, CardText  } from 'material-ui';
 
 export default class Test extends Component {
   componentDidMount() {
@@ -21,7 +22,11 @@ export default class Test extends Component {
 
   render() {
     return (
-      <div id="mocha" ref={(mocha) => { this.mocha = mocha; }} />
+      <Card>
+        <CardText>
+          <div id="mocha" ref={(mocha) => { this.mocha = mocha; }} style={{ margin: 0 }} />
+        </CardText>
+      </Card>
     );
   }
 }

@@ -1,5 +1,5 @@
 import React, { PropTypes, Component } from 'react';
-import { Menu, MenuItem, Popover, FontIcon, TextField } from 'material-ui';
+import { FontIcon, Menu, MenuItem, Popover, TextField } from 'material-ui';
 
 export default class TextEditorSettings extends Component {
   constructor(props) {

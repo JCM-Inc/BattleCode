@@ -1,4 +1,4 @@
-const mongoDB = `mongodb://cain:${process.env.DBPW}@ds127983.mlab.com:27983/codebattle`; 
+const mongoDB = `mongodb://cain:${process.env.DBPW}@ds127983.mlab.com:27983/codebattle`;
 const mongoose = require('mongoose');
 
 require('dotenv').config();
@@ -17,7 +17,7 @@ const userSchema = Schema({
 const challengeSchema = new Schema({
   name: String,
   description: String,
-  objectOfTests: Object,
+  tests: Object,
 });
 const gameSchema = new Schema({
   winner: {
@@ -30,11 +30,10 @@ const gameSchema = new Schema({
 const User = mongoose.model('User', userSchema);
 const Challenge = mongoose.model('Challenge', challengeSchema);
 Challenge.create({
-  name: 'parseJSON',
-  description: 'dont leave before midnight',
+  name: 'test02',
+  description: 'hia',
   tests: {
-    a: 'string',
-    test2: '75',
+    'Number(1)': 1,
   },
 });
 exports.returnOneChallenge = (req, res) => {
