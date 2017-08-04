@@ -5,6 +5,7 @@ import { Card, CardText  } from 'material-ui';
 export default class Test extends Component {
   componentDidMount() {
     try {
+      mocha.suite.suites.splice(0, 1);
       eval(`${this.props.userInput}; ${this.props.test};`);
     } catch (e) {
       eval(`${this.props.test};`);
@@ -14,6 +15,7 @@ export default class Test extends Component {
   componentDidUpdate() {
     this.mocha.innerHTML = '';
     try {
+      mocha.suite.suites.splice(0, 1);
       eval(`${this.props.userInput}; ${this.props.test};`);
 
       setTimeout(() =>

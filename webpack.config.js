@@ -20,6 +20,7 @@ module.exports = {
     alias: {
       DashBoard: path.resolve(__dirname, 'public/js/React Components/DashBoard'),
       Signin: path.resolve(__dirname, 'public/js/React Components/Signin'),
+      CreateCompetition: path.resolve(__dirname, 'public/js/React Components/Create Competition'),
     },
   },
   plugins: [],
