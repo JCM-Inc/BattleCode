@@ -37,21 +37,27 @@ Challenge.create({
     test2: 'testtest',
   },
 });
+exports.getChallenges = (req, res) => {
+  Challenge.find({}).exec((err, challenges) => {
+    if (err) {
+      console.error(err);
+    } else {
+      res.send(challenges);
+    }
+  });
+};
 const Game = mongoose.model('Game', gameSchema);
 
 exports.findUser = (dataObject, cb) => {
-  console.log('finduser called with', dataObject)
   User.find(dataObject).exec(
     (err, success) => {
       if (err) {
-        console.error(err);
       } else {
-        console.log(success)
         if (success.length === 0) {
           User.create({
             username: dataObject.email,
             email: dataObject.email,
-          }, (err, instance) => cb(instance));
+          }, (err2, instance) => cb(instance));
         } else if (success.length === 1) {
           cb(success[0]);
         }
@@ -59,10 +65,3 @@ exports.findUser = (dataObject, cb) => {
     },
   );
 };
-// User.create({
-//   username: 'cainsux',
-//   email: 'supersecrete@secret.com',
-// }, (err, instance) => err ? console.error(err) : console.log(instance, 'new cain'));
-// User.find((err, user) => err ? console.error(err) : console.log(user, 'founded'));
-// Challenge.find(
-//   (err, challenge) => err ? console.error(err) : console.log(challenge, 'clg found'));

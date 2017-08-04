@@ -21,4 +21,5 @@ app.post('/signin', (req, res) => {
     });
   });
 });
+app.get('/competitions', db.getChallenges);
 
