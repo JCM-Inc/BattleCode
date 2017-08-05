@@ -1,5 +1,5 @@
 {
-  "name": "public",
+  "name": "BattleCode",
   "homepage": "https://github.com/cainwatson/BattleCode",
   "authors": [
     "Cain <cainwatson@users.noreply.github.com>"
@@ -10,8 +10,6 @@
   "ignore": [
     "**/.*",
     "node_modules",
-    "bower_components",
-    "test",
-    "tests"
+    "bower_components"
   ]
 }
