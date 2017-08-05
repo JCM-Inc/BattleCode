@@ -10,7 +10,7 @@ export default class CompetitionSelect extends Component {
     this.state = {
       open: false,
       anchorEl: null,
-      Competitions: ['No Tests Present'],
+      Competitions: [],
     };
 
     axios.get('/competitions').then((res) => {
