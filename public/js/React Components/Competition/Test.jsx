@@ -15,8 +15,9 @@ export default class Test extends Component {
     this.mocha.innerHTML = '';
     try {
       eval(`${this.props.userInput}; ${this.props.test};`);
+
       setTimeout(() =>
-        mocha.suite.suites[0].tests[0].state ?
+        mocha.suite.suites[0].tests.every(test => test.state === 'passed') ?
           document.getElementsByClassName('Confetti')[0].style.display = 'block'
           :
           console.log('fail!', 0));
