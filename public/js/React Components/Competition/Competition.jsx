@@ -6,22 +6,7 @@ import axios from 'axios';
 import CompetitionDescriptor from './CompetitionDescriptor';
 import TextEditor from './TextEditor';
 import TextEditorSettings from './TextEditorSettings';
-
-const parseToMocha = (obj, name) => {
-  const parsed = `
-      mocha.suite.suites.splice(0, 1);
-      mocha.setup('bdd');
-      const expect = chai.expect;
-      describe('${name}', () => {`;
-
-  return `${Object.entries(obj).reduce((prev, curr) => `${prev}
-              it('${curr[0]} to be ${curr[1]}', () => {
-                expect(${curr[0]}).to.equal(${curr[1]});
-              });`, parsed)}
-            } );
-            mocha.run();
-            `;
-};
+import parseToMocha from './parseToMocha';
 
 export default class Competition extends Component {
   constructor(props) {

@@ -13,12 +13,6 @@ export default class CompetitionSelect extends Component {
       Competitions: [],
     };
 
-    axios.get('/competitions').then((res) => {
-      console.log(res, 'all back');
-      this.setState({
-        Competitions: res.data,
-      });
-    });
     this.handleTouchTap = this.handleTouchTap.bind(this);
     this.handleRequestClose = this.handleRequestClose.bind(this);
   }
@@ -37,6 +31,13 @@ export default class CompetitionSelect extends Component {
   }
 
   render() {
+    axios.get('/competitions').then((res) => {
+      console.log(res, 'all back');
+      this.setState({
+        Competitions: res.data,
+      });
+    });
+
     const Competitions = this.state.Competitions.map(comp => (
       <Link
         to={`/competition?id=${comp._id}`}
