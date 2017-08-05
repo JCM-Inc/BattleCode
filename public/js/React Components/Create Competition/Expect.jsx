@@ -65,7 +65,6 @@ export default class Expect extends Component {
             floatingLabelStyle={{ color: 'rgba(0, 0, 0, 0.87)' }}
             underlineFocusStyle={{ borderColor: '#FF6F00' }}
           />
-          <Divider />
           <TextField
             className="toequal"
             floatingLabelText="to equal"

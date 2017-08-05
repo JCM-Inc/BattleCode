@@ -1,9 +1,11 @@
+@import './imports'
+
 .CreateCompetition
   display flex
 
   .Preview, .AllExpects, .CreateCompetitionNameDesc
-    padding-left 3%
-    padding-right 3%
+    padding-left 2%
+    padding-right 2%
     width 33.3%
 
   .Preview, .CreateCompetitionNameDesc
@@ -19,7 +21,10 @@
     cursor pointer
     float right
 
-  .addExpect
+  .toequal
+    margin-left 5%
+
+  .addExpect, .deleteAllExpects
     cursor pointer
 
   .CreateCompetitionNameDesc
