@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Divider, FontIcon, Paper, RaisedButton, TextField } from 'material-ui';
+import { FontIcon, Paper, RaisedButton, TextField } from 'material-ui';
 
 export default class Expect extends Component {
   constructor(props) {
@@ -65,7 +65,6 @@ export default class Expect extends Component {
             floatingLabelStyle={{ color: 'rgba(0, 0, 0, 0.87)' }}
             underlineFocusStyle={{ borderColor: '#FF6F00' }}
           />
-          <Divider />
           <TextField
             className="toequal"
             floatingLabelText="to equal"

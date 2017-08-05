@@ -14,9 +14,11 @@ export default class CreateCompetition extends Component {
       tests: {},
       expects: 1,
     };
+
     this.updateTests = this.updateTests.bind(this);
     this.addAnotherExpect = this.addAnotherExpect.bind(this);
     this.removeExpect = this.removeExpect.bind(this);
+    this.deleteAllExpects = this.deleteAllExpects.bind(this);
     this.createCompetition = this.createCompetition.bind(this);
     this.nameChange = this.nameChange.bind(this);
     this.descriptionChange = this.descriptionChange.bind(this);
@@ -43,10 +45,20 @@ export default class CreateCompetition extends Component {
     });
   }
 
+  deleteAllExpects() {
+    this.setState({
+      tests: {},
+      expects: 0,
+    });
+  }
+
   createCompetition() {
     const { name, description, tests } = this.state;
+    const { history } = this.props;
     axios.post('/makechallenge', { name, description, tests }).then((res) => {
-      console.log(res);
+      if (res.status === 201) {
+        history.push('/dash');
+      }
     });
   }
 
@@ -89,17 +101,18 @@ export default class CreateCompetition extends Component {
             title="Create A Challenge"
             style={{ backgroundColor: '#FF6F00' }}
           />
-          <Link to="/dash">
-            <RaisedButton
-              label="Create"
-              onClick={this.createCompetition}
-              fullWidth
-            />
-          </Link>
+          <RaisedButton
+            label="Create"
+            onClick={this.createCompetition}
+            fullWidth
+          />
           <Card>
             <CardText className="CreateCompetition">
-              <FontIcon className={'material-icons addExpect'} onClick={this.addAnotherExpect}>
+              <FontIcon data-hint="Add Test" className={'material-icons addExpect hint hint--middle'} onClick={this.addAnotherExpect}>
                 add
+              </FontIcon>
+              <FontIcon data-hint="Remove All Tests" className={'material-icons deleteAllExpects hint hint--middle'} onClick={this.deleteAllExpects}>
+                delete
               </FontIcon>
               <div className="AllExpects">
                 {Expects}
@@ -113,6 +126,7 @@ export default class CreateCompetition extends Component {
                     onChange={this.nameChange}
                     floatingLabelStyle={{ color: '#FF6F00' }}
                     underlineFocusStyle={{ borderColor: '#FF6F00' }}
+                    fullWidth
                   />
                   <h2>Description</h2>
                   <TextField
@@ -120,6 +134,7 @@ export default class CreateCompetition extends Component {
                     onChange={this.descriptionChange}
                     floatingLabelStyle={{ color: '#FF6F00' }}
                     underlineFocusStyle={{ borderColor: '#FF6F00' }}
+                    fullWidth
                   />
                 </CardText>
               </Card>

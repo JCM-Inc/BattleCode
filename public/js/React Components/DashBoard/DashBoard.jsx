@@ -1,37 +1,28 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { AppBar, Card, MuiThemeProvider, RaisedButton } from 'material-ui';
 import { Link } from 'react-router-dom';
 import Badges from './Badges';
 import Rankings from './Rankings';
 import CompetitionSelect from '../Competition/CompetitionSelect';
 
-class DashBoard extends Component {
-  constructor() {
-    super();
-  }
-
-  render() {
-    return (
-      <MuiThemeProvider >
+const DashBoard = () => (
+  <MuiThemeProvider >
+    <div>
+      <AppBar showMenuIconButton={false} title="Dashboard" style={{ backgroundColor: '#FF6F00' }} />
+      <Card>
         <div>
-          <AppBar showMenuIconButton={false} title="Dashboard" style={{ backgroundColor: '#FF6F00' }} />
-          <Card>
-            <div>
-              <CompetitionSelect />
-              <Link to="/create">
-                <RaisedButton fullWidth label="Create A Challenge" />
-              </Link>
-
-              <div className="DashBoardFlex">
-                <Badges />
-                <Rankings />
-              </div>
-            </div>
-          </Card>
+          <CompetitionSelect />
+          <Link to="/create">
+            <RaisedButton fullWidth label="Create A Challenge" />
+          </Link>
+          <div className="DashBoardFlex">
+            <Badges />
+            <Rankings />
+          </div>
         </div>
-      </MuiThemeProvider >
-    );
-  }
-}
+      </Card>
+    </div>
+  </MuiThemeProvider >
+);
 
 export default DashBoard;
