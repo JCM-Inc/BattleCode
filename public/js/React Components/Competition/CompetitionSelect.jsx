@@ -10,8 +10,15 @@ export default class CompetitionSelect extends Component {
     this.state = {
       open: false,
       anchorEl: null,
-      Competitions: [],
+      Competitions: ['No Tests Present'],
     };
+
+    axios.get('/competitions').then((res) => {
+      console.log(res, 'all back');
+      this.setState({
+        Competitions: res.data,
+      });
+    });
 
     this.handleTouchTap = this.handleTouchTap.bind(this);
     this.handleRequestClose = this.handleRequestClose.bind(this);
@@ -31,23 +38,16 @@ export default class CompetitionSelect extends Component {
   }
 
   render() {
-    axios.get('/competitions').then((res) => {
-      console.log(res, 'all back');
-      this.setState({
-        Competitions: res.data,
-      });
-    });
-
     const Competitions = this.state.Competitions.map(comp => (
       <Link
         to={`/competition?id=${comp._id}`}
         key={comp._id}
         className="CompetitionItem"
-        onClick={this.handleClick}
       >
         <MenuItem primaryText={comp.name} />
       </Link>
     ));
+
     return (
       <div>
         <RaisedButton
@@ -62,8 +62,8 @@ export default class CompetitionSelect extends Component {
           targetOrigin={{ horizontal: 'middle', vertical: 'top' }}
           onRequestClose={this.handleRequestClose}
         >
-          <Menu>
-            {Competitions}
+          <Menu style={{ textAlign: 'center' }} >
+            {Competitions.length > 0 ? Competitions : <b>No Tests</b> }
           </Menu>
         </Popover>
       </div>

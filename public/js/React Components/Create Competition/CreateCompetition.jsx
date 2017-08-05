@@ -14,6 +14,7 @@ export default class CreateCompetition extends Component {
       tests: {},
       expects: 1,
     };
+
     this.updateTests = this.updateTests.bind(this);
     this.addAnotherExpect = this.addAnotherExpect.bind(this);
     this.removeExpect = this.removeExpect.bind(this);
@@ -46,15 +47,18 @@ export default class CreateCompetition extends Component {
 
   deleteAllExpects() {
     this.setState({
-      tests: '',
+      tests: {},
       expects: 0,
     });
   }
 
   createCompetition() {
     const { name, description, tests } = this.state;
+    const { history } = this.props;
     axios.post('/makechallenge', { name, description, tests }).then((res) => {
-      console.log(res);
+      if (res.status === 201) {
+        history.push('/dash');
+      }
     });
   }
 
@@ -97,14 +101,12 @@ export default class CreateCompetition extends Component {
             title="Create A Challenge"
             style={{ backgroundColor: '#FF6F00' }}
           />
-          <Link to="/dash">
-            <RaisedButton
-              label="Create"
-              onClick={this.createCompetition}
-              fullWidth
-            />
-          </Link>
-          <Card> {/* data-hint="your message goes here" class="hint-top-middle" */}
+          <RaisedButton
+            label="Create"
+            onClick={this.createCompetition}
+            fullWidth
+          />
+          <Card>
             <CardText className="CreateCompetition">
               <FontIcon data-hint="Add Test" className={'material-icons addExpect hint hint--middle'} onClick={this.addAnotherExpect}>
                 add

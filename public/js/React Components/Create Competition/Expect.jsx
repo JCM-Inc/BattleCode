@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Divider, FontIcon, Paper, RaisedButton, TextField } from 'material-ui';
+import { FontIcon, Paper, RaisedButton, TextField } from 'material-ui';
 
 export default class Expect extends Component {
   constructor(props) {
