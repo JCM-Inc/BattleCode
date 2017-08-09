@@ -3,10 +3,22 @@ const mongoose = require('mongoose');
 
 require('dotenv').config();
 
-const promise = mongoose.connect(mongoDB, {
+let db = false;
+mongoose.connect(mongoDB, {
   useMongoClient: true,
+}, (error) => {
+  if (error) {
+    console.error(error);
+  } else {
+    db = true;
+    console.log('connected to', mongoDB);
+  }
 });
-promise.then(db => db.on('error', console.error.bind(console, 'MongoDB connection error:')));
+setInterval(() => {
+  if (!db) {
+    console.log('NOT CONNECTED TO DB');
+  }
+}, 1000);
 
 const Schema = mongoose.Schema;
 const userSchema = Schema({
