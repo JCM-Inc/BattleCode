@@ -64,22 +64,22 @@ exports.getChallenges = (req, res) => {
 const Game = mongoose.model('Game', gameSchema);
 
 exports.findUser = (dataObject, cb) => {
-  User.find(dataObject).exec(
-    (err, success) => {
-      if (err) {
+  User.findOne(dataObject).exec((err, success) => {
+    if (err) {
+      console(err);
+    } else {
+      if (!success) {
+        console.log('not found, making new');
+        User.create({
+          username: dataObject.email,
+          email: dataObject.email,
+        }, (err2, instance) => cb(instance));
       } else {
-        if (success.length === 0) {
-          console.log('not found, making new')
-          User.create({
-            username: dataObject.email,
-            email: dataObject.email,
-          }, (err2, instance) => cb(instance));
-        } else if (success.length === 1) {
-          console.log('user found')
-          cb(success[0]);
-        }
+        console.log('user found');
+        cb(success);
       }
-    },
+    }
+  },
   );
 };
 // Challenge.create({
@@ -87,7 +87,7 @@ exports.findUser = (dataObject, cb) => {
 //   description: 'desc',
 //   tests: {
 //     a: 'atest',
-//   }, 
+//   },
 // }, (err, suc) => {
 //   console.log(suc);
 // });
@@ -104,4 +104,3 @@ exports.findUser = (dataObject, cb) => {
 //     err ? console.error(err) : console.log(suc);
 //   });
 // }
-

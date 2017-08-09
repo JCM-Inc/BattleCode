@@ -10,7 +10,8 @@ export default class Signin extends Component {
 
   Signout() {
     gapi.auth2.getAuthInstance().signOut().then(() => {
-      console.log('User signed out.');
+      console.log('hi');
+    window.isLoggedIn = false;
     });
   }
 

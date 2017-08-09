@@ -29,8 +29,8 @@ const App = () => (
           path="/competition"
           component={Competition}
         />
+        <Route path="*" component={NotFound} />
       </Route>
-      <Route path="*" component={NotFound} />
     </Switch>
   </HashRouter>
 );
