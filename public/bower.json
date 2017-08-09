@@ -1,5 +1,5 @@
 {
-  "name": "BattleCode",
+  "name": "battlecode",
   "homepage": "https://github.com/cainwatson/BattleCode",
   "authors": [
     "Cain <cainwatson@users.noreply.github.com>"
@@ -11,5 +11,8 @@
     "**/.*",
     "node_modules",
     "bower_components"
-  ]
+  ],
+  "dependencies": {
+    "hint.css": "^2.5.0"
+  }
 }
