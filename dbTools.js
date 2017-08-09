@@ -20,7 +20,6 @@ setInterval(() => {
   }
 }, 1000);
 
-
 const Schema = mongoose.Schema;
 
 const userSchema = Schema({
