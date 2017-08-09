@@ -1,6 +1,6 @@
 # BattleCode
 
-Best your friends and be the master of code!
+Test your coding skillz against anyone. Then create new challenges for others to test themselves against!
 
 ## Team
 
@@ -18,14 +18,11 @@ Best your friends and be the master of code!
 6. [Development](#development)
   6. [System Requirements](#system-requirements)
   6. [Installation](#installation)
-  6. [Simulate for Mobile](#simulate-mobile)
-7. [Contributing](#contributing)
 
 ## <a name="how-it-works"></a>How it Works
 
 > Bringing fast paced fun to coding.
-BattleCodes lets you solve programming challenges in a race against friends. The first to write code that fufills all the requirements wins!
-
+BattleCodes lets you solve programming challenges in a race against friends. The first to write code that passes all of the tests wins! Earn badges for special achievements like the Ali One Liner Badge!
 
 ## <a name="wireframe"></a>App Wireframe
 ![final-wireframe](images/wireframe.png)
@@ -40,7 +37,7 @@ BattleCodes lets you solve programming challenges in a race against friends. The
 ![final-tech-tack](images/stack-no-socketio.png)
 
 ## <a name="development"></a>Development
-Setting up a development environment requires global installations of node, react-native, and CodePush - as well as the latest version of XCode or Android Studio for either iOS or Android development
+Setting up a development environment requires global installations of node
 
 
 ### <a name="system-requirements"></a>1. System Requirements
@@ -58,62 +55,20 @@ $ cd BattleCode/
 
 $ npm install
 
-$ cd public/
+$ cd public
 
 $ bower install
 
+$ cd ..
 
+$ webpack -w
+
+$ npm run setup
 ```
 
-If React Native < 0.29
 
-```sh
-$ rnpm link
-```
+**For Database:**
 
-If React Native >= 0.29
-
-```sh
-$ react-native link
-```
-
-**For Local Database:**
-
-Grubbr uses **Nodal** which requires a global installation of PostGres.   Installation instructions are provided [here](https://wiki.postgresql.org/wiki/Detailed_installation_guides)
-
-To run local database server:
-
-```
-$ cd grubbr-api
-
-$ npm install
-
-$ nodal db:bootstrap
-```
-
-## <a name="simulate-mobile"></a>3. Simulate for Mobile Device
-
-**Running on iOS**
-
-* Install the latest version of **XCode** and its dependencies
-
-*	Run the following command in your terminal
-
-```sh
-$ react-native run-ios
-```
-**Running on Android**
-
-* Install the latest version of **Android Studio** or **Android SDK**
-
-*	Make sure you have an **Android emulator** installed and running.
-
-*	Run the following command in your terminal
-
-```sh
-$ react-native run-android
-```
+BattleCode uses MongoDB through Mongoose. Setup a local instance of a MongoDB or use Mlabs and reconfigure dbTools.js to connect to it. 
 
 ## <a name="contributing"></a>4. Contributing
-
-See [CONTRIBUTING.md](CONTRIBUTING.md) for contribution guidelines.
