@@ -18,6 +18,7 @@ app.listen(app.get('port'), () => console.log('listening on port', app.get('port
 app.post('/signin', (req, res) => {
   auth.tokenCheck(req.body.idtoken, (gUserData) => {
     db.findUser(gUserData, (bcUserProfile) => {
+      console.log('found user', bcUserProfile);
       res.status(200).send(bcUserProfile);
     });
   });

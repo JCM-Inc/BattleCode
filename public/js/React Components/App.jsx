@@ -1,5 +1,5 @@
 import React from 'react';
-import { HashRouter, Route, Switch } from 'react-router-dom';
+import { HashRouter, Redirect, Route, Switch } from 'react-router-dom';
 import DashBoard from './DashBoard/DashBoard';
 import Signin from './Signin/Signin';
 import Competition from './Competition/Competition';
@@ -16,20 +16,20 @@ const App = () => (
         component={Signin}
       />
       <Route
-        path="/dash"
-        component={DashBoard}
-      />
-      <Route
         path="/login"
         component={Signin}
       />
       <Route
-        path="/competition"
-        component={Competition}
+        path="/dash"
+        render={() => (
+          window.isLoggedIn ? <DashBoard /> : <Redirect to="/login" />
+        )}
       />
       <Route
-        path="/create"
-        component={CreateCompetition}
+        path="/competition"
+        render={() => (
+          window.isLoggedIn ? <Competition /> : <Redirect to="/login" />
+        )}
       />
       <Route path="*" component={NotFound} />
     </Switch>
