@@ -16,18 +16,20 @@
     <div id="root"></div>
     <script src="./index.min.js"></script>
     <script>
+      window.isLoggedIn = false;
       function onSignIn(googleUser) {
         const profile = googleUser.getBasicProfile();
         const userName = profile.getName();
         const userImage = profile.getImageUrl();
         const userEmail = profile.getEmail();
         const id_token = googleUser.getAuthResponse().id_token;
+
         var xhr = new XMLHttpRequest();
         xhr.open('POST', '/signin', true);
         xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
         xhr.onload = function() {
-          console.log('Signed in as: ' + xhr.responseText);
           window.isLoggedIn = true;
+
         };
         xhr.send('idtoken=' + id_token);
       };

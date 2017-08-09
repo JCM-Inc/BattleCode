@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Card, CardText, MuiThemeProvider, RaisedButton } from 'material-ui';
+import { Card, CardText, MuiThemeProvider, RaisedButton, Redirect } from 'material-ui';
 import Script from 'react-load-script';
 
 export default class Signin extends Component {
@@ -10,12 +10,13 @@ export default class Signin extends Component {
 
   Signout() {
     gapi.auth2.getAuthInstance().signOut().then(() => {
-      console.log('hi');
-    window.isLoggedIn = false;
+      window.isLoggedIn = false;
+      console.log('User signed out');
     });
   }
 
   render() {
+    console.log(window.isLoggedIn, 'cain sux');
     return (
       <MuiThemeProvider >
         <div>
@@ -27,6 +28,7 @@ export default class Signin extends Component {
                 className="g-signin2"
                 data-onsuccess="onSignIn"
                 data-theme="white"
+                data-redirecturi="http://localhost:5000/#/dash"
               >
               Google Sign In
               </a>
