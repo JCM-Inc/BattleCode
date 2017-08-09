@@ -4,6 +4,7 @@ import DashBoard from './DashBoard/DashBoard';
 import Signin from './Signin/Signin';
 import Competition from './Competition/Competition';
 import CreateCompetition from './Create Competition/CreateCompetition';
+import EnsureLoggedIn from './Signin/EnsureLoggedIn';
 
 const NotFound = () => (<h1>404</h1>);
 
@@ -19,17 +20,7 @@ const App = () => (
         path="/login"
         component={Signin}
       />
-<<<<<<< HEAD
-      <Route
-        path="/competition"
-        component={Competition}
-      />
-      <Route
-        path="/create"
-        component={CreateCompetition}
-      />
-=======
-      <Route>
+      <Route component={EnsureLoggedIn}>
         <Route
           path="/dash"
           component={DashBoard}
@@ -39,7 +30,6 @@ const App = () => (
           component={Competition}
         />
       </Route>
->>>>>>> [add]Containers for auth routes
       <Route path="*" component={NotFound} />
     </Switch>
   </HashRouter>

@@ -23,7 +23,7 @@
         const userEmail = profile.getEmail();
         const id_token = googleUser.getAuthResponse().id_token;
         var xhr = new XMLHttpRequest();
-        xhr.open('POST', '/signin');
+        xhr.open('POST', '/signin', true);
         xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
         xhr.onload = function() {
           console.log('Signed in as: ' + xhr.responseText);
