@@ -8,6 +8,7 @@ const CompetitionDescriptor = (props) => {
   return (
     <div className="CompetitionDescriptor">
       <div className="TopDescription">
+        <h3>socket message goes here</h3>
         <Card className="Description">
           <CardText>
             <h1>{name}</h1>
