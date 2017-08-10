@@ -7,6 +7,7 @@ import CompetitionDescriptor from './CompetitionDescriptor';
 import TextEditor from './TextEditor';
 import TextEditorSettings from './TextEditorSettings';
 import parseToMocha from './parseToMocha';
+import WinShare from './WinShare';
 
 export default class Competition extends Component {
   constructor(props) {
@@ -71,6 +72,7 @@ export default class Competition extends Component {
               updateState={this.updateState}
             />
           </div>
+          <WinShare className="WinShare" />
         </div>
       </MuiThemeProvider>
     );
