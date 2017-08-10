@@ -52,6 +52,7 @@
     "react-codemirror": "^1.0.0",
     "react-confetti": "^1.1.5",
     "react-dom": "^15.6.1",
+    "react-google-login-component": "^0.8.0",
     "react-load-script": "0.0.6",
     "react-router-dom": "^4.1.2",
     "react-tap-event-plugin": "^2.0.1"
