@@ -4,9 +4,15 @@
   "description": "> BattleCode is a website where you compete against your friends in an epic code battle! ## This app brings the excitement of live competition to coding. > Have you been lacking in your code skills lately. Fear no more, for BattleCode is here to alleviate your pain. ## \"My life has been changed by BattleCode...it's all I do!\" ## Head on down to https://www.battlecode.com to get started! ## \"Battlecode is the most fun I've had in my 70 years of teaching.\" ## If you want to be the best coder come join today!",
   "main": "index.js",
   "scripts": {
+<<<<<<< HEAD
     "start": "node index.js",
     "webpack": "NODE_ENV=prod && webpack -w",
     "setup": "npm install && npm run webpack && npm start"
+=======
+    "start": "npm install && node index.js",
+    "webpack": "NODE_ENV=prod && webpack -w",
+    "setup": "npm run start && npm run webpack"
+>>>>>>> [add] place for socket message
   },
   "repository": {
     "type": "git",
