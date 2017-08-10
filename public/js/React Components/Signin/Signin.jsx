@@ -1,11 +1,17 @@
 import React, { Component } from 'react';
-import { Card, CardText, MuiThemeProvider, RaisedButton, Redirect } from 'material-ui';
+import { Redirect } from 'react-router-dom';
+import { Card, CardText, MuiThemeProvider, RaisedButton } from 'material-ui';
 import Script from 'react-load-script';
+import { GoogleLogin } from 'react-google-login-component';
 
 export default class Signin extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      userLoginLoaded: false,
+    };
     this.Signout = this.Signout.bind(this);
+    this.responseGoogle = this.responseGoogle.bind(this);
   }
 
   Signout() {
@@ -15,6 +21,23 @@ export default class Signin extends Component {
     });
   }
 
+  responseGoogle(googleUser) {
+    const idToken = googleUser.getAuthResponse().id_token;
+    const profile = googleUser.getBasicProfile();
+    const userEmail = profile.getEmail();
+    console.log({ accessToken: idToken, email: userEmail });
+
+    const xhr = new XMLHttpRequest();
+    xhr.open('POST', '/signin', true);
+    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+    xhr.onload = () => {
+      window.isLoggedIn = true;
+      this.setState({
+        userLoginLoaded: true,
+      });
+    };
+    xhr.send(`idtoken=${idToken}`);
+  }
   render() {
     console.log(window.isLoggedIn, 'cain sux');
     return (
@@ -22,16 +45,16 @@ export default class Signin extends Component {
         <div>
           <Script url="https://apis.google.com/js/platform.js" />
           <Card>
+            {this.state.userLoginLoaded ? <Redirect to="/dash" /> : <div />}
             <CardText>
               <h1 style={{ textAlign: 'center' }}>Sign In</h1>
-              <a
-                className="g-signin2"
-                data-onsuccess="onSignIn"
-                data-theme="white"
-                data-redirecturi="http://localhost:5000/#/dash"
-              >
-              Google Sign In
-              </a>
+              <GoogleLogin
+                socialId="106454631553-mles8i7ktt96qbvps7uoh2k9idop90e0.apps.googleusercontent.com"
+                className="google-login"
+                scope="profile"
+                responseHandler={this.responseGoogle}
+                buttonText="Login With Google"
+              />
               <br />
               <RaisedButton onClick={this.Signout} label="Sign out" />
             </CardText>
