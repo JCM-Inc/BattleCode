@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import Badges from './Badges';
 import Rankings from './Rankings';
 import CompetitionSelect from '../Competition/CompetitionSelect';
+import CreateCompetition from '../Create Competition/CreateCompetition';
 
 const DashBoard = () => (
   <MuiThemeProvider >
@@ -12,7 +13,7 @@ const DashBoard = () => (
       <Card>
         <div>
           <CompetitionSelect />
-          <Link to="/create">
+          <Link to="CreateCompetition">
             <RaisedButton fullWidth label="Create A Challenge" />
           </Link>
           <div className="DashBoardFlex">

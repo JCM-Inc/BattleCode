@@ -16,7 +16,7 @@ app.use(bodyParser.json());
 
 const port = process.env.PORT || 5000;
 app.set('port', port);
-const server = app.listen(port, function(err) {  
+const server = app.listen(port, (err) => {
   if (err) {
     console.log(err);
   } else {
@@ -24,13 +24,13 @@ const server = app.listen(port, function(err) {
   }
 });
 let users = 0;
-const io = require('socket.io')(server);  
+const io = require('socket.io')(server);
 
-io.on('connection', function(socket){
-  users++;
+io.on('connection', (socket) => {
+  users += 1;
   console.log('a user connected', users);
-  socket.emit('msg', 'another user', users); 
-  socket.on('msg', function(msg) {
+  socket.emit('msg', 'another user', users);
+  socket.on('msg', (msg) => {
     console.log(msg);
     io.emit('msg', msg);
   });

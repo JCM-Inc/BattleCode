@@ -31,6 +31,12 @@ const App = () => (
           window.isLoggedIn ? <Competition /> : <Redirect to="/login" />
         )}
       />
+      <Route
+        path="/createcompetition"
+        render={() => (
+          window.isLoggedIn ? <CreateCompetition /> : <Redirect to="/login" />
+        )}
+      />
       <Route path="*" component={NotFound} />
     </Switch>
   </HashRouter>
