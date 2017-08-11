@@ -50,6 +50,7 @@
     "mongoose": "^4.11.5",
     "prop-types": "^15.5.10",
     "react": "^15.6.1",
+    "react-addons-test-utils": "^15.6.0",
     "react-codemirror": "^1.0.0",
     "react-confetti": "^1.1.5",
     "react-dom": "^15.6.1",
