@@ -18,11 +18,15 @@ export default class Test extends Component {
       mocha.suite.suites.splice(0, 1);
       eval(`${this.props.userInput}; ${this.props.test};`);
 
-      setTimeout(() =>
-        mocha.suite.suites[0].tests.every(test => test.state === 'passed') ?
-          document.getElementsByClassName('Confetti')[0].style.display = 'block'
-          :
-          console.log('fail!', 0));
+      setTimeout(() => {
+        if (mocha.suite.suites[0].tests.every(test => test.state === 'passed')) {
+          document.getElementsByClassName('Confetti')[0].style.display = 'block';
+          console.log('passed');
+          this.props.update({ passed: true });
+        } else {
+          console.log('fail!', 0);
+        }
+      });
     } catch (e) {
       eval(`${this.props.test};`);
     }
@@ -42,4 +46,5 @@ export default class Test extends Component {
 Test.propTypes = {
   test: PropTypes.string.isRequired,
   userInput: PropTypes.string.isRequired,
+  // compDescState: PropTypes.function.isRequired,
 };

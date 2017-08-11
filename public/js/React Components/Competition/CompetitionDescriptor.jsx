@@ -1,28 +1,50 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Card, CardText } from 'material-ui';
 import Test from './Test';
+import SocketPlace from './SocketPlace';
 
-const CompetitionDescriptor = (props) => {
-  const { desc, name, test, userInput } = props;
-  return (
-    <div className="CompetitionDescriptor">
-      <div className="TopDescription">
-        <h3>socket message goes here</h3>
-        <Card className="Description">
-          <CardText>
-            <h1>{name}</h1>
-            <p>{desc}</p>
-          </CardText>
-        </Card>
+
+class CompetitionDescriptor extends Component {
+  constructor(props) {
+    super(props);
+    this.props = props;
+    this.state = {
+      passed: false,
+    };
+    this.compDescState = this.compDescState.bind(this);
+    this.getState = this.getState.bind(this);
+  }
+  compDescState(newState) {
+    this.setState(newState);
+  }
+  getState() {
+    return this.state.passed;
+  }
+  render() {
+    const { desc, name, test, userInput } = this.props;
+    return (
+      <div className="CompetitionDescriptor">
+        <div className="TopDescription">
+          <SocketPlace
+            passed={this.getState}
+          />
+          <Card className="Description">
+            <CardText>
+              <h1>{name}</h1>
+              <p>{desc}</p>
+            </CardText>
+          </Card>
+        </div>
+        <Test
+          update={this.compDescState}
+          test={test}
+          userInput={userInput}
+        />
       </div>
-      <Test
-        test={test}
-        userInput={userInput}
-      />
-    </div>
-  );
-};
+    );
+  }
+}
 
 CompetitionDescriptor.propTypes = {
   desc: PropTypes.string.isRequired,

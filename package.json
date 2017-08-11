@@ -55,6 +55,7 @@
     "react-google-login-component": "^0.8.0",
     "react-load-script": "0.0.6",
     "react-router-dom": "^4.1.2",
-    "react-tap-event-plugin": "^2.0.1"
+    "react-tap-event-plugin": "^2.0.1",
+    "socket.io": "^2.0.3"
   }
 }

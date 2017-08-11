@@ -81,13 +81,11 @@ exports.findUser = (dataObject, cb) => {
       console(err);
     } else {
       if (!success) {
-        console.log('not found, making new');
         User.create({
           username: dataObject.email,
           email: dataObject.email,
         }, (err2, instance) => cb(instance));
       } else {
-        console.log('user found');
         cb(success);
       }
     }
