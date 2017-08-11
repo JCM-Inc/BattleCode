@@ -15,19 +15,21 @@ class CompetitionDescriptor extends Component {
     this.compDescState = this.compDescState.bind(this);
     this.getState = this.getState.bind(this);
   }
-  compDescState(newState) {
-    this.setState(newState);
-  }
+
   getState() {
     return this.state.passed;
   }
+  compDescState(newState) {
+    this.setState(newState);
+  }
   render() {
-    const { desc, name, test, userInput } = this.props;
+    const { desc, name, test, user, userInput } = this.props;
     return (
       <div className="CompetitionDescriptor">
         <div className="TopDescription">
           <SocketPlace
             passed={this.getState}
+            user={user}
           />
           <Card className="Description">
             <CardText>
@@ -50,6 +52,7 @@ CompetitionDescriptor.propTypes = {
   desc: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   test: PropTypes.string.isRequired,
+  user: PropTypes.string.isRequired,
   userInput: PropTypes.string.isRequired,
 };
 

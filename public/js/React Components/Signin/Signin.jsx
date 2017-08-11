@@ -9,6 +9,7 @@ export default class Signin extends Component {
     super(props);
     this.state = {
       userLoginLoaded: false,
+      user: null,
     };
     this.Signout = this.Signout.bind(this);
     this.responseGoogle = this.responseGoogle.bind(this);
@@ -31,8 +32,10 @@ export default class Signin extends Component {
     xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
     xhr.onload = () => {
       window.isLoggedIn = true;
+      window.user = userEmail;
       this.setState({
         userLoginLoaded: true,
+        user: userEmail,
       });
     };
     xhr.send(`idtoken=${idToken}`);

@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
 import { AppBar, FontIcon, MuiThemeProvider } from 'material-ui';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import Confetti from 'react-confetti';
 import axios from 'axios';
 import CompetitionDescriptor from './CompetitionDescriptor';
 import TextEditor from './TextEditor';
 import TextEditorSettings from './TextEditorSettings';
 import parseToMocha from './parseToMocha';
+import WinShare from './WinShare';
 
 export default class Competition extends Component {
   constructor(props) {
@@ -62,6 +64,7 @@ export default class Competition extends Component {
               test={test}
               name={name}
               desc={desc}
+              user={this.props.user}
             />
             <TextEditor
               className="TextEditor"
@@ -71,8 +74,13 @@ export default class Competition extends Component {
               updateState={this.updateState}
             />
           </div>
+          <WinShare className="WinShare" />
         </div>
       </MuiThemeProvider>
     );
   }
 }
+
+Competition.propTypes = {
+  user: PropTypes.string.isRequired,
+};

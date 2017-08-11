@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Card, CardText  } from 'material-ui';
+import { Card, CardText } from 'material-ui';
 
 export default class Test extends Component {
   componentDidMount() {
