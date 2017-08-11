@@ -1,16 +1,9 @@
 import React, { Component } from 'react';
-import { AppBar, FontIcon, MuiThemeProvider } from 'material-ui';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
 
-const io = require('socket.io-client')
-const socket = io()
-// import Confetti from 'react-confetti';
-// import axios from 'axios';
-// import CompetitionDescriptor from './CompetitionDescriptor';
-// import TextEditor from './TextEditor';
-// import TextEditorSettings from './TextEditorSettings';
-// import parseToMocha from './parseToMocha';
+const io = require('socket.io-client');
+
+const socket = io();
 
 export default class SocketPlace extends Component {
   constructor(props) {
