@@ -1,4 +1,5 @@
 const express = require('express');
+
 require('dotenv').config();
 const bodyParser = require('body-parser');
 const path = require('path');
@@ -13,12 +14,32 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(bodyParser.json());
 
-app.set('port', (process.env.PORT || 5000));
-app.listen(app.get('port'), () => console.log('listening on port', app.get('port')));
+const port = process.env.PORT || 5000;
+app.set('port', port);
+const server = app.listen(port, function(err) {  
+  if (err) {
+    console.log(err);
+  } else {
+    console.log('listening on port', port);
+  }
+});
+let users = 0;
+const io = require('socket.io')(server);  
+
+io.on('connection', function(socket){
+  users++;
+  console.log('a user connected', users);
+  socket.emit('msg', 'another user', users); 
+  socket.on('msg', function(msg) {
+    console.log(msg);
+    io.emit('msg', msg);
+  });
+});
+
+
 app.post('/signin', (req, res) => {
   auth.tokenCheck(req.body.idtoken, (gUserData) => {
     db.findUser(gUserData, (bcUserProfile) => {
-      console.log('found user', bcUserProfile);
       res.status(200).send(bcUserProfile);
     });
   });

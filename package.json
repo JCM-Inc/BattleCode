@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "npm install && node index.js",
-    "webpack": "NODE_ENV=prod && webpack",
+    "webpack": "NODE_ENV=prod && webpack -w",
     "setup": "npm run start && npm run webpack"
   },
   "repository": {
@@ -33,7 +33,7 @@
     "style-loader": "^0.18.2",
     "stylus": "^0.54.5",
     "stylus-loader": "^3.0.1",
-    "webpack": "^3.4.1",
+    "webpack": "^3.5.3",
     "webpack-dev-server": "^2.6.1"
   },
   "dependencies": {
@@ -55,6 +55,7 @@
     "react-google-login-component": "^0.8.0",
     "react-load-script": "0.0.6",
     "react-router-dom": "^4.1.2",
-    "react-tap-event-plugin": "^2.0.1"
+    "react-tap-event-plugin": "^2.0.1",
+    "socket.io": "^2.0.3"
   }
 }
