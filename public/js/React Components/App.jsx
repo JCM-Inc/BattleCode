@@ -22,13 +22,13 @@ const App = () => (
       <Route
         path="/dash"
         render={() => (
-          window.isLoggedIn ? <DashBoard /> : <Redirect to="/login" />
+          window.isLoggedIn ? <DashBoard user={window.user} /> : <Redirect to="/login" />
         )}
       />
       <Route
         path="/competition"
         render={() => (
-          window.isLoggedIn ? <Competition /> : <Redirect to="/login" />
+          window.isLoggedIn ? <Competition user={window.user} /> : <Redirect to="/login" />
         )}
       />
       <Route

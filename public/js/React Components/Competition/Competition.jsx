@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { AppBar, FontIcon, MuiThemeProvider } from 'material-ui';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import Confetti from 'react-confetti';
 import axios from 'axios';
 import CompetitionDescriptor from './CompetitionDescriptor';
@@ -63,6 +64,7 @@ export default class Competition extends Component {
               test={test}
               name={name}
               desc={desc}
+              user={this.props.user}
             />
             <TextEditor
               className="TextEditor"
@@ -78,3 +80,7 @@ export default class Competition extends Component {
     );
   }
 }
+
+Competition.propTypes = {
+  user: PropTypes.string.isRequired,
+};
