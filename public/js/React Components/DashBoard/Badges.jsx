@@ -15,8 +15,9 @@ export default class Badges extends Component {
     ));
     return (
       <div className="DashBoardHalf">
-        <h4> Badges </h4>
-        <hr />
+        <div className="ListTitle">
+          <h1> Badges </h1>
+        </div>
         <ul className="DashBoardList">
           {BadgesList}
         </ul>

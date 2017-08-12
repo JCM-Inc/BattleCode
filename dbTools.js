@@ -78,7 +78,7 @@ const Game = mongoose.model('Game', gameSchema);
 exports.findUser = (dataObject, cb) => {
   User.findOne(dataObject).exec((err, success) => {
     if (err) {
-      console(err);
+      console.log(err);
     } else {
       if (!success) {
         User.create({
