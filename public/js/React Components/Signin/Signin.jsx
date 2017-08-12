@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
-import { AppBar, Card, CardText, MuiThemeProvider, RaisedButton } from 'material-ui';
+import { AppBar, Card, CardText, MuiThemeProvider } from 'material-ui';
 import Script from 'react-load-script';
 import { GoogleLogin } from 'react-google-login-component';
 
@@ -43,23 +43,21 @@ export default class Signin extends Component {
   render() {
     return (
       <MuiThemeProvider >
-        <div>
+        <div className="Signin">
           <Script url="https://apis.google.com/js/platform.js" />
           {this.state.userLoginLoaded ? <Redirect to="/dash" /> : <div />}
           <Card>
             <AppBar showMenuIconButton={false} title="BattleCode!" style={{ backgroundColor: '#FF6F00' }} />
-            <CardText>
-              <div style={{ textAlign: 'center' }}>
-                <GoogleLogin
-                  socialId="106454631553-mles8i7ktt96qbvps7uoh2k9idop90e0.apps.googleusercontent.com"
-                  className="google-login"
-                  scope="profile"
-                  responseHandler={this.responseGoogle}
-                  buttonText="Login With Google"
-                />
-                <br />
-                <RaisedButton className="google-login" onClick={this.Signout} label="Sign out" />
-              </div>
+            <CardText className="signin-buttons">
+              <GoogleLogin
+                socialId="106454631553-mles8i7ktt96qbvps7uoh2k9idop90e0.apps.googleusercontent.com"
+                className="login-btn"
+                scope="profile"
+                responseHandler={this.responseGoogle}
+                buttonText="Login With Google"
+              />
+              <br />
+              <button className="login-btn" onClick={this.Signout}>Sign Out</button>
             </CardText>
           </Card>
         </div>

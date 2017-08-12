@@ -53,22 +53,12 @@ $ git clone https://github.com/Javacrypts/BattleCode.git
 
 $ cd BattleCode/
 
-$ npm install
-
-$ cd public
-
-$ bower install
-
-$ cd ..
-
-$ webpack -w
-
 $ npm run setup
 ```
 
 
 **For Database:**
 
-BattleCode uses MongoDB through Mongoose. Setup a local instance of a MongoDB or use Mlabs and reconfigure dbTools.js to connect to it. 
+BattleCode uses MongoDB through Mongoose. Setup a local instance of a MongoDB or use Mlabs and reconfigure dbTools.js to connect to it.
 
 ## <a name="contributing"></a>4. Contributing
