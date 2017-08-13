@@ -12,12 +12,11 @@ Test your coding skillz against anyone. Then create new challenges for others to
 
 1. [How it works](#how-it-works)
 2. [App Wireframe](#wireframe)
-3. [Architecture](#architecture)
-4. [Database](#database)
-5. [Tech Stack](#tech-stack)
-6. [Development](#development)
-  6. [System Requirements](#system-requirements)
-  6. [Installation](#installation)
+3. [Database](#database)
+4. [Tech Stack](#tech-stack)
+5. [Development](#development)
+    1. [System Requirements](#system-requirements) 
+    2. [Installation](#installation)
 
 ## <a name="how-it-works"></a>How it Works
 
@@ -61,4 +60,4 @@ $ npm run setup
 
 BattleCode uses MongoDB through Mongoose. Setup a local instance of a MongoDB or use Mlabs and reconfigure dbTools.js to connect to it.
 
-## <a name="contributing"></a>4. Contributing
+## <a name="contributing"></a>3. Contributing
