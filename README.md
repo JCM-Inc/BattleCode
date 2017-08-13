@@ -43,7 +43,7 @@ Setting up a development environment requires global installations of node
 
 * Globally installed [node](https://nodejs.org/en/) >= 4.0
 
-## <a name="installation"></a>2. Installation
+### <a name="installation"></a>2. Installation
 
 On the command prompt run the following commands
 
@@ -55,9 +55,6 @@ $ cd BattleCode/
 $ npm run setup
 ```
 
-
 **For Database:**
 
 BattleCode uses MongoDB through Mongoose. Setup a local instance of a MongoDB or use Mlabs and reconfigure dbTools.js to connect to it.
-
-## <a name="contributing"></a>3. Contributing
