@@ -31,7 +31,6 @@ io.on('connection', (socket) => {
   console.log('a user connected', users);
   socket.emit('msg', 'another user', users);
   socket.on('msg', (msg) => {
-    console.log(msg);
     io.emit('msg', msg);
   });
 });
