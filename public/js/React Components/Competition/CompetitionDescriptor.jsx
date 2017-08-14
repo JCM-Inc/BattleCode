@@ -23,7 +23,7 @@ class CompetitionDescriptor extends Component {
     this.setState(newState);
   }
   render() {
-    const { desc, name, test, user, userInput } = this.props;
+    const { desc, testId, name, test, user, userInput } = this.props;
     return (
       <div className="CompetitionDescriptor">
         <div className="TopDescription">
@@ -42,6 +42,8 @@ class CompetitionDescriptor extends Component {
           update={this.compDescState}
           test={test}
           userInput={userInput}
+          user={user}
+          testId={testId}
         />
       </div>
     );
@@ -53,6 +55,7 @@ CompetitionDescriptor.propTypes = {
   name: PropTypes.string.isRequired,
   test: PropTypes.string.isRequired,
   user: PropTypes.string.isRequired,
+  testId: PropTypes.string.isRequired,
   userInput: PropTypes.string.isRequired,
 };
 
