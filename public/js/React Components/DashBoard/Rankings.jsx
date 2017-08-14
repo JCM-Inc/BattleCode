@@ -42,7 +42,7 @@ export default class Rankings extends Component {
       <li key={e.user} className="RankList">
         <p>
           <b />
-          <span> Name: {e.user.slice(0, e.user.indexOf('@'))} Wins: {e.wins}</span>
+          <span> {e.user.slice(0, e.user.indexOf('@'))} Wins: {e.wins}</span>
         </p>
       </li>
     ));
