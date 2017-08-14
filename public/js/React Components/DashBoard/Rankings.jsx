@@ -7,10 +7,8 @@ export default class Rankings extends Component {
     this.state = {
       RankingsList: [],
     };
-    // [['1: cain', 142], ['2: badkid89', 133]]
   }
   componentWillMount() {
-    let count = 0;
     this.winners = [];
     axios.get('/games').then((res) => {
       res.data.forEach((game) => {
@@ -19,7 +17,19 @@ export default class Rankings extends Component {
             _id: game.winner,
           },
         }).then((gameWinner) => {
-          this.winners.push(`${count += 1}: ${gameWinner.data}`);
+          if (this.winners.length === 0) {
+            this.winners.push({ wins: 1, user: gameWinner.data });
+          } else {
+            this.winners.forEach((win) => {
+              if (win.user === gameWinner.data) {
+                win.wins += 1;
+              } else {
+                this.winners.push({ wins: 1, user: gameWinner.data });
+              }
+              console.log(this.winners);
+              this.winners.sort((a, b) => b.wins - a.wins);
+            });
+          }
           this.setState({
             RankingsList: this.winners,
           });
@@ -29,11 +39,11 @@ export default class Rankings extends Component {
   }
 
   render() {
-    const RankingsList = this.state.RankingsList.map(e => (
-      <li key={e.slice(0, e.indexOf(':'))} className="RankList">
+    const RankingsList = this.state.RankingsList.map((e, i) => (
+      <li key={e.user} className="RankList">
         <p>
-          <b> {e.slice(0, e.indexOf(':'))}. </b>
-          <span> {e.slice(e.indexOf(':'), e.indexOf('@'))} </span>
+          <b> {i + 1}. </b>
+          <span> {e.user.slice(0, e.user.indexOf('@'))} </span>
         </p>
       </li>
     ));
