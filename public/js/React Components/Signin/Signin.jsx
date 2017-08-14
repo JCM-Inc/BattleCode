@@ -48,7 +48,7 @@ export default class Signin extends Component {
           <Script url="https://apis.google.com/js/platform.js" />
           {this.state.userLoginLoaded ? <Redirect to="/dash" /> : <div />}
           <Card>
-            <AppBar showMenuIconButton={false} title="BattleCode!" style={{ backgroundColor: '#FF6F00' }} />
+            <AppBar showMenuIconButton={false} title="BattleCode!" style={{ backgroundColor: '#388E3C' }} />
             <CardText className="signin-buttons">
               <GoogleLogin
                 socialId="106454631553-mles8i7ktt96qbvps7uoh2k9idop90e0.apps.googleusercontent.com"
