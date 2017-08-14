@@ -53,7 +53,7 @@ export default class Signin extends Component {
               <GoogleLogin
                 socialId="106454631553-mles8i7ktt96qbvps7uoh2k9idop90e0.apps.googleusercontent.com"
                 className="login-btn"
-                scope="profile"
+                scope="https://www.googleapis.com/auth/userinfo.email"
                 responseHandler={this.responseGoogle}
                 buttonText="Login With Google"
               />

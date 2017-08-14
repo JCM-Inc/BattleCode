@@ -26,7 +26,6 @@ export default class Rankings extends Component {
               } else {
                 this.winners.push({ wins: 1, user: gameWinner.data });
               }
-              console.log(this.winners);
               this.winners.sort((a, b) => b.wins - a.wins);
             });
           }
@@ -43,7 +42,7 @@ export default class Rankings extends Component {
       <li key={e.user} className="RankList">
         <p>
           <b> {i + 1}. </b>
-          <span> {e.user.slice(0, e.user.indexOf('@'))} </span>
+          <span> Name: {e.user.slice(0, e.user.indexOf('@'))} Wins: {e.wins}</span>
         </p>
       </li>
     ));
