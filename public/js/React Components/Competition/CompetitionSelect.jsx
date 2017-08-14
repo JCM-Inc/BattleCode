@@ -14,7 +14,6 @@ export default class CompetitionSelect extends Component {
     };
 
     axios.get('/competitions').then((res) => {
-      console.log(res, 'all back');
       this.setState({
         Competitions: res.data,
       });

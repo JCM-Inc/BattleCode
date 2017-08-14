@@ -52,12 +52,16 @@ const Game = mongoose.model('Game', gameSchema);
 exports.makeChallenge = (req, res) => {
   Challenge.find({
     name: req.body.name,
-  }).exec((err, found) => {
+  }).exec((notFound, found) => {
     if (found.length > 0) {
       res.status(200).send('already exists');
     } else {
       Challenge.create(req.body, (err, made) => {
-        res.status(201).send(made);
+        if (err) {
+          res.send(err);
+        } else {
+          res.status(201).send(made);
+        }
       });
     }
   });
@@ -68,7 +72,7 @@ exports.returnOneChallenge = (req, res) => {
     _id: req.body.id,
   }).exec((err, found) => {
     if (err) {
-      console.error(err);
+      res.send(err);
     } else {
       res.status(200).send(found);
     }
@@ -78,7 +82,7 @@ exports.returnOneChallenge = (req, res) => {
 exports.getChallenges = (req, res) => {
   Challenge.find({}).exec((err, challenges) => {
     if (err) {
-      console.error(err);
+      res.send(err);
     } else {
       res.send(challenges);
     }
@@ -88,7 +92,7 @@ exports.getChallenges = (req, res) => {
 exports.findUser = (dataObject, cb) => {
   User.findOne(dataObject).exec((err, success) => {
     if (err) {
-      console.log(err);
+      cb(err);
     } else {
       if (!success) {
         User.create({
@@ -105,20 +109,28 @@ exports.findUser = (dataObject, cb) => {
 
 exports.findUserById = (req, res) => {
   User.findOne(req.query).exec((err, success) => {
-    err ? console.log(err) : res.send(success.username);
+    if (err) {
+      res.send(err);
+    } else {
+      res.send(success.username);
+    }
   });
 };
 
 exports.gameWin = (req, res) => {
   User.findOne({ email: req.body.email }).exec((foundError, suc) => {
     if (foundError) {
-      console.error(foundError);
+      res.send(foundError);
     } else {
       Game.create({
         winner: suc._id,
         challenge: req.body.gameId,
       }, (err, instance) => {
-        err ? console.error(err) : console.log('saved', instance);
+        if (err) {
+          res.send(err);
+        } else {
+          res.send('saved', instance);
+        }
       });
     }
     res.send('challenge saved');
@@ -127,6 +139,10 @@ exports.gameWin = (req, res) => {
 
 exports.getGameWinners = (req, res) => {
   Game.find({}).exec((err, games) => {
-    err ? console.error(err) : res.send(games);
+    if (err) {
+      res.send(err);
+    } else {
+      res.send(games);
+    }
   });
 };

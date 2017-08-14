@@ -16,7 +16,7 @@ module.exports = {
     ],
   },
   resolve: {
-    extensions: ['.js', '.jsx' ],
+    extensions: ['.js', '.jsx'],
     alias: {
       DashBoard: path.resolve(__dirname, 'public/js/React Components/DashBoard'),
       Signin: path.resolve(__dirname, 'public/js/React Components/Signin'),
