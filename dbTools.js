@@ -20,17 +20,35 @@ setInterval(() => {
   }
 }, 1000);
 
+
 const Schema = mongoose.Schema;
+
 const userSchema = Schema({
   username: String,
   email: String,
 });
+
 const challengeSchema = new Schema({
   name: String,
   description: String,
   tests: Object,
 });
+
+const gameSchema = new Schema({
+  winner: {
+    type: String, ref: 'User',
+  },
+  challenge: {
+    type: String, ref: 'Challenge',
+  },
+});
+
+
 const Challenge = mongoose.model('Challenge', challengeSchema);
+const User = mongoose.model('User', userSchema);
+const Game = mongoose.model('Game', gameSchema);
+
+
 exports.makeChallenge = (req, res) => {
   Challenge.find({
     name: req.body.name,
@@ -44,15 +62,7 @@ exports.makeChallenge = (req, res) => {
     }
   });
 };
-const gameSchema = new Schema({
-  winner: {
-    type: Number, ref: 'User',
-  },
-  challenge: {
-    type: Number, ref: 'Challenge',
-  },
-});
-const User = mongoose.model('User', userSchema);
+
 exports.returnOneChallenge = (req, res) => {
   Challenge.find({
     _id: req.body.id,
@@ -64,6 +74,7 @@ exports.returnOneChallenge = (req, res) => {
     }
   });
 };
+
 exports.getChallenges = (req, res) => {
   Challenge.find({}).exec((err, challenges) => {
     if (err) {
@@ -73,7 +84,6 @@ exports.getChallenges = (req, res) => {
     }
   });
 };
-const Game = mongoose.model('Game', gameSchema);
 
 exports.findUser = (dataObject, cb) => {
   User.findOne(dataObject).exec((err, success) => {
@@ -92,25 +102,31 @@ exports.findUser = (dataObject, cb) => {
   },
   );
 };
-// Challenge.create({
-//   name: 'name',
-//   description: 'desc',
-//   tests: {
-//     a: 'atest',
-//   },
-// }, (err, suc) => {
-//   console.log(suc);
-// });
-// for (let i = 0; i < 10; i++) {
-//   let chal = {
-//     name: `test${i}`,
-//     description: `desc${i}`,
-//     tests: {
-//       a: `a${i}`,
-//       b: `b${i}`,
-//     },
-//   };
-//   Challenge.create(chal, (err, suc) => {
-//     err ? console.error(err) : console.log(suc);
-//   });
-// }
+
+exports.findUserById = (req, res) => {
+  User.findOne(req.query).exec((err, success) => {
+    err ? console.log(err) : res.send(success.username);
+  });
+};
+
+exports.gameWin = (req, res) => {
+  User.findOne({ email: req.body.email }).exec((foundError, suc) => {
+    if (foundError) {
+      console.error(foundError);
+    } else {
+      Game.create({
+        winner: suc._id,
+        challenge: req.body.gameId,
+      }, (err, instance) => {
+        err ? console.error(err) : console.log('saved', instance);
+      });
+    }
+    res.send('challenge saved');
+  });
+};
+
+exports.getGameWinners = (req, res) => {
+  Game.find({}).exec((err, games) => {
+    err ? console.error(err) : res.send(games);
+  });
+};

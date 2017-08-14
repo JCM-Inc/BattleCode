@@ -9,7 +9,7 @@ export default class SocketPlace extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      msg: 'nada',
+      msg: 'Game in Progress',
     };
     this.send = this.send.bind(this);
     this.updateState = this.updateState.bind(this);
@@ -21,8 +21,7 @@ export default class SocketPlace extends Component {
   checkWin() {
     setInterval(() => {
       if (this.props.passed()) {
-        console.log('i passed next sending msg');
-        socket.emit('msg', 'you lost');
+        socket.emit('msg', `${this.props.user.slice(0, this.props.user.indexOf('@'))} won!`);
       }
     }, 500);
   }
@@ -34,12 +33,9 @@ export default class SocketPlace extends Component {
   }
 
   render() {
-    // const { desc, mode, name, test, theme, userInput } = this.state;
-    const { user } = this.props;
     return (
-      <div>Socket
-        <h2>SOCKET MAYBE BABY, {this.state.msg} {user}</h2>
-        <button onClick={this.send}>SEND MESSAGE</button>
+      <div>
+        <h2>{this.state.msg}</h2>
       </div>
     );
   }

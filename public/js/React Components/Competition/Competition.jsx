@@ -20,6 +20,7 @@ export default class Competition extends Component {
       test: '',
       name: '',
       desc: '',
+      id: '',
     };
 
     axios.post('/uniquecompetition', {
@@ -29,6 +30,7 @@ export default class Competition extends Component {
         test: parseToMocha(res.data[0].tests, res.data[0].name),
         name: res.data[0].name,
         desc: res.data[0].description,
+        testId: res.data[0]._id,
       }));
 
     this.updateState = this.updateState.bind(this);
@@ -65,6 +67,7 @@ export default class Competition extends Component {
               name={name}
               desc={desc}
               user={this.props.user}
+              testId={this.state.testId}
             />
             <TextEditor
               className="TextEditor"

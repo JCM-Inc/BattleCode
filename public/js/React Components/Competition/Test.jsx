@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Card, CardText } from 'material-ui';
+import axios from 'axios';
 
 export default class Test extends Component {
   componentDidMount() {
@@ -21,8 +22,10 @@ export default class Test extends Component {
       setTimeout(() => {
         if (mocha.suite.suites[0].tests.every(test => test.state === 'passed')) {
           document.getElementsByClassName('Confetti')[0].style.display = 'block';
-          console.log('passed');
           this.props.update({ passed: true });
+          axios.post('/gamewin', { email: this.props.user, gameId: this.props.testId }).then((res) => {
+            console.log(res);
+          });
         } else {
           console.log('fail!', 0);
         }
@@ -46,5 +49,7 @@ export default class Test extends Component {
 Test.propTypes = {
   test: PropTypes.string.isRequired,
   userInput: PropTypes.string.isRequired,
+  user: PropTypes.string.isRequired,
+  testId: PropTypes.string.isRequired,
   // compDescState: PropTypes.function.isRequired,
 };
