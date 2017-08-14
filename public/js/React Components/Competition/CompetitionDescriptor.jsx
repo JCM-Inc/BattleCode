@@ -11,8 +11,9 @@ class CompetitionDescriptor extends Component {
     this.props = props;
     this.state = {
       passed: false,
+      updated: false,
     };
-    this.compDescState = this.compDescState.bind(this);
+    this.makeUpdateTrue = this.makeUpdateTrue.bind(this);
     this.getState = this.getState.bind(this);
   }
 <<<<<<< HEAD
@@ -20,8 +21,8 @@ class CompetitionDescriptor extends Component {
   getState() {
     return this.state.passed;
   }
-  compDescState(newState) {
-    this.setState(newState);
+  makeUpdateTrue() {
+    this.setState({ updated: true });
   }
   render() {
     const { desc, testId, name, test, user, userInput } = this.props;
@@ -53,7 +54,8 @@ class CompetitionDescriptor extends Component {
           </Card>
         </div>
         <Test
-          update={this.compDescState}
+          passed={this.state.updated}
+          update={this.makeUpdateTrue}
           test={test}
           userInput={userInput}
 <<<<<<< HEAD

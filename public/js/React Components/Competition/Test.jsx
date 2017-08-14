@@ -12,7 +12,6 @@ export default class Test extends Component {
       eval(`${this.props.test};`);
     }
   }
-
   componentDidUpdate() {
     this.mocha.innerHTML = '';
     try {
@@ -22,14 +21,16 @@ export default class Test extends Component {
       setTimeout(() => {
         if (mocha.suite.suites[0].tests.every(test => test.state === 'passed')) {
           document.getElementsByClassName('Confetti')[0].style.display = 'block';
-          this.props.update({ passed: true });
-          axios.post('/gamewin', { email: this.props.user, gameId: this.props.testId }).then((res) => {
-            console.log(res);
-          });
+          if (this.props.passed === false) {
+            axios.post('/gamewin', { email: this.props.user, gameId: this.props.testId }).then((res) => {
+              console.log(res);
+            });
+            this.props.update();
+          }
         } else {
           console.log('fail!', 0);
         }
-      });
+      }, 400);
     } catch (e) {
       eval(`${this.props.test};`);
     }
