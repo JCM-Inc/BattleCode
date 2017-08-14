@@ -14,13 +14,6 @@ export default class WinShare extends Component {
     this.handleClose = this.handleClose.bind(this);
   }
 
-  handleOpen() {
-    this.setState({ open: true });
-  }
-
-  handleClose() {
-    this.setState({ open: false });
-  }
 
   getChallengeFromId() {
     axios.get('/competition', {
@@ -31,17 +24,26 @@ export default class WinShare extends Component {
       test: challenge.data.name,
     }));
   }
+
+  handleClose() {
+    this.setState({ open: false });
+  }
+
+  handleOpen() {
+    this.setState({ open: true });
+  }
+
   render() {
     const actions = [
       <FlatButton
         label="Cancel"
-        primary={true}
+        primary
         onTouchTap={this.handleClose}
       />,
       <FlatButton
         label="Submit"
-        primary={true}
-        keyboardFocused={true}
+        primary
+        keyboardFocused
         onTouchTap={this.handleClose}
       />,
     ];
