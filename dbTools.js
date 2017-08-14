@@ -49,6 +49,7 @@ const Game = mongoose.model('Game', gameSchema);
 
 
 exports.makeChallenge = (req, res) => {
+  console.log('make cha called')
   Challenge.find({
     name: req.body.name,
   }).exec((notFound, found) => {

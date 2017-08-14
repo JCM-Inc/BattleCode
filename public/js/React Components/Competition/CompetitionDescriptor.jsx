@@ -21,7 +21,10 @@ class CompetitionDescriptor extends Component {
     return this.state.passed;
   }
   makeUpdateTrue() {
-    this.setState({ updated: true });
+    this.setState({
+      updated: true,
+      passed: true,
+    });
   }
   render() {
     const { desc, testId, name, test, user, userInput } = this.props;
