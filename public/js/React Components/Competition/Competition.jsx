@@ -77,7 +77,10 @@ export default class Competition extends Component {
               updateState={this.updateState}
             />
           </div>
-          <WinShare className="WinShare" />
+          <WinShare
+            className="WinShare"
+            testId={this.state.testId}
+          />
         </div>
       </MuiThemeProvider>
     );

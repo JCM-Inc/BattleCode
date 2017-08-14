@@ -1,11 +1,14 @@
 import React, { Component } from 'react';
 import { Dialog, FlatButton, RaisedButton } from 'material-ui';
+import PropTypes from 'prop-types';
+import axios from 'axios';
 
 export default class WinShare extends Component {
   constructor(props) {
     super(props);
     this.state = {
       open: false,
+      test: '',
     };
     this.handleOpen = this.handleOpen.bind(this);
     this.handleClose = this.handleClose.bind(this);
@@ -19,6 +22,15 @@ export default class WinShare extends Component {
     this.setState({ open: false });
   }
 
+  getChallengeFromId() {
+    axios.get('/competition', {
+      params: {
+        _id: this.props.testId,
+      },
+    }).then(challenge => this.setState({
+      test: challenge.data.name,
+    }));
+  }
   render() {
     const actions = [
       <FlatButton
@@ -33,6 +45,7 @@ export default class WinShare extends Component {
         onTouchTap={this.handleClose}
       />,
     ];
+    this.getChallengeFromId();
 
     return (
       <div>
@@ -44,9 +57,13 @@ export default class WinShare extends Component {
           open={this.state.open}
           onRequestClose={this.handleClose}
         >
-          Here you can share your win with twitter.
+          I just won {this.state.test}!!
         </Dialog>
       </div>
     );
   }
 }
+
+WinShare.propTypes = {
+  testId: PropTypes.string.isRequired,
+};
