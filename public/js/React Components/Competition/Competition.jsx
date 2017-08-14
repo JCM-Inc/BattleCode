@@ -48,7 +48,7 @@ export default class Competition extends Component {
           <Confetti className="Confetti" />
           <AppBar
             title="Challenge"
-            style={{ backgroundColor: '#FF6F00' }}
+            style={{ backgroundColor: '#388E3C' }}
             iconElementLeft={
               <Link to="/dash">
                 <FontIcon className={'material-icons icons iconsLeft'}>
