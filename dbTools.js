@@ -89,6 +89,16 @@ exports.getChallenges = (req, res) => {
   });
 };
 
+exports.getChallengeById = (req, res) => {
+  Challenge.findOne(req.query).exec((err, success) => {
+    if (err) {
+      res.send(err);
+    } else {
+      res.send(success);
+    }
+  });
+};
+
 exports.findUser = (dataObject, cb) => {
   User.findOne(dataObject).exec((err, success) => {
     if (err) {
