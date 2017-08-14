@@ -26,6 +26,7 @@ export default class Signin extends Component {
     const idToken = googleUser.getAuthResponse().id_token;
     const profile = googleUser.getBasicProfile();
     const userEmail = profile.getEmail();
+    console.log({ accessToken: idToken, email: userEmail });
 
     const xhr = new XMLHttpRequest();
     xhr.open('POST', '/signin', true);

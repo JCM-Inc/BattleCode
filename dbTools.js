@@ -20,7 +20,6 @@ setInterval(() => {
   }
 }, 1000);
 
-
 const Schema = mongoose.Schema;
 
 const userSchema = Schema({
@@ -132,14 +131,19 @@ exports.gameWin = (req, res) => {
     if (foundError) {
       res.send(foundError);
     } else {
-      Game.create({
+      Game.find({
         winner: suc._id,
         challenge: req.body.gameId,
-      }, (err, instance) => {
+      }).exec((err, found) => {
         if (err) {
           res.send(err);
-        } else {
-          res.send('saved', instance);
+        } else if (found.length === 0) {
+          Game.create({
+            winner: suc._id,
+            challenge: req.body.gameId,
+          }, (err2, instance) => {
+            err2 ? console.error(err) : console.log('saved', instance);
+          });
         }
       });
     }
