@@ -23,7 +23,7 @@ export default class SocketPlace extends Component {
       if (this.props.passed()) {
         socket.emit('msg', `${this.props.user.slice(0, this.props.user.indexOf('@'))} won!`);
       }
-    }, 500);
+    }, 100);
   }
   send(event) {
     socket.emit('msg', 'button clicked');
