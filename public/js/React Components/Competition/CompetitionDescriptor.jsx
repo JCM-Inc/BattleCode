@@ -16,7 +16,6 @@ class CompetitionDescriptor extends Component {
     this.makeUpdateTrue = this.makeUpdateTrue.bind(this);
     this.getState = this.getState.bind(this);
   }
-<<<<<<< HEAD
 
   getState() {
     return this.state.passed;
@@ -26,25 +25,12 @@ class CompetitionDescriptor extends Component {
   }
   render() {
     const { desc, testId, name, test, user, userInput } = this.props;
-=======
-  compDescState(newState) {
-    this.setState(newState);
-  }
-  getState() {
-    return this.state.passed;
-  }
-  render() {
-    const { desc, name, test, userInput } = this.props;
->>>>>>> [add] second player notification of loss
     return (
       <div className="CompetitionDescriptor">
         <div className="TopDescription">
           <SocketPlace
             passed={this.getState}
-<<<<<<< HEAD
             user={user}
-=======
->>>>>>> [add] second player notification of loss
           />
           <Card className="Description">
             <CardText>
@@ -58,11 +44,8 @@ class CompetitionDescriptor extends Component {
           update={this.makeUpdateTrue}
           test={test}
           userInput={userInput}
-<<<<<<< HEAD
           user={user}
           testId={testId}
-=======
->>>>>>> [add] second player notification of loss
         />
       </div>
     );
