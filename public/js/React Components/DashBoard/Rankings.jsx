@@ -41,7 +41,7 @@ export default class Rankings extends Component {
     const RankingsList = this.state.RankingsList.map((e, i) => (
       <li key={e.user} className="RankList">
         <p>
-          <b> {i + 1}. </b>
+          <b />
           <span> Name: {e.user.slice(0, e.user.indexOf('@'))} Wins: {e.wins}</span>
         </p>
       </li>

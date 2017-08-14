@@ -27,6 +27,7 @@ export default class WinShare extends Component {
 
   handleClose() {
     this.setState({ open: false });
+    window.open(`https://www.twitter.com/home?status=I just won ${this.state.test} on http://battlecode.club !`);
   }
 
   handleOpen() {
