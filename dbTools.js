@@ -67,13 +67,14 @@ exports.makeChallenge = (req, res) => {
   });
 };
 
-exports.returnOneChallenge = (req, res) => {
+exports.returnOneChallenge = (req, res, cb) => {
   Challenge.find({
     _id: req.body.id,
   }).exec((err, found) => {
     if (err) {
       res.send(err);
     } else {
+      cb(found[0].name);
       res.status(200).send(found);
     }
   });
@@ -122,7 +123,7 @@ exports.findUserById = (req, res) => {
     if (err) {
       res.send(err);
     } else {
-      res.send(success.username);
+      res.send(success);
     }
   });
 };

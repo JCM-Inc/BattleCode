@@ -1,19 +1,33 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-
-const io = require('socket.io-client');
-
-const socket = io();
+import io from 'socket.io-client';
 
 export default class SocketPlace extends Component {
   constructor(props) {
     super(props);
     this.state = {
       msg: 'Game in Progress',
+      players: [],
     };
     this.send = this.send.bind(this);
     this.updateState = this.updateState.bind(this);
     this.checkWin();
+    // console.log(this.props.test, 'is name of socket')
+    // const socket = io(`/${this.props.test}`);
+    // const socket = io();
+    const socket = io('/nsp');
+    
+    console.log(socket, 'is socket?')
+    
+    socket.on('connection', (socket) => {
+      console.log('user connected')
+      socket.emit('user', this.props.user);
+    });
+    socket.on('user', (user) => {
+      let newP = this.state.players.push(user);
+      console.log('now players are', newP)
+      // this.updateState
+    });
     socket.on('msg', (data) => {
       this.updateState({ msg: data });
     });
@@ -36,6 +50,8 @@ export default class SocketPlace extends Component {
     return (
       <div>
         <h2>{this.state.msg}</h2>
+        <h3>{this.state.players}</h3>
+        <button onClick={this.send}>ClickME</button>
       </div>
     );
   }
