@@ -13,6 +13,7 @@ module.exports = {
       { test: /\.jsx$/, exclude: /node_modules/, loader: 'babel-loader' },
       { test: /\.css$/, loader: ['style-loader', 'css-loader'] },
       { test: /\.styl$/, loader: ['style-loader', 'css-loader', 'stylus-loader'] },
+      { test: /\.png$/, loader: ['file-loader'] },
     ],
   },
   resolve: {
