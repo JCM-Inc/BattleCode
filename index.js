@@ -23,18 +23,21 @@ const server = app.listen(port, (err) => {
     console.log('listening on port', port);
   }
 });
-let users = 0;
+// let users = 0;
+// const io = require('socket.io')(server);
 const io = require('socket.io')(server);
-
 io.on('connection', (socket) => {
-  users += 1;
-  console.log('a user connected', users);
-  socket.emit('msg', 'another user', users);
-  socket.on('msg', (msg) => {
-    io.emit('msg', msg);
+  console.log('connected');
+  socket.on('room', function(data) {
+    console.log('in joining room in SERVER', data)
+    let room = 'alpha';
+    // socket.join(room)
+    socket.emit('new user join', ['user']);
+    // setTimeout(() => {
+    //   socket.in('alpha').emit('new user join', data.user)
+    // }, 2000);
   });
 });
-
 
 app.post('/signin', (req, res) => {
   auth.tokenCheck(req.body.idtoken, (gUserData) => {

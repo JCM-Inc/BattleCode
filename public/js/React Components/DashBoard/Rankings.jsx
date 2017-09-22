@@ -9,40 +9,35 @@ export default class Rankings extends Component {
     };
   }
   componentWillMount() {
-    this.winners = [];
-    axios.get('/games').then((res) => {
-      res.data.forEach((game) => {
+    axios.get('/games').then(({ data }) => {
+      const winners = data.reduce((prev, cur) => prev.concat(cur.winner), []);
+      const allWinners = winners.reduce((prev, cur) => {
+        prev[cur] = prev[cur] + 1 || 1;
+        return prev;
+      }, {});
+
+      const winnersByName = [];
+      Object.entries(allWinners).map(winner =>
         axios.get('/findUserById', {
           params: {
-            _id: game.winner,
+            _id: winner[0],
           },
-        }).then((gameWinner) => {
-          if (this.winners.length === 0) {
-            this.winners.push({ wins: 1, user: gameWinner.data });
-          } else {
-            this.winners.forEach((win) => {
-              if (win.user === gameWinner.data) {
-                win.wins += 1;
-              } else {
-                this.winners.push({ wins: 1, user: gameWinner.data });
-              }
-              this.winners.sort((a, b) => b.wins - a.wins);
-            });
-          }
-          this.setState({
-            RankingsList: this.winners,
-          });
-        });
-      });
+        }).then(({ data: user }) => {
+          const pureWinner = winner.slice();
+          pureWinner[2] = user.username.split('@')[0];
+          winnersByName.push(pureWinner);
+          this.setState({ RankingsList: winnersByName.sort((a, b) => b[1] - a[1]) });
+        }),
+      );
     });
   }
 
   render() {
     const RankingsList = this.state.RankingsList.map((e, i) => (
-      <li key={e.user} className="RankList">
+      <li key={e[0]} className="RankList">
         <p>
-          <b />
-          <span> {e.user.slice(0, e.user.indexOf('@'))} Wins: {e.wins}</span>
+          <b> {i + 1}. </b>
+          <span> {e[2]} Wins: {e[1]}</span>
         </p>
       </li>
     ));

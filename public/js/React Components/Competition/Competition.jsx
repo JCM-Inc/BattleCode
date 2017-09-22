@@ -25,14 +25,14 @@ export default class Competition extends Component {
 
     axios.post('/uniquecompetition', {
       id: window.location.hash.split('?id=')[1],
-    }).then(res =>
+    }).then(res => {
       this.setState({
         test: parseToMocha(res.data[0].tests, res.data[0].name),
         name: res.data[0].name,
         desc: res.data[0].description,
         testId: res.data[0]._id,
-      }));
-
+      });
+    });
     this.updateState = this.updateState.bind(this);
   }
 
@@ -42,7 +42,9 @@ export default class Competition extends Component {
 
   render() {
     const { desc, mode, name, test, theme, userInput } = this.state;
-    return (
+    if (this.state.name === '') {
+      return <div>loading</div>;
+    } return (
       <MuiThemeProvider>
         <div className="Competition">
           <Confetti className="Confetti" />
@@ -53,7 +55,7 @@ export default class Competition extends Component {
               <Link to="/dash">
                 <FontIcon className={'material-icons icons iconsLeft'}>
                     navigate_before
-                </FontIcon>
+                </FontIcon> 
               </Link>
             }
             iconElementRight={

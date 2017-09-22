@@ -122,7 +122,7 @@ exports.findUserById = (req, res) => {
     if (err) {
       res.send(err);
     } else {
-      res.send(success.username);
+      res.send(success);
     }
   });
 };
