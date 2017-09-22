@@ -9,7 +9,7 @@ import CompetitionSelect from '../Competition/CompetitionSelect';
 const DashBoard = props => (
   <MuiThemeProvider >
     <div className="Dashboard">
-      <AppBar showMenuIconButton={false} title="Dashboard" style={{ backgroundColor: '#388E3C' }} />
+      <AppBar showMenuIconButton={false} title="Dashboard" style={{ backgroundColor: '#4FB5DB' }} />
       <Card>
         <div>
           <CompetitionSelect />

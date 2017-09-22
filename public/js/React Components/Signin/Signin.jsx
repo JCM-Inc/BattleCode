@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
-import { AppBar, Card, CardText, MuiThemeProvider } from 'material-ui';
+import { Card, CardText, MuiThemeProvider } from 'material-ui';
 import Script from 'react-load-script';
 import { GoogleLogin } from 'react-google-login-component';
+import boat from '../../../../images/SSBattleCode.png';
 
 export default class Signin extends Component {
   constructor(props) {
@@ -11,15 +12,7 @@ export default class Signin extends Component {
       userLoginLoaded: false,
       user: null,
     };
-    this.Signout = this.Signout.bind(this);
     this.responseGoogle = this.responseGoogle.bind(this);
-  }
-
-  Signout() {
-    gapi.auth2.getAuthInstance().signOut().then(() => {
-      window.isLoggedIn = false;
-      console.log('User signed out');
-    });
   }
 
   responseGoogle(googleUser) {
@@ -44,11 +37,15 @@ export default class Signin extends Component {
   render() {
     return (
       <MuiThemeProvider >
-        <div className="Signin">
-          <Script url="https://apis.google.com/js/platform.js" />
-          {this.state.userLoginLoaded ? <Redirect to="/dash" /> : <div />}
-          <Card>
-            <AppBar showMenuIconButton={false} title="BattleCode!" style={{ backgroundColor: '#388E3C' }} />
+        <Card>
+          <div className="Signin">
+            <Script url="https://apis.google.com/js/platform.js" />
+            {this.state.userLoginLoaded ? <Redirect to="/dash" /> : <div />}
+            <div className="boat">
+              <img src={boat} alt="battle boat" />
+            </div>
+            <h1 className="headers">BattleCode!</h1>
+            <h3 className="headers">Compete against others to prove your coding skills!</h3>
             <CardText className="signin-buttons">
               <GoogleLogin
                 socialId="106454631553-mles8i7ktt96qbvps7uoh2k9idop90e0.apps.googleusercontent.com"
@@ -57,11 +54,9 @@ export default class Signin extends Component {
                 responseHandler={this.responseGoogle}
                 buttonText="Login With Google"
               />
-              <br />
-              <button className="login-btn" onClick={this.Signout}>Sign Out</button>
             </CardText>
-          </Card>
-        </div>
+          </div>
+        </Card>
       </MuiThemeProvider>
     );
   }

@@ -99,7 +99,7 @@ export default class CreateCompetition extends Component {
               </Link>
             }
             title="Create A Challenge"
-            style={{ backgroundColor: '#388E3C' }}
+            style={{ backgroundColor: '#4FB5DB' }}
           />
           <RaisedButton
             label="Create"
