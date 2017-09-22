@@ -55,7 +55,7 @@ export default class Competition extends Component {
               <Link to="/dash">
                 <FontIcon className={'material-icons icons iconsLeft'}>
                     navigate_before
-                </FontIcon>
+                </FontIcon> 
               </Link>
             }
             iconElementRight={
