@@ -34,7 +34,7 @@ class CompetitionDescriptor extends Component {
           <SocketPlace
             passed={this.getState}
             user={user}
-            test={name}
+            testName={name}
           />
           <Card className="Description">
             <CardText>

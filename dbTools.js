@@ -67,14 +67,13 @@ exports.makeChallenge = (req, res) => {
   });
 };
 
-exports.returnOneChallenge = (req, res, cb) => {
+exports.returnOneChallenge = (req, res) => {
   Challenge.find({
     _id: req.body.id,
   }).exec((err, found) => {
     if (err) {
       res.send(err);
     } else {
-      cb(found[0].name);
       res.status(200).send(found);
     }
   });

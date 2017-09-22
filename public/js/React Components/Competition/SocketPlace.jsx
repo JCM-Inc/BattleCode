@@ -1,35 +1,25 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import io from 'socket.io-client';
+const socket = io();
 
 export default class SocketPlace extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      msg: 'Game in Progress',
+      msg: 'Game in Progress!',
       players: [],
+      user: this.props.user,
+      room: this.props.testName,
     };
     this.send = this.send.bind(this);
     this.updateState = this.updateState.bind(this);
     this.checkWin();
-    // console.log(this.props.test, 'is name of socket')
-    // const socket = io(`/${this.props.test}`);
-    // const socket = io();
-    const socket = io('/nsp');
-    
-    console.log(socket, 'is socket?')
-    
-    socket.on('connection', (socket) => {
-      console.log('user connected')
-      socket.emit('user', this.props.user);
-    });
-    socket.on('user', (user) => {
-      let newP = this.state.players.push(user);
-      console.log('now players are', newP)
-      // this.updateState
-    });
-    socket.on('msg', (data) => {
-      this.updateState({ msg: data });
+    socket.emit('room', this.props);
+    socket.on('new user join', (data) => {
+      console.log(data, 'newuser');
+      let newP = this.state.players.concat(data.user);
+      // this.setState({ players: newP });
     });
   }
   checkWin() {
@@ -40,18 +30,17 @@ export default class SocketPlace extends Component {
     }, 20);
   }
   send(event) {
-    socket.emit('msg', 'button clicked');
+    socket.emit('room', 'button clicked');
   }
   updateState(newState) {
     this.setState(newState);
   }
 
   render() {
+    const {players, user} = this.state;
     return (
       <div>
-        <h2>{this.state.msg}</h2>
-        <h3>{this.state.players}</h3>
-        <button onClick={this.send}>ClickME</button>
+        <h3>In room now {players}</h3>
       </div>
     );
   }
