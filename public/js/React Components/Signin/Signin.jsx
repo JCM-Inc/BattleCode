@@ -38,7 +38,7 @@ export default class Signin extends Component {
     return (
       <MuiThemeProvider >
         <Card>
-          <div className="Signin">
+          <div className="col-md-12 Signin">
             <Script url="https://apis.google.com/js/platform.js" />
             {this.state.userLoginLoaded ? <Redirect to="/dash" /> : <div />}
             <div className="boat">
