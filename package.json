@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-    "webpack": "NODE_ENV=prod && webpack -w",
+    "webpack": "NODE_ENV=prod && webpack",
     "setup": "npm install && npm run webpack && npm start"
   },
   "repository": {
