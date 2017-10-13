@@ -41,8 +41,8 @@ export default class Signin extends Component {
           <div className="col-md-12 Signin">
             <Script url="https://apis.google.com/js/platform.js" />
             {this.state.userLoginLoaded ? <Redirect to="/dash" /> : <div />}
-            <div className="boat">
-              <img src={boat} alt="battle boat" />
+            <div id="boat">
+              <img className="animated" src={boat} alt="battle boat" />
             </div>
             <h1 className="headers">BattleCode!</h1>
             <h3 className="headers">Compete against others to prove your coding skills!</h3>
