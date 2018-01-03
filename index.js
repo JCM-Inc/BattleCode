@@ -23,14 +23,13 @@ const server = app.listen(port, (err) => {
     console.log('listening on port', port);
   }
 });
-// let users = 0;
-// const io = require('socket.io')(server);
+
 const io = require('socket.io')(server);
 io.on('connection', (socket) => {
   console.log('connected');
   socket.on('room', function(data) {
-    console.log('in joining room in SERVER', data)
-    let room = 'alpha';
+    console.log('in joining room in SERVER', data);
+    const room = 'alpha';
     // socket.join(room)
     socket.emit('new user join', ['user']);
     // setTimeout(() => {
