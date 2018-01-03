@@ -6,6 +6,7 @@ export default class Rankings extends Component {
     super();
     this.state = {
       RankingsList: [],
+      WinnerListByID: [],
     };
   }
   componentWillMount() {
@@ -15,7 +16,17 @@ export default class Rankings extends Component {
         prev[cur] = prev[cur] + 1 || 1;
         return prev;
       }, {});
-
+      var winnerCollection = [];
+      for (var key in allWinners) {
+        if (allWinners.hasOwnProperty(key)) {
+          winnerCollection.push({
+            userId: key,
+            wins: allWinners[key]
+          });
+        }
+      }
+      this.setState({ WinnerListByID: winnerCollection });
+      console.log(this.state.WinnerListByID, "this is winnerlist in state")
       const winnersByName = [];
       Object.entries(allWinners).map(winner =>
         axios.get('/findUserById', {
@@ -33,6 +44,7 @@ export default class Rankings extends Component {
   }
 
   render() {
+    <div>{this.state.RankingsList}</div>;
     const RankingsList = this.state.RankingsList.map((e, i) => (
       <li key={e[0]} className="RankList">
         <p>
