@@ -25,6 +25,7 @@ const Schema = mongoose.Schema;
 const userSchema = Schema({
   username: String,
   email: String,
+  phoneNumber: String
 });
 
 const challengeSchema = new Schema({
