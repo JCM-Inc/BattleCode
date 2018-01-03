@@ -49,7 +49,7 @@ const Game = mongoose.model('Game', gameSchema);
 
 
 exports.makeChallenge = (req, res) => {
-  console.log('make cha called')
+  console.log('make cha called');
   Challenge.find({
     name: req.body.name,
   }).exec((notFound, found) => {
@@ -103,15 +103,14 @@ exports.findUser = (dataObject, cb) => {
   User.findOne(dataObject).exec((err, success) => {
     if (err) {
       cb(err);
+    }
+    if (!success) {
+      User.create({
+        username: dataObject.email,
+        email: dataObject.email,
+      }, (err2, instance) => cb(instance));
     } else {
-      if (!success) {
-        User.create({
-          username: dataObject.email,
-          email: dataObject.email,
-        }, (err2, instance) => cb(instance));
-      } else {
-        cb(success);
-      }
+      cb(success);
     }
   },
   );
