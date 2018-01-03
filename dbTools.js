@@ -1,4 +1,4 @@
-const mongoDB = `mongodb://cain:${process.env.DBPW}@ds127983.mlab.com:27983/codebattle`;
+const mongoDB = `mongodb://battlecode:${process.env.DBPW}@ds139067.mlab.com:39067/battlecode`;
 const mongoose = require('mongoose');
 
 require('dotenv').config();
