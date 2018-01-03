@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import io from 'socket.io-client';
 const socket = io.connect();
-
+//testing here to determine connection for sockets
 
 export default class SocketPlace extends Component {
   constructor(props) {
