@@ -40,7 +40,7 @@ io.on('connection', (socket) => {
 });
 
 app.post('/signin', (req, res) => {
-  auth.tokenCheck(req.body.idtoken, (gUserData) => {
+  auth.tokenCheck(req.body.accessToken, (gUserData) => {
     db.findUser(gUserData, (bcUserProfile) => {
       res.status(200).send(bcUserProfile);
     });
