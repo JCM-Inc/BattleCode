@@ -1,4 +1,4 @@
-const mongoDB = `mongodb://cain:${process.env.DBPW}@ds127983.mlab.com:27983/codebattle`;
+const mongoDB = `mongodb://battlecode:${process.env.DBPW}@ds139067.mlab.com:39067/battlecode`;
 const mongoose = require('mongoose');
 
 require('dotenv').config();
@@ -49,7 +49,7 @@ const Game = mongoose.model('Game', gameSchema);
 
 
 exports.makeChallenge = (req, res) => {
-  console.log('make cha called')
+  console.log('make cha called');
   Challenge.find({
     name: req.body.name,
   }).exec((notFound, found) => {
@@ -103,15 +103,14 @@ exports.findUser = (dataObject, cb) => {
   User.findOne(dataObject).exec((err, success) => {
     if (err) {
       cb(err);
+    }
+    if (!success) {
+      User.create({
+        username: dataObject.email,
+        email: dataObject.email,
+      }, (err2, instance) => cb(instance));
     } else {
-      if (!success) {
-        User.create({
-          username: dataObject.email,
-          email: dataObject.email,
-        }, (err2, instance) => cb(instance));
-      } else {
-        cb(success);
-      }
+      cb(success);
     }
   },
   );
