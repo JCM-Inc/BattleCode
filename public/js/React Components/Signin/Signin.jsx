@@ -48,7 +48,7 @@ export default class Signin extends Component {
             <h3 className="headers">Compete against others to prove your coding skills!</h3>
             <CardText className="signin-buttons">
               <GoogleLogin
-                socialId="106454631553-mles8i7ktt96qbvps7uoh2k9idop90e0.apps.googleusercontent.com"
+                socialId="500724803395-pma9je3unef7t0ugokspsjq3vq9olu7d.apps.googleusercontent.com"
                 className="login-btn"
                 scope="https://www.googleapis.com/auth/userinfo.email"
                 responseHandler={this.responseGoogle}
