@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 
-const BarChart = require('react-d3-basic').BarChart;
+import { BarChart } from 'react-easy-chart';
 const ReactDOM = require('react-dom');
 
 export default class Rankings extends Component {
@@ -23,13 +23,14 @@ export default class Rankings extends Component {
       for (const key in allWinners) {
         if (allWinners.hasOwnProperty(key)) {
           winnerCollection.push({
-            userId: key,
-            wins: allWinners[key],
+            x: key,
+            y: allWinners[key],
           });
         }
       }
-      const wins = winnerCollection.map(user => user.wins);
       this.setState({ WinnerListByID: winnerCollection });
+      console.log(this.state.WinnerListByID, 'this is winner list');
+      const wins = winnerCollection.map(user => user.wins);
       const winnersByName = [];
       Object.entries(allWinners).map(winner =>
         axios.get('/findUserById', {
@@ -71,22 +72,9 @@ export default class Rankings extends Component {
         <ul className="DashBoardList">
           {RankingsList}
           <BarChart
-            chartSeries={[
-              {
-                field: 'userId',
-                name: 'Username',
-                color: '#ff7f0e',
-              },
-              {
-                field: 'wins',
-                name: 'Wins',
-                color: '#ff7f0e',
-              },
-            ]}
-            data={this.state.WinnerListByID}
-            width={400}
-            height={400}
-            margin={{ top: 10, bottom: 50, left: 50, right: 10 }}
+            data={
+              //should i map here over winnerlist by id and make each element be the userId and wins?
+              this.state.WinnerListByID}
           />
         </ul>
       </div>
