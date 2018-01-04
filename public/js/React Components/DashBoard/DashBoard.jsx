@@ -6,9 +6,12 @@ import Badges from './Badges';
 import Rankings from './Rankings';
 import CompetitionSelect from '../Competition/CompetitionSelect';
 import ReactTelInput from 'react-telephone-input/lib/withStyles';
+import axios from 'axios';
 
 function handleInputChange(telNumber, selectedCountry) {
-  console.log('input changed. number: ', telNumber, 'selected country: ', selectedCountry);
+  console.log(telNumber.length);
+  console.log(window.user.id);
+  axios.get('/findUserById', { email: window.user} ).then((founduser)=> { console.log(founduser)});
 }
 
 function handleInputBlur(telNumber, selectedCountry) {
