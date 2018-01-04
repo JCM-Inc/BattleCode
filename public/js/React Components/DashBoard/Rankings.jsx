@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 
 import { BarChart } from 'react-easy-chart';
+
 const ReactDOM = require('react-dom');
 
 export default class Rankings extends Component {
@@ -20,14 +21,21 @@ export default class Rankings extends Component {
         return prev;
       }, {});
       const winnerCollection = [];
-      console.log(allWinners, "this is all the winners");
+      console.log(allWinners, 'this is all the winners');
       for (const key in allWinners) {
-        if (allWinners.hasOwnProperty(key)) {
-          winnerCollection.push({
-            x: key,
-            y: allWinners[key],
-          });
-        }
+        axios.get('/findUserById', {
+          params: {
+            _id: key,
+          },
+        }).then((data) => {
+          console.log(allWinners[key], 'this is the wins');
+          if (allWinners.hasOwnProperty(key)) {
+            winnerCollection.push({
+              x: data.data.username.split('@')[0],
+              y: allWinners[key],
+            });
+          }
+        });
       }
       this.setState({ WinnerListByID: winnerCollection });
       const wins = winnerCollection.map(user => user.wins);
@@ -78,7 +86,7 @@ export default class Rankings extends Component {
             height={250}
             width={350}
             data={
-              //should i map here over winnerlist by id and make each element be the userId and wins?
+              // should i map here over winnerlist by id and make each element be the userId and wins?
               this.state.WinnerListByID}
           />
         </ul>
