@@ -2,30 +2,30 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import io from 'socket.io-client';
 const socket = io.connect();
-//testing here to determine connection for sockets
+// testing here to determine connection for sockets
 
 export default class SocketPlace extends Component {
   constructor(props) {
     super(props);
     this.state = {
       msg: 'Game in Progress!',
-      players: ['goof ', 'gof ', 'biff '],
+      players: [],
       user: this.props.user,
       room: this.props.testName,
     };
     this.send = this.send.bind(this);
     this.updateState = this.updateState.bind(this);
     this.checkWin();
+
     socket.emit('room', this.props);
+
     socket.on('room', (username) => {
-      console.log('username incoming from userAdded is ', username);
-      this.state.players.push(username);
-      console.log('this.state.players is ', this.state.players);
+      this.setState((state, username) => {
+        return state.players.push(username.user);
+      });
     });
-    // socket.on('new user join', (data) => {
-    //   console.log(data, 'newuser');
-    // });
   }
+
   checkWin() {
     setInterval(() => {
       if (this.props.passed()) {
@@ -33,9 +33,11 @@ export default class SocketPlace extends Component {
       }
     }, 20);
   }
+
   send(event) {
     socket.emit('room', 'button clicked');
   }
+
   updateState(newState) {
     this.setState(newState);
   }
@@ -48,6 +50,7 @@ export default class SocketPlace extends Component {
       </div>
     );
   }
+
 }
 
 SocketPlace.propTypes = {
