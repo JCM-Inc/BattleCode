@@ -31,10 +31,7 @@ export default class Rankings extends Component {
         return user.wins
       });
       this.setState({ WinnerListByID: winnerCollection });
-<<<<<<< HEAD
       // console.log(this.state.WinnerListByID, "this is winnerlist in state");
-=======
->>>>>>> 9507b9eaa6627fa0a3c1e8b3625388b637fa5280
       const winnersByName = [];
       Object.entries(allWinners).map(winner =>
         axios.get('/findUserById', {
