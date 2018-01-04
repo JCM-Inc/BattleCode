@@ -28,13 +28,11 @@ const io = require('socket.io')(server);
 io.on('connection', (socket) => {
   console.log('connected');
   socket.on('room', function(data) {
-    console.log('in joining room in SERVER', data);
-    const room = 'alpha';
-    // socket.join(room)
-    socket.emit('new user join', ['user']);
-    // setTimeout(() => {
-    //   socket.in('alpha').emit('new user join', data.user)
-    // }, 2000);
+    console.log('room socket firing with data= ',data);
+    io.sockets.emit('room', data.user);
+    // console.log('data is ', data);
+    // console.log('in joining room in SERVER', data);
+    // socket.emit('new user join', data.user);
   });
 });
 

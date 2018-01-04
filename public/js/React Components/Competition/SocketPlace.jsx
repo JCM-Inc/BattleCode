@@ -9,7 +9,7 @@ export default class SocketPlace extends Component {
     super(props);
     this.state = {
       msg: 'Game in Progress!',
-      players: [],
+      players: ['goof ', 'gof ', 'biff '],
       user: this.props.user,
       room: this.props.testName,
     };
@@ -17,11 +17,14 @@ export default class SocketPlace extends Component {
     this.updateState = this.updateState.bind(this);
     this.checkWin();
     socket.emit('room', this.props);
-    socket.on('new user join', (data) => {
-      console.log(data, 'newuser');
-      let newP = this.state.players.concat(data.user);
-      // this.setState({ players: newP });
+    socket.on('room', (username) => {
+      console.log('username incoming from userAdded is ', username);
+      this.state.players.push(username);
+      console.log('this.state.players is ', this.state.players);
     });
+    // socket.on('new user join', (data) => {
+    //   console.log(data, 'newuser');
+    // });
   }
   checkWin() {
     setInterval(() => {
