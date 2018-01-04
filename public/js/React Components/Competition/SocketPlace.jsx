@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import io from 'socket.io-client';
-const socket = io('http://localhost:5000');
-
+const socket = io.connect();
+// testing here to determine connection for sockets
 
 export default class SocketPlace extends Component {
   constructor(props) {
@@ -16,13 +16,16 @@ export default class SocketPlace extends Component {
     this.send = this.send.bind(this);
     this.updateState = this.updateState.bind(this);
     this.checkWin();
+
     socket.emit('room', this.props);
-    socket.on('new user join', (data) => {
-      console.log(data, 'newuser');
-      let newP = this.state.players.concat(data.user);
-      // this.setState({ players: newP });
+
+    socket.on('room', (username) => {
+      this.setState((state, username) => {
+        return state.players.push(username.user);
+      });
     });
   }
+
   checkWin() {
     setInterval(() => {
       if (this.props.passed()) {
@@ -30,9 +33,11 @@ export default class SocketPlace extends Component {
       }
     }, 20);
   }
+
   send(event) {
     socket.emit('room', 'button clicked');
   }
+
   updateState(newState) {
     this.setState(newState);
   }
@@ -45,6 +50,7 @@ export default class SocketPlace extends Component {
       </div>
     );
   }
+
 }
 
 SocketPlace.propTypes = {

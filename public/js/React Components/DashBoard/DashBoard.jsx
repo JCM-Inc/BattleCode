@@ -9,9 +9,10 @@ import ReactTelInput from 'react-telephone-input/lib/withStyles';
 import axios from 'axios';
 
 function handleInputChange(telNumber, selectedCountry) {
-  console.log(telNumber.length);
-  console.log(window.user.id);
-  axios.get('/findUserById', { email: window.user} ).then((founduser)=> { console.log(founduser)});
+  if (telNumber.length === 17) {
+    console.log(window.user);
+  }
+  axios.get('/findUserById', { username: window.user } ).then((founduser)=> { console.log(founduser)});
 }
 
 function handleInputBlur(telNumber, selectedCountry) {
@@ -38,7 +39,7 @@ const DashBoard = props => (
       <div style={{ textAlign: 'center' }}>
       Enter Phone Number to receive text from BattleCode!
       <ReactTelInput
-              defaultCountry="in"
+              defaultCountry="us"
               flagsImagePath='/path/to/images/flags.png'
               onChange={handleInputChange}
               onBlur={handleInputBlur}
