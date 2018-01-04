@@ -43,6 +43,7 @@ app.post('/signin', (req, res) => {
     });
   });
 });
+
 app.get('/competitions', db.getChallenges);
 app.get('/competition', db.getChallengeById);
 app.post('/uniquecompetition', db.returnOneChallenge);
@@ -50,3 +51,4 @@ app.post('/makechallenge', db.makeChallenge);
 app.post('/gamewin', db.gameWin);
 app.get('/games', db.getGameWinners);
 app.get('/findUserById', db.findUserById);
+app.get('/setPhoneNumber', db.setPhoneNumber);

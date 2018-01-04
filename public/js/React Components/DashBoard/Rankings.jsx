@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 
+// const BarChart = require('react-d3-basic').BarChart;
+
 export default class Rankings extends Component {
   constructor() {
     super();
@@ -25,8 +27,14 @@ export default class Rankings extends Component {
           });
         }
       }
+      const wins = winnerCollection.map((user) => {
+        return user.wins
+      });
       this.setState({ WinnerListByID: winnerCollection });
+<<<<<<< HEAD
       // console.log(this.state.WinnerListByID, "this is winnerlist in state");
+=======
+>>>>>>> 9507b9eaa6627fa0a3c1e8b3625388b637fa5280
       const winnersByName = [];
       Object.entries(allWinners).map(winner =>
         axios.get('/findUserById', {
@@ -44,12 +52,19 @@ export default class Rankings extends Component {
   }
 
   render() {
-    <div>{this.state.RankingsList}</div>;
     const RankingsList = this.state.RankingsList.map((e, i) => (
       <li key={e[0]} className="RankList">
         <p>
           <b> {i + 1}. </b>
           <span> {e[2]} Wins: {e[1]}</span>
+        </p>
+      </li>
+    ));
+    const rankList = this.state.WinnerListByID.map((user, index) => (
+      <li key={user.userId} className="RankGraph">
+        <p>
+          <b> {index + 1}. </b>
+          <span> {user.userId} Wins: {user.wins}</span>
         </p>
       </li>
     ));

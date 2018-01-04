@@ -25,6 +25,7 @@ const Schema = mongoose.Schema;
 const userSchema = Schema({
   username: String,
   email: String,
+  phoneNumber: String
 });
 
 const challengeSchema = new Schema({
@@ -160,3 +161,13 @@ exports.getGameWinners = (req, res) => {
     }
   });
 };
+
+exports.setPhoneNumber = (req, res) => {
+  User.findOne({ email: req.body.email }).exec((foundError, suc) => {
+    if (foundError) {
+      res.send(foundError);
+    } else {
+      console.log(User);
+    }
+  });
+}
