@@ -5,9 +5,10 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-    "webpack": "NODE_ENV=prod && webpack -w",
+    "webpack": "NODE_ENV=prod && webpack",
     "webpack-dev": "NODE_ENV=prod && webpack-dev-server",
-    "setup": "npm install && npm run webpack && npm start"
+    "setup": "npm install && npm run webpack && npm start",
+    "webStart": "npm run webpack && npm run start"
   },
   "repository": {
     "type": "git",
@@ -71,7 +72,7 @@
     "react-tap-event-plugin": "^2.0.1",
     "react-telephone-input": "^4.3.4",
     "socket.io": "^2.0.3",
-    "socket.io-client": "^2.0.3",
+    "socket.io-client": "^2.0.4",
     "svg": "^0.1.0"
   }
 }

@@ -17,13 +17,14 @@ export default class SocketPlace extends Component {
     this.updateState = this.updateState.bind(this);
     this.checkWin();
 
-    socket.emit('room', { userInfo: this.props, players: this.state.players });
+    let emitData = this.props;
+    socket.emit('room', emitData);
 
-    socket.on('room', (players) => {
-      this.setState((state) => {
-        return state.players = players;
-      });
-    });
+    // socket.on('room', (players) => {
+    //   this.setState((state) => {
+    //     return state.players = players;
+    //   });
+    // });
   }
 
   checkWin() {
