@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 
-// const BarChart = require('react-d3-basic').BarChart;
+import { BarChart } from 'react-easy-chart';
+const ReactDOM = require('react-dom');
 
 export default class Rankings extends Component {
   constructor() {
@@ -18,20 +19,18 @@ export default class Rankings extends Component {
         prev[cur] = prev[cur] + 1 || 1;
         return prev;
       }, {});
-      var winnerCollection = [];
-      for (var key in allWinners) {
+      const winnerCollection = [];
+      // console.log(allWinners, "this is all the winners");
+      for (const key in allWinners) {
         if (allWinners.hasOwnProperty(key)) {
           winnerCollection.push({
-            userId: key,
-            wins: allWinners[key]
+            x: key,
+            y: allWinners[key],
           });
         }
       }
-      const wins = winnerCollection.map((user) => {
-        return user.wins
-      });
       this.setState({ WinnerListByID: winnerCollection });
-      // console.log(this.state.WinnerListByID, "this is winnerlist in state");
+      const wins = winnerCollection.map(user => user.wins);
       const winnersByName = [];
       Object.entries(allWinners).map(winner =>
         axios.get('/findUserById', {
@@ -57,14 +56,14 @@ export default class Rankings extends Component {
         </p>
       </li>
     ));
-    const rankList = this.state.WinnerListByID.map((user, index) => (
-      <li key={user.userId} className="RankGraph">
-        <p>
-          <b> {index + 1}. </b>
-          <span> {user.userId} Wins: {user.wins}</span>
-        </p>
-      </li>
-    ));
+    // const rankList = this.state.WinnerListByID.map((user, index) => (
+    //   <li key={user.userId} className="RankGraph">
+    //     <p>
+    //       <b> {index + 1}. </b>
+    //       <span> {user.userId} Wins: {user.wins}</span>
+    //     </p>
+    //   </li>
+    // ));
     return (
       <div className="DashBoardHalf">
         <div className="ListTitle">
@@ -72,6 +71,16 @@ export default class Rankings extends Component {
         </div>
         <ul className="DashBoardList">
           {RankingsList}
+          <BarChart
+            axes
+            axisLabels={{ x: 'Username', y: 'Wins' }}
+            yAxisOrientLeft
+            height={250}
+            width={350}
+            data={
+              //should i map here over winnerlist by id and make each element be the userId and wins?
+              this.state.WinnerListByID}
+          />
         </ul>
       </div>
     );
