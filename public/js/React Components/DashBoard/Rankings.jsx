@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 
-// const BarChart = require('react-d3-basic').BarChart;
+const BarChart = require('react-d3-basic').BarChart;
+const ReactDOM = require('react-dom');
 
 export default class Rankings extends Component {
   constructor() {
@@ -18,18 +19,16 @@ export default class Rankings extends Component {
         prev[cur] = prev[cur] + 1 || 1;
         return prev;
       }, {});
-      var winnerCollection = [];
-      for (var key in allWinners) {
+      const winnerCollection = [];
+      for (const key in allWinners) {
         if (allWinners.hasOwnProperty(key)) {
           winnerCollection.push({
             userId: key,
-            wins: allWinners[key]
+            wins: allWinners[key],
           });
         }
       }
-      const wins = winnerCollection.map((user) => {
-        return user.wins
-      });
+      const wins = winnerCollection.map(user => user.wins);
       this.setState({ WinnerListByID: winnerCollection });
       const winnersByName = [];
       Object.entries(allWinners).map(winner =>
@@ -56,14 +55,14 @@ export default class Rankings extends Component {
         </p>
       </li>
     ));
-    const rankList = this.state.WinnerListByID.map((user, index) => (
-      <li key={user.userId} className="RankGraph">
-        <p>
-          <b> {index + 1}. </b>
-          <span> {user.userId} Wins: {user.wins}</span>
-        </p>
-      </li>
-    ));
+    // const rankList = this.state.WinnerListByID.map((user, index) => (
+    //   <li key={user.userId} className="RankGraph">
+    //     <p>
+    //       <b> {index + 1}. </b>
+    //       <span> {user.userId} Wins: {user.wins}</span>
+    //     </p>
+    //   </li>
+    // ));
     return (
       <div className="DashBoardHalf">
         <div className="ListTitle">
@@ -71,6 +70,24 @@ export default class Rankings extends Component {
         </div>
         <ul className="DashBoardList">
           {RankingsList}
+          <BarChart
+            chartSeries={[
+              {
+                field: 'userId',
+                name: 'Username',
+                color: '#ff7f0e',
+              },
+              {
+                field: 'wins',
+                name: 'Wins',
+                color: '#ff7f0e',
+              },
+            ]}
+            data={this.state.WinnerListByID}
+            width={400}
+            height={400}
+            margin={{ top: 10, bottom: 50, left: 50, right: 10 }}
+          />
         </ul>
       </div>
     );
