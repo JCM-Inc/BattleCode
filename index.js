@@ -30,7 +30,7 @@ io.on('connection', (socket) => {
   console.log('socket connected');
   socket.on('room', (data) => {
     console.log('data is ', data);
-    db.addUserToRoom(data.user);
+    db.addUserToRoom(data);
   });
 });
 

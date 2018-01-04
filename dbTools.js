@@ -55,8 +55,8 @@ const User = mongoose.model('User', userSchema);
 const Game = mongoose.model('Game', gameSchema);
 const RoomUsers = mongoose.model('RoomUsers', roomUsers);
 
-exports.addUserToRoom = (user) => {
-  console.log('user from db is ', user);
+exports.addUserToRoom = (data) => {
+  console.log('data from db is ', data);
   
 };
 
