@@ -20,7 +20,7 @@ export default class Rankings extends Component {
         return prev;
       }, {});
       const winnerCollection = [];
-      // console.log(allWinners, "this is all the winners");
+      console.log(allWinners, "this is all the winners");
       for (const key in allWinners) {
         if (allWinners.hasOwnProperty(key)) {
           winnerCollection.push({
