@@ -22,7 +22,7 @@ const App = () => (
       <Route
         path="/dash"
         render={() => (
-          window.isLoggedIn ? <DashBoard user={window.user} /> : <Redirect to="/login" />
+          window.isLoggedIn ? <DashBoard user={window.user} data-widget-id="widget-id" /> : <Redirect to="/login" />
         )}
       />
       <Route
