@@ -51,6 +51,7 @@
     "material-ui": "^0.18.7",
     "mocha": "^3.5.0",
     "mongoose": "^4.11.5",
+    "ngrok": "^2.2.24",
     "prop-types": "^15.5.10",
     "react": "^15.6.1",
     "react-addons-test-utils": "^15.6.0",
