@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 
+// const BarChart = require('react-d3-basic').BarChart;
+
 export default class Rankings extends Component {
   constructor() {
     super();
@@ -25,7 +27,7 @@ export default class Rankings extends Component {
           });
         }
       }
-      const wins = winnerCollection.map(function (user) {
+      const wins = winnerCollection.map((user) => {
         return user.wins
       });
       this.setState({ WinnerListByID: winnerCollection });
@@ -68,9 +70,6 @@ export default class Rankings extends Component {
           <h1> Rankings </h1>
         </div>
         <ul className="DashBoardList">
-          <div className="chart">
-            {rankList}
-          </div>
           {RankingsList}
         </ul>
       </div>
