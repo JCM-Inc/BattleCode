@@ -25,8 +25,10 @@ export default class Rankings extends Component {
           });
         }
       }
+      const wins = winnerCollection.map(function (user) {
+        return user.wins
+      });
       this.setState({ WinnerListByID: winnerCollection });
-      console.log(this.state.WinnerListByID, "this is winnerlist in state");
       const winnersByName = [];
       Object.entries(allWinners).map(winner =>
         axios.get('/findUserById', {
@@ -44,12 +46,19 @@ export default class Rankings extends Component {
   }
 
   render() {
-    <div>{this.state.RankingsList}</div>;
     const RankingsList = this.state.RankingsList.map((e, i) => (
       <li key={e[0]} className="RankList">
         <p>
           <b> {i + 1}. </b>
           <span> {e[2]} Wins: {e[1]}</span>
+        </p>
+      </li>
+    ));
+    const rankList = this.state.WinnerListByID.map((user, index) => (
+      <li key={user.userId} className="RankGraph">
+        <p>
+          <b> {index + 1}. </b>
+          <span> {user.userId} Wins: {user.wins}</span>
         </p>
       </li>
     ));
@@ -59,6 +68,9 @@ export default class Rankings extends Component {
           <h1> Rankings </h1>
         </div>
         <ul className="DashBoardList">
+          <div className="chart">
+            {rankList}
+          </div>
           {RankingsList}
         </ul>
       </div>
