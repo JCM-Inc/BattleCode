@@ -44,10 +44,21 @@ const gameSchema = new Schema({
   },
 });
 
+const roomUsers = new Schema({
+  roomName: String,
+  users: Array,
+});
+
 
 const Challenge = mongoose.model('Challenge', challengeSchema);
 const User = mongoose.model('User', userSchema);
 const Game = mongoose.model('Game', gameSchema);
+const RoomUsers = mongoose.model('RoomUsers', roomUsers);
+
+exports.addUserToRoom = (user) => {
+  console.log('user from db is ', user);
+  
+};
 
 
 exports.makeChallenge = (req, res) => {

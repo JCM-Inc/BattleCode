@@ -30,11 +30,7 @@ io.on('connection', (socket) => {
   console.log('socket connected');
   socket.on('room', (data) => {
     console.log('data is ', data);
-    db.findUser({ "username": data.user }, (results) => {
-      console.log('results from database is ', results);
-      results.currentRoom = data.testName;
-      console.log('results after added room is ', results);
-    });
+    db.addUserToRoom(data.user);
   });
 });
 

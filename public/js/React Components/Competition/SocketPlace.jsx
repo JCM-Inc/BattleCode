@@ -18,9 +18,6 @@ export default class SocketPlace extends Component {
     this.checkWin();
 
     let emitData = this.props;
-    // console.log('socket emit about to emit');
-    // socket.emit('room', 'test');
-    // console.log('socket emit should have emitted');
     socket.emit('room', emitData);
 
     // socket.on('room', (players) => {
