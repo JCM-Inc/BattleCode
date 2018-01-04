@@ -20,6 +20,7 @@ export default class Rankings extends Component {
         return prev;
       }, {});
       const winnerCollection = [];
+      // console.log(allWinners, "this is all the winners");
       for (const key in allWinners) {
         if (allWinners.hasOwnProperty(key)) {
           winnerCollection.push({
@@ -29,7 +30,6 @@ export default class Rankings extends Component {
         }
       }
       this.setState({ WinnerListByID: winnerCollection });
-      console.log(this.state.WinnerListByID, 'this is winner list');
       const wins = winnerCollection.map(user => user.wins);
       const winnersByName = [];
       Object.entries(allWinners).map(winner =>
@@ -72,6 +72,11 @@ export default class Rankings extends Component {
         <ul className="DashBoardList">
           {RankingsList}
           <BarChart
+            axes
+            axisLabels={{ x: 'Username', y: 'Wins' }}
+            yAxisOrientLeft
+            height={250}
+            width={350}
             data={
               //should i map here over winnerlist by id and make each element be the userId and wins?
               this.state.WinnerListByID}
