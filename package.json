@@ -56,10 +56,14 @@
     "react-codemirror": "^1.0.0",
     "react-confetti": "^1.1.5",
     "react-dom": "^15.6.1",
+    "react-form-validator-core": "^0.3.0",
     "react-google-login-component": "^0.8.0",
     "react-load-script": "0.0.6",
+    "react-material-ui-form-validator": "^1.0.5",
+    "react-phone-number-input": "^0.15.2",
     "react-router-dom": "^4.1.2",
     "react-tap-event-plugin": "^2.0.1",
+    "react-telephone-input": "^4.3.4",
     "socket.io": "^2.0.3",
     "socket.io-client": "^2.0.3"
   }
