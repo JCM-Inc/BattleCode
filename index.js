@@ -27,8 +27,12 @@ const server = app.listen(port, (err) => {
 const io = require('socket.io')(server);
 
 io.on('connection', (socket) => {
+  let addTwoPlayers = ['testUser1', ' '];
   socket.on('room', (data) => {
-    io.sockets.emit('room', data.user);
+    if (data.userInfo.testName === 'addTwo') {
+      addTwoPlayers.push(data.userInfo.user, ' ');
+      io.sockets.emit('room', addTwoPlayers);
+    }
   });
 });
 
@@ -39,6 +43,7 @@ app.post('/signin', (req, res) => {
     });
   });
 });
+
 app.get('/competitions', db.getChallenges);
 app.get('/competition', db.getChallengeById);
 app.post('/uniquecompetition', db.returnOneChallenge);
@@ -46,3 +51,4 @@ app.post('/makechallenge', db.makeChallenge);
 app.post('/gamewin', db.gameWin);
 app.get('/games', db.getGameWinners);
 app.get('/findUserById', db.findUserById);
+app.get('/setPhoneNumber', db.setPhoneNumber);
