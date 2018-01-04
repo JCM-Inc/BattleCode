@@ -27,12 +27,14 @@ const server = app.listen(port, (err) => {
 const io = require('socket.io')(server);
 
 io.on('connection', (socket) => {
-  let addTwoPlayers = ['testUser1', ' '];
+  console.log('socket connected');
   socket.on('room', (data) => {
-    if (data.userInfo.testName === 'addTwo') {
-      addTwoPlayers.push(data.userInfo.user, ' ');
-      io.sockets.emit('room', addTwoPlayers);
-    }
+    console.log('data is ', data);
+    db.findUser({ "username": data.user }, (results) => {
+      console.log('results from database is ', results);
+      results.currentRoom = data.testName;
+      console.log('results after added room is ', results);
+    });
   });
 });
 
