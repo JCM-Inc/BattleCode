@@ -33,7 +33,7 @@ io.on('connection', (socket) => {
   connections.push(socket);
   console.log('Connected: %s sockets connected', connections.length);
     socket.on('chat', (data) => {
-    messages.push(`${data.user.user} said "${data.msg}"`);
+    messages.push(`${data.user.user.slice(0, data.user.user.indexOf('@'))} said "${data.msg}"`);
     io.sockets.emit('new message', messages);
   });
   socket.on('typing', (data) => {
