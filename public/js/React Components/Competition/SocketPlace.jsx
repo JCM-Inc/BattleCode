@@ -53,10 +53,10 @@ export default class SocketPlace extends Component {
   }
 
   handleClick() {
-    socket.emit('chat', this.state.input);
+    socket.emit('chat', { user: this.props, msg: this.state.input });
     socket.on('new message', (data) => {
       console.log(data);
-      this.state.chat.push(data, ' ');
+      this.state.chat = data;
     });
   }
 
