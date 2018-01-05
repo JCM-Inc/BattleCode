@@ -8,14 +8,28 @@ import CompetitionSelect from '../Competition/CompetitionSelect';
 import ReactTelInput from 'react-telephone-input/lib/withStyles';
 import axios from 'axios';
 
-export default DashBoard;
-
-
 function handleInputChange(telNumber, selectedCountry) {
   if (telNumber.length === 17) {
-    // console.log(window.user);
+    axios.get('/getAllUsers').then((foundusers) => {
+
+      const matchedUser = foundusers.data.filter((user) => {
+        return user.username === window.user
+      });
+
+      return matchedUser[0]
+    }).then((userToUpdate) => {
+      if (userToUpdate.phoneNumber === telNumber) { 
+        alert('phone number already taken!')
+      } else {
+      userToUpdate.phoneNumber = telNumber;
+      console.log(userToUpdate, 'Sorry, already got those digits :P');
+      return axios.post('/setPhoneNumber', userToUpdate).then(saved => {
+        alert(`thanks for adding ${saved.phoneNumber} to our automated services`);
+      });
+    }
+      });
+    }
   }
-}
 
 function handleInputBlur(telNumber, selectedCountry) {
   // console.log('Focus off the ReactTelephoneInput component. Tel number entered is: ', telNumber, ' selected country is: ', selectedCountry);
@@ -53,3 +67,4 @@ const DashBoard = props => (
 DashBoard.propTypes = {
   user: PropTypes.string.isRequired,
 };
+export default DashBoard;
