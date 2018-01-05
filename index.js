@@ -27,8 +27,10 @@ const server = app.listen(port, (err) => {
 const io = require('socket.io')(server);
 
 io.on('connection', (socket) => {
+  console.log('socket connected');
   socket.on('room', (data) => {
-    io.sockets.emit('room', data.user);
+    console.log('data is ', data);
+    db.addUserToRoom(data);
   });
 });
 
