@@ -59,4 +59,5 @@ app.post('/makechallenge', db.makeChallenge);
 app.post('/gamewin', db.gameWin);
 app.get('/games', db.getGameWinners);
 app.get('/findUserById', db.findUserById);
-app.get('/setPhoneNumber', db.setPhoneNumber);
+app.get('/getAllUsers', db.getAllUsers);
+app.post('/setPhoneNumber', db.setPhoneNumber);

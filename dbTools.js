@@ -174,13 +174,25 @@ exports.getGameWinners = (req, res) => {
   });
 };
 
-exports.setPhoneNumber = (req, res) => {
-  User.findOne({ email: req.body.email }).exec((foundError, suc) => {
+exports.getAllUsers = (req, res) => {
+  User.find({}).exec((foundError, suc) => {
     if (foundError) {
       res.send(foundError);
+    } else {
+      res.send(suc);
     }
     // else {
     //   // console.log(User);
     // }
+  });
+};
+
+exports.setPhoneNumber = (dataObject, cb) => {
+  User.save(dataObject).exec((err, suc) => {
+    if (err) {
+      cb(err)
+    } else {
+      cb(suc)
+    }
   });
 };

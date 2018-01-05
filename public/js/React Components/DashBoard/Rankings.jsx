@@ -34,7 +34,6 @@ export default class Rankings extends Component {
             });
           }
         }).then(() => {
-          this.state.WinnerListByID.sort((a, b) => b.wins - a.wins);
           this.setState({ WinnerListByID: winnerCollection.sort((a, b) => b.y - a.y) });
         });
       }
