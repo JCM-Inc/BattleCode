@@ -58,7 +58,7 @@ export default class SocketPlace extends Component {
   render() {
     const {players, user} = this.state;
     const messages = this.state.chat.map((message) => {
-      return <li>{message}</li>
+      return <li id="message">{message}</li>;
     });
     return (
       <div>
