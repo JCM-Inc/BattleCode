@@ -5,6 +5,13 @@ const bodyParser = require('body-parser');
 const path = require('path');
 const db = require('./dbTools');
 const auth = require('./auth');
+const axios = require('axios');
+const MessagingResponse = require('twilio').twiml.MessagingResponse;
+const twilio = require('twilio');
+const client = new twilio(process.env.ACCOUNTSID, process.env.AUTHTOKEN);
+const mongoose = require('mongoose');
+const { MongoClient } = require('mongodb');
+const Agenda = require('agenda');
 
 const app = express();
 
@@ -58,3 +65,47 @@ app.get('/games', db.getGameWinners);
 app.get('/findUserById', db.findUserById);
 app.get('/getAllUsers', db.getAllUsers);
 app.post('/setPhoneNumber', db.setPhoneNumber);
+
+const User = mongoose.model('User');
+
+const triggerMessages = function () {
+
+  let allNumbers = []
+  User.find({}, (err, users) => {
+    if (err) {
+      throw err;
+    } else {
+      for (var i = 0; i < users.length; i++) {
+        if (users[i].phoneNumber !== null || undefined) {
+          allNumbers.push(users[i].phoneNumber);
+        }
+      }
+      const validNumbers = allNumbers.filter(number => { return typeof number === 'string' && number.length > 8 });
+      validNumbers.forEach(num => {
+        client.messages.create({ to: num, from: '(504) 226-6791', body: `New challenges await you at BattleCode.. you must DEFEND YOUR HONOR` }, function (err, data) {
+        });
+      });
+    }
+  });
+};
+
+
+async function run() {
+
+  const db = await MongoClient.connect(`mongodb://battlecode:${process.env.DBPW}@ds139067.mlab.com:39067/battlecode`);
+  const agenda = new Agenda().mongo(db, 'users');
+  agenda.define('sendMessages', () => {
+    triggerMessages()();
+    process.exit(0);
+  });
+
+  await new Promise(resolve => agenda.once('ready', resolve));
+
+  agenda.schedule(new Date(Date.now() + 1000), 'sendMessages');
+  agenda.start();
+}
+
+run().catch(error => {
+  console.error(error);
+  process.exit(-1);
+});

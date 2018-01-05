@@ -14,22 +14,21 @@ function handleInputChange(telNumber, selectedCountry) {
       const matchedUser = foundusers.data.filter((user) => user.username === window.user);
 
       return matchedUser[0];
+
     }).then((userToUpdate) => {
-      if (userToUpdate.phoneNumber === telNumber) {
-        alert('phone number already taken!');
-      } else {
         userToUpdate.phoneNumber = telNumber;
-        console.log(userToUpdate, 'Sorry, already got those digits :P');
+
+
         return axios.post('/setPhoneNumber', userToUpdate).then((saved) => {
-          alert(`thanks for adding ${saved.phoneNumber} to our automated services`);
+
+          alert(`thanks for adding ${saved.data.phoneNumber} to our automated services`);
         });
-      }
     });
   }
 }
 
 function handleInputBlur(telNumber, selectedCountry) {
-  // console.log('Focus off the ReactTelephoneInput component. Tel number entered is: ', telNumber, ' selected country is: ', selectedCountry);
+  console.log('Focus off the ReactTelephoneInput component. Tel number entered is: ', telNumber, ' selected country is: ', selectedCountry);
 }
 
 const DashBoard = props => (
