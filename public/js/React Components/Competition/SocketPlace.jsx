@@ -22,11 +22,6 @@ export default class SocketPlace extends Component {
     const emitData = this.props;
     socket.emit('room', emitData);
 
-    // socket.on('room', (players) => {
-    //   this.setState((state) => {
-    //     return state.players = players;
-    //   });
-    // });
     this.updateState = this.updateState.bind(this);
   }
 
@@ -48,13 +43,18 @@ export default class SocketPlace extends Component {
   }
 
   handleChange(e) {
+    this.setState({input: e.target.value });
     socket.emit('typing', 'user is typing a message');
   }
   
+  let messages = [];
   handleClick() {
-    socket.emit('chat', { user: this.props, msg: this.state.input });
-    socket.on('new message', (data) => {
-      this.setState({ chat: data });
+    socket.emit('chat', {user: this.props, msg: this.state.input});
+    socket.on('new message', (message) => {
+      messages.push(message);
+      console.log('messages is ', messages);
+      // this.state.chat.push(message, ' ');
+      this.setState({ chat: messages });
     });
   }
 

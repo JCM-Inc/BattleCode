@@ -28,24 +28,22 @@ const io = require('socket.io')(server);
 
 
 let connections = [];
-let messages = [];
 io.on('connection', (socket) => {
   connections.push(socket);
   console.log('Connected: %s sockets connected', connections.length);
   // socket.on('room', (data) => {
-  //   // console.log('data is ', data);
-  //   db.addUserToRoom(data);
-  // });
-  socket.on('chat', (data) => {
-    messages.push(data.user.user, ' said ',data.msg, ' ');
-    console.log(data);
-    io.sockets.emit('new message', messages);
+    //   // console.log('data is ', data);
+    //   db.addUserToRoom(data);
+    // });
+    socket.on('chat', (data) => {
+    let message = '';
+    message = `${data.user.user} said "${data.msg}"`;
+    console.log('message is ', message);
+    io.sockets.emit('new message', message);
+    message = '';
   });
   socket.on('typing', (data) => {
     console.log(data);
-  });
-  socket.on('disconnect', () => {
-    messages = [];
   });
 });
 
