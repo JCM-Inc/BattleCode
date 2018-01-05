@@ -10,13 +10,29 @@ import axios from 'axios';
 
 function handleInputChange(telNumber, selectedCountry) {
   if (telNumber.length === 17) {
-    console.log(window.user);
+    axios.get('/getAllUsers').then((foundusers) => {
+
+      const matchedUser = foundusers.data.filter((user) => {
+        return user.username === window.user
+      });
+
+      return matchedUser[0]
+    }).then((userToUpdate) => {
+      if (userToUpdate.phoneNumber === telNumber) { 
+        alert('phone number already taken!')
+      } else {
+      userToUpdate.phoneNumber = telNumber;
+      console.log(userToUpdate, 'Sorry, already got those digits :P');
+      return axios.post('/setPhoneNumber', userToUpdate).then(saved => {
+        alert(`thanks for adding ${saved.phoneNumber} to our automated services`);
+      });
+    }
+      });
+    }
   }
-  axios.get('/findUserById', { username: window.user } ).then((founduser)=> { console.log(founduser)});
-}
 
 function handleInputBlur(telNumber, selectedCountry) {
-  console.log('Focus off the ReactTelephoneInput component. Tel number entered is: ', telNumber, ' selected country is: ', selectedCountry);
+  // console.log('Focus off the ReactTelephoneInput component. Tel number entered is: ', telNumber, ' selected country is: ', selectedCountry);
 }
 
 const DashBoard = props => (
@@ -36,11 +52,10 @@ const DashBoard = props => (
           </div>
         </div>
       </Card>
-      <div style={{ textAlign: 'center' }}>
-      Enter Phone Number to receive text from BattleCode!
+      <div style={{width: '325px', margin: '0 auto' }} >
+      <h3 style={{ textAlign: 'center', font: '16px sans-serif' }}>Enter Phone Number to receive updates from BattleCode!</h3>
       <ReactTelInput
               defaultCountry="us"
-              flagsImagePath='/path/to/images/flags.png'
               onChange={handleInputChange}
               onBlur={handleInputBlur}
     />
