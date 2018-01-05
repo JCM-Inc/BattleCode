@@ -31,11 +31,6 @@ class CompetitionDescriptor extends Component {
     return (
       <div className="CompetitionDescriptor">
         <div className="TopDescription">
-          <SocketPlace
-            passed={this.getState}
-            user={user}
-            testName={name}
-          />
           <Card className="Description">
             <CardText>
               <h1>{name}</h1>
@@ -50,6 +45,11 @@ class CompetitionDescriptor extends Component {
           userInput={userInput}
           user={user}
           testId={testId}
+        />
+        <SocketPlace
+          passed={this.getState}
+          user={user}
+          testName={name}
         />
       </div>
     );

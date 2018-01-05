@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { AppBar, FontIcon, MuiThemeProvider } from 'material-ui';
 import io from 'socket.io-client';
 const socket = io.connect();
 // testing here to determine connection for sockets
@@ -57,19 +58,20 @@ export default class SocketPlace extends Component {
   render() {
     const {players, user} = this.state;
     const messages = this.state.chat.map((message) => {
-      return <li id="message">{message}</li>;
+      return <li className="MessageWrapper">{message}</li>;
     });
     return (
-      <div>
-        <h3>Heckle your competitors!</h3>
-        <p>Click "Submit" to enable chat</p>
+      <div className="Container">
+        <h3 style={{ font: '16px sans-serif' }}>Heckle your competitors!</h3>
+        <p style={{ font: '16px sans-serif' }}>Click "Submit" to enable chat</p>
         <input type="text" onChange={this.handleChange.bind(this)} />
         <input
           type="button"
           value="Submit"
           onClick={this.handleClick.bind(this)}
+          style={{ font: '16px sans-serif' }}
         />
-        <ul>
+        <ul style={{ textAlign: 'left', font: '16px sans-serif', listStyle: 'none' }}>
           {messages}
         </ul>
       </div>
