@@ -56,8 +56,8 @@ const Game = mongoose.model('Game', gameSchema);
 const RoomUsers = mongoose.model('RoomUsers', roomUsers);
 
 exports.addUserToRoom = (data) => {
-  console.log('data from db is ', data);
-  
+  // console.log('data from db is ', data);
+
 };
 
 
@@ -178,8 +178,9 @@ exports.setPhoneNumber = (req, res) => {
   User.findOne({ email: req.body.email }).exec((foundError, suc) => {
     if (foundError) {
       res.send(foundError);
-    } else {
-      console.log(User);
     }
+    // else {
+    //   // console.log(User);
+    // }
   });
-}
+};

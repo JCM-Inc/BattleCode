@@ -10,7 +10,7 @@ import axios from 'axios';
 
 function handleInputChange(telNumber, selectedCountry) {
   if (telNumber.length === 17) {
-    console.log(window.user);
+    // console.log(window.user);
   }
   axios.get('/findUserById', { username: window.user } ).then((founduser)=> { console.log(founduser)});
 }

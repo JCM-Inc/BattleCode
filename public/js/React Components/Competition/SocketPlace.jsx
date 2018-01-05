@@ -12,12 +12,13 @@ export default class SocketPlace extends Component {
       players: [],
       user: this.props.user,
       room: this.props.testName,
+      input: '',
     };
     this.send = this.send.bind(this);
     this.updateState = this.updateState.bind(this);
     this.checkWin();
 
-    let emitData = this.props;
+    const emitData = this.props;
     socket.emit('room', emitData);
 
     // socket.on('room', (players) => {
@@ -25,6 +26,7 @@ export default class SocketPlace extends Component {
     //     return state.players = players;
     //   });
     // });
+    this.updateState = this.updateState.bind(this);
   }
 
   checkWin() {
@@ -39,8 +41,18 @@ export default class SocketPlace extends Component {
     socket.emit('room', 'button clicked');
   }
 
+
   updateState(newState) {
     this.setState(newState);
+  }
+
+  handleChange(e) {
+    this.setState({ input: e.target.value });
+    socket.emit('typing', 'user is typing a message');
+  }
+
+  handleClick() {
+    socket.emit('chat', this.state.input);
   }
 
   render() {
@@ -48,6 +60,12 @@ export default class SocketPlace extends Component {
     return (
       <div>
         <h3>In room now {players}</h3>
+        <input type="text" onChange={this.handleChange.bind(this)} />
+        <input
+          type="button"
+          value="Submit"
+          onClick={this.handleClick.bind(this)}
+        />
       </div>
     );
   }

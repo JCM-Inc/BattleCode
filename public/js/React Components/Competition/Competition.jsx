@@ -24,7 +24,6 @@ export default class Competition extends Component {
       name: '',
       desc: '',
       id: '',
-      input: '',
     },
 
     axios.post('/uniquecompetition', {
@@ -42,16 +41,6 @@ export default class Competition extends Component {
 
   updateState(newState) {
     this.setState(newState);
-  }
-
-  handleChange(e) {
-    console.log('user is typing a message');
-    this.setState({ input: e.target.value });
-  }
-
-  handleClick(){
-    console.log(this.state.input);
-    socket.emit('chat', this.state.input);
   }
 
   render() {
@@ -97,14 +86,6 @@ export default class Competition extends Component {
             className="WinShare"
             testId={this.state.testId}
           />
-        <div>
-          <input type="text" onChange={this.handleChange.bind(this)} />
-          <input
-            type="button"
-            value="Alert the text input"
-            onClick={this.handleClick.bind(this)}
-          />
-        </div>
         </div>
       </MuiThemeProvider>
     );

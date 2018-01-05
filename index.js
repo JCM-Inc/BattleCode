@@ -26,14 +26,21 @@ const server = app.listen(port, (err) => {
 
 const io = require('socket.io')(server);
 
+
+let connections = [];
 io.on('connection', (socket) => {
-  console.log('socket connected');
+  connections.push(socket);
+  console.log('Connected: %s sockets connected', connections.length);
   socket.on('room', (data) => {
-    console.log('data is ', data);
+    // console.log('data is ', data);
     db.addUserToRoom(data);
   });
   socket.on('chat', (data) => {
-    console.log('data from chat socket is ', data);
+    console.log(data);
+    io.sockets.emit('new message', data);
+  });
+  socket.on('typing', (data) => {
+    console.log(data);
   });
 });
 
