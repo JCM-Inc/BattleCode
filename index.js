@@ -33,9 +33,26 @@ const server = app.listen(port, (err) => {
 
 const io = require('socket.io')(server);
 
+
+let connections = [];
+let messages = [];
 io.on('connection', (socket) => {
-  socket.on('room', (data) => {
-    io.sockets.emit('room', data.user);
+  connections.push(socket);
+  console.log('Connected: %s sockets connected', connections.length);
+  // socket.on('room', (data) => {
+  //   // console.log('data is ', data);
+  //   db.addUserToRoom(data);
+  // });
+  socket.on('chat', (data) => {
+    messages.push(data.user.user, ' said ',data.msg, ' ');
+    console.log(data);
+    io.sockets.emit('new message', messages);
+  });
+  socket.on('typing', (data) => {
+    console.log(data);
+  });
+  socket.on('disconnect', () => {
+    messages = [];
   });
 });
 
@@ -59,24 +76,8 @@ app.post('/setPhoneNumber', db.setPhoneNumber);
 
 const User = mongoose.model('User');
 
-const Challenge = mongoose.model('Challenge');
-
-const challengeCount = function () {
-  let allChallenges = [];
-  Challenge.find({}, (err, challenges) => {
-    if (err) {
-      throw err;
-    } else {
-      for( var i = 0; i < challenges.length; i++ ) {
-          allChallenges.push(challenges[i]); 
-        }
-      }
-      console.log(allChallenges);
-  });
-};
-
-
 const triggerMessages = function () {
+
   let allNumbers = []
   User.find({}, (err, users) => {
     if (err) {
@@ -97,8 +98,8 @@ const triggerMessages = function () {
 };
 
 
-
 async function run() {
+
   const db = await MongoClient.connect(`mongodb://battlecode:${process.env.DBPW}@ds139067.mlab.com:39067/battlecode`);
   const agenda = new Agenda().mongo(db, 'users');
   agenda.define('sendMessages', () => {
@@ -108,7 +109,7 @@ async function run() {
 
   await new Promise(resolve => agenda.once('ready', resolve));
 
-  agenda.every('24 hours', 'sendMessages');
+  agenda.schedule(new Date(Date.now() + 1000), 'sendMessages');
   agenda.start();
 }
 
@@ -116,6 +117,3 @@ run().catch(error => {
   console.error(error);
   process.exit(-1);
 });
-
-
-

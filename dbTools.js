@@ -56,8 +56,7 @@ const Game = mongoose.model('Game', gameSchema);
 const RoomUsers = mongoose.model('RoomUsers', roomUsers);
 
 exports.addUserToRoom = (data) => {
-  // console.log('data from db is ', data);
-
+  console.log('data from db is ', data);
 };
 
 
@@ -181,18 +180,22 @@ exports.getAllUsers = (req, res) => {
     } else {
       res.send(suc);
     }
-    // else {
-    //   // console.log(User);
-    // }
   });
-};
+}
 
-exports.setPhoneNumber = (dataObject, cb) => {
-  User.save(dataObject).exec((err, suc) => {
-    if (err) {
-      cb(err)
-    } else {
-      cb(suc)
+exports.setPhoneNumber = (req, res, next) => {
+  const id = req.body._id
+  const body = req.body
+
+  User.findByIdAndUpdate(id, body, function(error, user) {
+    // Handle the error using the Express error middleware
+    if(error) return next(error);
+    
+    if(!user) {
+      return res.status(404).json({
+        message: 'User with id ' + id + ' can not be found.'
+      });
     }
+    res.json(user);
   });
 };
