@@ -45,7 +45,6 @@ export default class SocketPlace extends Component {
   handleChange(e) {
     this.setState({input: e.target.value });
     socket.emit('typing', 'user is typing a message');
-    this.setState();
   }
   
   handleClick() {
@@ -63,6 +62,7 @@ export default class SocketPlace extends Component {
     return (
       <div>
         <h3>Heckle your competitors!</h3>
+        <p>Click "Submit" to enable chat</p>
         <input type="text" onChange={this.handleChange.bind(this)} />
         <input
           type="button"
