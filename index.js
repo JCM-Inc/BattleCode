@@ -35,12 +35,11 @@ io.on('connection', (socket) => {
     //   // console.log('data is ', data);
     //   db.addUserToRoom(data);
     // });
+    let messages = [];
     socket.on('chat', (data) => {
-    let message = '';
-    message = `${data.user.user} said "${data.msg}"`;
-    console.log('message is ', message);
-    io.sockets.emit('new message', message);
-    message = '';
+    messages.push(`${data.user.user} said "${data.msg}"`);
+    console.log('message is ', messages);
+    io.sockets.emit('new message', messages);
   });
   socket.on('typing', (data) => {
     console.log(data);
