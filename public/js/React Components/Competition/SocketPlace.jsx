@@ -53,13 +53,16 @@ export default class SocketPlace extends Component {
 
   handleClick() {
     socket.emit('chat', this.state.input);
+    socket.on('new message', (data) => {
+      console.log('data on new message is ', data);
+    });
   }
 
   render() {
     const {players, user} = this.state;
     return (
       <div>
-        <h3>In room now {players}</h3>
+        <h3>In room now {players} </h3>
         <input type="text" onChange={this.handleChange.bind(this)} />
         <input
           type="button"

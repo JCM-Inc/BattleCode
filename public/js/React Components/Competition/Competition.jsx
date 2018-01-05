@@ -4,14 +4,11 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import Confetti from 'react-confetti';
 import axios from 'axios';
-import io from 'socket.io-client';
 import CompetitionDescriptor from './CompetitionDescriptor';
 import TextEditor from './TextEditor';
 import TextEditorSettings from './TextEditorSettings';
 import parseToMocha from './parseToMocha';
 import WinShare from './WinShare';
-
-const socket = io.connect();
 
 export default class Competition extends Component {
   constructor(props) {
