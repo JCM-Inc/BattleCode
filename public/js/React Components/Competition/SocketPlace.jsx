@@ -48,15 +48,13 @@ export default class SocketPlace extends Component {
   }
 
   handleChange(e) {
-    this.setState({ input: e.target.value });
     socket.emit('typing', 'user is typing a message');
   }
-
+  
   handleClick() {
     socket.emit('chat', { user: this.props, msg: this.state.input });
     socket.on('new message', (data) => {
-      console.log(data);
-      this.state.chat = data;
+      this.setState({ chat: data });
     });
   }
 
