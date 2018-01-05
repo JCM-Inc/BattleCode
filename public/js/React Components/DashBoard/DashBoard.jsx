@@ -15,15 +15,10 @@ function handleInputChange(telNumber, selectedCountry) {
 
       return matchedUser[0];
     }).then((userToUpdate) => {
-      if (userToUpdate.phoneNumber === telNumber) {
-        alert('phone number already taken!');
-      } else {
         userToUpdate.phoneNumber = telNumber;
-        console.log(userToUpdate, 'Sorry, already got those digits :P');
         return axios.post('/setPhoneNumber', userToUpdate).then((saved) => {
           alert(`thanks for adding ${saved.phoneNumber} to our automated services`);
         });
-      }
     });
   }
 }
