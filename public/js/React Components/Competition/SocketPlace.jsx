@@ -45,6 +45,7 @@ export default class SocketPlace extends Component {
   handleChange(e) {
     this.setState({input: e.target.value });
     socket.emit('typing', 'user is typing a message');
+    this.setState();
   }
   
   handleClick() {

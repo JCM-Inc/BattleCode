@@ -28,6 +28,7 @@ const io = require('socket.io')(server);
 
 
 let connections = [];
+let messages = [];
 io.on('connection', (socket) => {
   connections.push(socket);
   console.log('Connected: %s sockets connected', connections.length);
@@ -35,7 +36,6 @@ io.on('connection', (socket) => {
     //   // console.log('data is ', data);
     //   db.addUserToRoom(data);
     // });
-    let messages = [];
     socket.on('chat', (data) => {
     messages.push(`${data.user.user} said "${data.msg}"`);
     console.log('message is ', messages);
