@@ -56,8 +56,8 @@ const Game = mongoose.model('Game', gameSchema);
 const RoomUsers = mongoose.model('RoomUsers', roomUsers);
 
 exports.addUserToRoom = (data) => {
-  console.log('data from db is ', data);
-  
+  // console.log('data from db is ', data);
+
 };
 
 
@@ -181,8 +181,11 @@ exports.getAllUsers = (req, res) => {
     } else {
       res.send(suc);
     }
+    // else {
+    //   // console.log(User);
+    // }
   });
-}
+};
 
 exports.setPhoneNumber = (dataObject, cb) => {
   User.save(dataObject).exec((err, suc) => {
