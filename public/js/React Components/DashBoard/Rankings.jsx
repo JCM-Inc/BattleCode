@@ -3,8 +3,6 @@ import axios from 'axios';
 
 import { BarChart } from 'react-easy-chart';
 
-const ReactDOM = require('react-dom');
-
 export default class Rankings extends Component {
   constructor() {
     super();
@@ -29,7 +27,7 @@ export default class Rankings extends Component {
         }).then((data) => {
           if (allWinners.hasOwnProperty(key)) {
             winnerCollection.push({
-              x: data.data.username.split('@')[0],
+              x: data.data.username.split('@')[0].slice(0, 8),
               y: allWinners[key],
             });
           }
@@ -46,18 +44,23 @@ export default class Rankings extends Component {
         <div className="ListTitle">
           <h1> Rankings </h1>
         </div>
-        <ul className="DashBoardList">
+        <div style={{ display: 'inline-block' }}>
           <BarChart
-            colorBars
             axes
-            axisLabels={{ x: 'Username', y: 'Wins' }}
+            axisLabels={{ x: 'Conquered Battles', y: 'Pirate Name' }}
+            colorBars
             yAxisOrientLeft
             height={250}
-            width={350}
+            width={500}
             data={this.state.WinnerListByID}
+            clickHandler={(d) => this.setState({ dataDisplay: `The number of wins for ${d.x} is ${d.y}` })}
           />
-        </ul>
+        </div>
+        <div style={{ display: 'inline-block', verticalAlign: 'top', paddingLeft: '20px' }}>
+          {this.state.dataDisplay ? this.state.dataDisplay : 'Click on a bar to show the wins'}
+        </div>
       </div>
+
     );
   }
 }

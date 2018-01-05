@@ -39,20 +39,12 @@ let messages = [];
 io.on('connection', (socket) => {
   connections.push(socket);
   console.log('Connected: %s sockets connected', connections.length);
-  // socket.on('room', (data) => {
-  //   // console.log('data is ', data);
-  //   db.addUserToRoom(data);
-  // });
-  socket.on('chat', (data) => {
-    messages.push(data.user.user, ' said ',data.msg, ' ');
-    console.log(data);
+    socket.on('chat', (data) => {
+    messages.push(`${data.user.user.slice(0, data.user.user.indexOf('@'))} said "${data.msg}"`);
     io.sockets.emit('new message', messages);
   });
   socket.on('typing', (data) => {
     console.log(data);
-  });
-  socket.on('disconnect', () => {
-    messages = [];
   });
 });
 
