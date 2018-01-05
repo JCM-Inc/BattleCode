@@ -44,6 +44,9 @@ export default class Rankings extends Component {
         <div className="ListTitle">
           <h1> LeaderBoard </h1>
         </div>
+        <div style={{ display: 'inline-block', verticalAlign: 'center', paddingLeft: '20px' }}>
+          {this.state.dataDisplay ? this.state.dataDisplay : 'Click on a bar to show the wins'}
+        </div>
         <div style={{ display: 'inline-block' }}>
           <BarChart
             axes
@@ -53,14 +56,10 @@ export default class Rankings extends Component {
             height={250}
             width={500}
             data={this.state.WinnerListByID}
-            clickHandler={(d) => this.setState({ dataDisplay: `The number of wins for ${d.x} is ${d.y}` })}
+            clickHandler={d => this.setState({ dataDisplay: `The number of wins for ${d.x} is ${d.y}` })}
           />
         </div>
-        <div style={{ display: 'inline-block', verticalAlign: 'top', paddingLeft: '20px' }}>
-          {this.state.dataDisplay ? this.state.dataDisplay : 'Click on a bar to show the wins'}
-        </div>
       </div>
-
     );
   }
 }
