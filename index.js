@@ -32,6 +32,9 @@ io.on('connection', (socket) => {
     console.log('data is ', data);
     db.addUserToRoom(data);
   });
+  socket.on('chat', (data) => {
+    console.log('data from chat socket is ', data);
+  });
 });
 
 app.post('/signin', (req, res) => {
