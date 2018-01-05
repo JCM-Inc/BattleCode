@@ -13,6 +13,7 @@ export default class SocketPlace extends Component {
       user: this.props.user,
       room: this.props.testName,
       input: '',
+      chat: [],
     };
     this.send = this.send.bind(this);
     this.updateState = this.updateState.bind(this);
@@ -54,7 +55,8 @@ export default class SocketPlace extends Component {
   handleClick() {
     socket.emit('chat', this.state.input);
     socket.on('new message', (data) => {
-      console.log('data on new message is ', data);
+      console.log(data);
+      this.state.chat.push(data, ' ');
     });
   }
 
@@ -62,13 +64,14 @@ export default class SocketPlace extends Component {
     const {players, user} = this.state;
     return (
       <div>
-        <h3>In room now {players} </h3>
+        <h3>Heckle your competitors!</h3>
         <input type="text" onChange={this.handleChange.bind(this)} />
         <input
           type="button"
           value="Submit"
           onClick={this.handleClick.bind(this)}
         />
+        <p>{this.state.chat}</p>
       </div>
     );
   }
