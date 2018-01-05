@@ -79,6 +79,12 @@ export default class Competition extends Component {
               updateState={this.updateState}
             />
           </div>
+          <div>
+            <ul id="messages"></ul>
+            <form action="">
+              <input id="m" autocomplete="off" /><button>Send</button>
+            </form>
+          </div>
           <WinShare
             className="WinShare"
             testId={this.state.testId}
