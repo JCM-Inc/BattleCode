@@ -57,6 +57,9 @@ export default class SocketPlace extends Component {
 
   render() {
     const {players, user} = this.state;
+    const messages = this.state.chat.map((message) => {
+      return <li>{message}</li>
+    });
     return (
       <div>
         <h3>Heckle your competitors!</h3>
@@ -66,7 +69,9 @@ export default class SocketPlace extends Component {
           value="Submit"
           onClick={this.handleClick.bind(this)}
         />
-        <p>{this.state.chat}</p>
+        <ul>
+          {messages}
+        </ul>
       </div>
     );
   }
