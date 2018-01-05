@@ -42,7 +42,7 @@ export default class Rankings extends Component {
     return (
       <div className="DashBoardHalf">
         <div className="ListTitle">
-          <h1> Rankings </h1>
+          <h1> LeaderBoard </h1>
         </div>
         <div style={{ display: 'inline-block' }}>
           <BarChart
