@@ -9,7 +9,7 @@ export default class Rankings extends Component {
     };
   }
   componentWillMount() {
-    axios.get('/games').then(({ data }) => {
+    axios.get('/api/games').then(({ data }) => {
       const winners = data.reduce((prev, cur) => prev.concat(cur.winner), []);
       const allWinners = winners.reduce((prev, cur) => {
         prev[cur] = prev[cur] + 1 || 1;
@@ -18,7 +18,7 @@ export default class Rankings extends Component {
 
       const winnersByName = [];
       Object.entries(allWinners).map(winner =>
-        axios.get('/findUserById', {
+        axios.get('/api/findUserById', {
           params: {
             _id: winner[0],
           },

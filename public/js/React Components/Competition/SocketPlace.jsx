@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import io from 'socket.io-client';
-const socket = io();
+const socket = io('http://localhost:5000/');
 
 export default class SocketPlace extends Component {
   constructor(props) {

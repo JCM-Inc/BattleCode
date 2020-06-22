@@ -16,7 +16,7 @@ export default class WinShare extends Component {
 
 
   getChallengeFromId() {
-    axios.get('/competition', {
+    axios.get('/api/competition', {
       params: {
         _id: this.props.testId,
       },

@@ -23,7 +23,7 @@ export default class Competition extends Component {
       id: '',
     };
 
-    axios.post('/uniquecompetition', {
+    axios.post('/api/uniquecompetition', {
       id: window.location.hash.split('?id=')[1],
     }).then(res => {
       this.setState({

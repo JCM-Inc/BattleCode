@@ -22,7 +22,7 @@ export default class Signin extends Component {
     console.log({ accessToken: idToken, email: userEmail });
 
     const xhr = new XMLHttpRequest();
-    xhr.open('POST', '/signin', true);
+    xhr.open('POST', '/api/signin', true);
     xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
     xhr.onload = () => {
       window.isLoggedIn = true;
@@ -48,7 +48,7 @@ export default class Signin extends Component {
             <h3 className="headers">Compete against others to prove your coding skills!</h3>
             <CardText className="signin-buttons">
               <GoogleLogin
-                socialId="106454631553-mles8i7ktt96qbvps7uoh2k9idop90e0.apps.googleusercontent.com"
+                socialId="964037495571-di7nlra9rn73sh8rsk9q4lo6l98044u6.apps.googleusercontent.com"
                 className="login-btn"
                 scope="https://www.googleapis.com/auth/userinfo.email"
                 responseHandler={this.responseGoogle}

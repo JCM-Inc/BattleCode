@@ -13,7 +13,7 @@ export default class CompetitionSelect extends Component {
       Competitions: [],
     };
 
-    axios.get('/competitions').then((res) => {
+    axios.get('/api/competitions').then((res) => {
       this.setState({
         Competitions: res.data,
       });
