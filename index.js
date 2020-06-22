@@ -16,7 +16,7 @@ app.use(bodyParser.json());
 
 const port = process.env.PORT || 5000;
 app.set('port', port);
-const server = app.listen(port, (err) => {
+const server = app.listen(port, '0.0.0.0', (err) => {
   if (err) {
     console.log(err);
   } else {
