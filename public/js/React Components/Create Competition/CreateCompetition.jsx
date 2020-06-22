@@ -55,7 +55,7 @@ export default class CreateCompetition extends Component {
   createCompetition() {
     const { name, description, tests } = this.state;
     const { history } = this.props;
-    axios.post('/makechallenge', { name, description, tests }).then((res) => {
+    axios.post('/api/makechallenge', { name, description, tests }).then((res) => {
       if (res.status === 201) {
         history.push('/dash');
       }

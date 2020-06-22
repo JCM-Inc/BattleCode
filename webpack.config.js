@@ -1,11 +1,10 @@
 const webpack = require('webpack');
+const HtmlWebPackPlugin = require('html-webpack-plugin');
 const path = require('path');
 
 module.exports = {
-  entry: './public/js/index.js',
   output: {
-    path: `${__dirname}/public`,
-    filename: 'index.min.js',
+    publicPath: '/',
   },
   module: {
     rules: [
@@ -14,6 +13,15 @@ module.exports = {
       { test: /\.css$/, loader: ['style-loader', 'css-loader'] },
       { test: /\.styl$/, loader: ['style-loader', 'css-loader', 'stylus-loader'] },
       { test: /\.png$/, loader: ['file-loader'] },
+      {
+        test: /\.html$/,
+        use: [
+          {
+            loader: 'html-loader',
+            options: { minimize: true },
+          },
+        ],
+      },
     ],
   },
   resolve: {
@@ -24,9 +32,27 @@ module.exports = {
       CreateCompetition: path.resolve(__dirname, 'public/js/React Components/Create Competition'),
     },
   },
-  plugins: [],
+  plugins: [
+    new HtmlWebPackPlugin({
+      template: './public/index.html',
+      filename: '../dist/index.html',
+    }),
+  ],
 };
 
 if (process.env.NODE_ENV === 'prod') {
   module.exports.plugins.push(new webpack.optimize.UglifyJsPlugin());
+} else {
+  module.exports.devtool = 'source-map';
+  module.exports.devServer = {
+    proxy: {
+      '/api': {
+        target: 'http://localhost:5000',
+        pathRewrite: {
+          '^/api': '',
+        },
+        ws: true,
+      },
+    },
+  };
 }

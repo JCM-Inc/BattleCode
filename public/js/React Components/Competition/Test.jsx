@@ -22,7 +22,7 @@ export default class Test extends Component {
         if (mocha.suite.suites[0].tests.every(test => test.state === 'passed')) {
           document.getElementsByClassName('Confetti')[0].style.display = 'block';
           if (this.props.passed === false) {
-            axios.post('/gamewin', { email: this.props.user, gameId: this.props.testId }).then((res) => {
+            axios.post('/api/gamewin', { email: this.props.user, gameId: this.props.testId }).then((res) => {
               console.log(res);
             });
             this.props.update();
